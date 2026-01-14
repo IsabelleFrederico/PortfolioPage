@@ -5,13 +5,19 @@
 
 ## 3D Assets & Licenses
 
-### Modern Gaming Setup – Ultimate Desk PC Accessories
-- **Author:** Poly Paradise – 3D models  
-- **Source:** https://sketchfab.com/3d-models/modern-gaming-setup-ultimate-desk-pc-accessories-1f7156d967ee4d259106e350d184c795  
-- **License:** CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)  
+Model Information:
+* title:	Basement Home Office #BADeskChallenge
+* source:	https://sketchfab.com/3d-models/basement-home-office-badeskchallenge-324ceb119c754bed973ab7a603750742
+* author:	Fatih174 (https://sketchfab.com/Fatih174)
 
-**Attribution (required by license):**  
-> This work is based on *“Modern Gaming Setup Ultimate Desk PC Accessories”*  
-> (https://sketchfab.com/3d-models/modern-gaming-setup-ultimate-desk-pc-accessories-1f7156d967ee4d259106e350d184c795)  
-> by *Poly Paradise – 3D models* (https://sketchfab.com/polyparadise_3dmodels)  
-> licensed under *CC-BY-4.0*.
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+
+
+
+https://devmount.medium.com/23-lesser-known-vs-code-shortcuts-as-gif-ffad06d3269e
+
+
+https://se.pinterest.com/pin/424323596147997286/
