@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useGraph } from '@react-three/fiber'
+import { useGraph, useFrame } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
@@ -13,6 +13,14 @@ export function Avatar(props) {
   typingAnimation[0].name = "Typing"
 
   const { actions } = useAnimations(typingAnimation, group)
+
+  // useFrame(
+  //   (state) => {
+  //     group.current?.getObjectByName("Head").lookAt(state.camera.position)
+  //     group.current?.getObjectByName("Neck").lookAt(state.camera.position)
+  //   }
+  //   , [])
+
 
   useEffect(
     () => {
