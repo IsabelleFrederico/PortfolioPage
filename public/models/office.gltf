@@ -1313,6 +1313,9 @@
 				1,
 				1
 			],
+			"emissiveTexture":{
+				"index":9
+			},
 			"name":"screen",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
@@ -1330,6 +1333,9 @@
 				1,
 				1
 			],
+			"emissiveTexture":{
+				"index":10
+			},
 			"name":"screen.001",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
@@ -1409,7 +1415,7 @@
 			"name":"walls",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":9
+					"index":11
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.8759704232215881
@@ -3659,6 +3665,14 @@
 		{
 			"sampler":0,
 			"source":8
+		},
+		{
+			"sampler":0,
+			"source":1
+		},
+		{
+			"sampler":0,
+			"source":1
 		},
 		{
 			"sampler":0,
