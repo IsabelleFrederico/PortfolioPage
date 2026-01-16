@@ -3726,9 +3726,9 @@
 			"uri":"../textures/paper.002_diffuse.jpg"
 		},
 		{
-			"mimeType":"image/jpeg",
+			"mimeType":"image/png",
 			"name":"wall",
-			"uri":"../textures/wall.jpg"
+			"uri":"../textures/wall.png"
 		}
 	],
 	"accessors":[

@@ -5,98 +5,13 @@ Command: npx gltfjsx@6.5.3 public/models/office.gltf -o src/components/Office1.j
 import * as THREE from "three";
 import { useEffect, useState } from "react";
 import { useGLTF } from '@react-three/drei'
-
-function useVideoTex(url) {
-  const [state, setState] = useState({ tex: null, video: null, ready: false });
-
-  useEffect(() => {
-    const video = document.createElement("video");
-
-    video.setAttribute("muted", "");
-    video.setAttribute("playsinline", "");
-    video.setAttribute("preload", "auto");
-    video.setAttribute("crossorigin", "anonymous");
-
-    video.muted = true;
-    video.playsInline = true;
-    video.loop = true;
-    video.autoplay = true;
-    video.preload = "auto";
-    video.crossOrigin = "anonymous";
-
-    video.src = new URL(url, window.location.href).toString();
-
-    const texture = new THREE.VideoTexture(video);
-    texture.colorSpace = THREE.SRGBColorSpace;
-    texture.flipY = false;
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-
-    setState({ tex: texture, video, ready: false });
-
-    const markReady = () => {
-      if (video.readyState >= 2 && video.videoWidth > 0) {
-        texture.needsUpdate = true;
-        setState({ tex: texture, video, ready: true });
-      }
-    };
-
-    const onError = () => {
-      console.warn("Video error", url, video.error);
-    };
-
-    video.addEventListener("loadeddata", markReady);
-    video.addEventListener("canplay", markReady);
-    video.addEventListener("canplaythrough", markReady);
-    video.addEventListener("error", onError);
-
-    video.load();
-    video.play().catch(() => { });
-
-    const t = setTimeout(() => {
-      video.play().catch(() => { });
-      markReady();
-    }, 300);
-
-    return () => {
-      clearTimeout(t);
-      video.removeEventListener("loadeddata", markReady);
-      video.removeEventListener("canplay", markReady);
-      video.removeEventListener("canplaythrough", markReady);
-      video.removeEventListener("error", onError);
-
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-      texture.dispose();
-    };
-  }, [url]);
-
-  return state;
-}
+import { useVideoTex } from "../hooks/useVideoTex";
 
 export function Office(props) {
   const { nodes, materials } = useGLTF('/models/office.gltf')
 
   const videoTexture1 = useVideoTex("/textures/code_screen.mp4")
-  const videoTexture2 = useVideoTex("/textures/327501310-583d8df1-c155-4299-9e68-daa6db293abf.mp4")
-
-  // useEffect(() => {
-  //   const v = videoTexture2?.video || videoTexture2?.tex?.image;
-  //   if (!v) return;
-
-  //   const id = setInterval(() => {
-  //     console.log("video2:", {
-  //       paused: v.paused,
-  //       readyState: v.readyState,
-  //       currentTime: v.currentTime,
-  //       videoWidth: v.videoWidth,
-  //       videoHeight: v.videoHeight,
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(id);
-  // }, [videoTexture2]);
+  const videoTexture2 = useVideoTex("/textures/front_screen.mp4")
 
   useEffect(() => {
     const startAll = () => {
@@ -142,7 +57,7 @@ export function Office(props) {
         <mesh geometry={nodes.Object_21.geometry} material={materials['drink.001']} />
         <mesh geometry={nodes.Object_22.geometry} material={materials['drink.002']} />
         <mesh geometry={nodes.Object_23.geometry} material={materials['drink.003']} />
-        <mesh geometry={nodes.Object_24.geometry} material={materials.fear_the_dark} position={[0, 7, 7.25]} rotation={[-Math.PI, 0, 0]} />
+        <mesh geometry={nodes.Object_24.geometry} material={materials.fear_the_dark} position={[0, 7.05, 7.24]} rotation={[-Math.PI, 0, 0]} />
         <mesh geometry={nodes.Object_28.geometry} material={materials.floor_wood} />
         <mesh geometry={nodes.Object_29.geometry} material={materials.lamba} />
         <mesh geometry={nodes.Object_3.geometry} material={materials['Material.006']} />
@@ -150,7 +65,7 @@ export function Office(props) {
         <mesh geometry={nodes.Object_33.geometry} material={materials.mausepad} />
         <mesh geometry={nodes.Object_34.geometry} material={materials.monitor_bar} />
         <mesh geometry={nodes.Object_35.geometry} material={materials.mouse} />
-        <mesh geometry={nodes.Object_36.geometry} material={materials.Material} position={[0, 7, 8.94]} rotation={[-Math.PI, 0, 0]} />
+        <mesh geometry={nodes.Object_36.geometry} material={materials.Material} position={[0, 7.07, 8.90]} rotation={[-Math.PI, 0, 0]} />
         <mesh geometry={nodes.Object_37.geometry} material={materials.paper} />
         <mesh geometry={nodes.Object_38.geometry} material={materials['paper.001']} />
         <mesh geometry={nodes.Object_39.geometry} material={materials['paper.002']} />
