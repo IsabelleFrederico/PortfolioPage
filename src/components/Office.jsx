@@ -35,11 +35,11 @@ export function Office(props) {
 
   return (
     <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, -1]} scale={0.2}>
+      <group rotation={[-Math.PI /2, 0, -1]} scale={0.2}>
         <mesh geometry={nodes.Object_10.geometry} material={materials['book.008']} />
         <mesh geometry={nodes.Object_100.geometry} material={materials.material_63} />
-        <mesh geometry={nodes.Object_101.geometry} material={materials.monitor_1} />
-        <mesh geometry={nodes.Object_102.geometry} material={materials.monitor_1} />
+        <mesh geometry={nodes.Object_101.geometry} material={materials.monitor_1} position={[0.5, 0, 0]}/>
+        <mesh geometry={nodes.Object_102.geometry} material={materials.monitor_1} position={[0, 0, 0]}/>
         <mesh geometry={nodes.Object_11.geometry} material={materials['book.009']} />
         <mesh geometry={nodes.Object_110.geometry} material={materials.sofa} />
         <mesh geometry={nodes.Object_111.geometry} material={materials.speaker_2} />
@@ -51,24 +51,24 @@ export function Office(props) {
         <mesh geometry={nodes.Object_16.geometry} material={materials.clapper_3} />
         <mesh geometry={nodes.Object_17.geometry} material={materials.coffee} />
         <mesh geometry={nodes.Object_18.geometry} material={materials.material_41} />
-        <mesh geometry={nodes.Object_19.geometry} material={materials.drink} />
-        <mesh geometry={nodes.Object_2.geometry} material={materials['04_-_CoronaMtl']} />
-        <mesh geometry={nodes.Object_20.geometry} material={materials.drink} />
-        <mesh geometry={nodes.Object_21.geometry} material={materials['drink.001']} />
-        <mesh geometry={nodes.Object_22.geometry} material={materials['drink.002']} />
-        <mesh geometry={nodes.Object_23.geometry} material={materials['drink.003']} />
+        <mesh geometry={nodes.Object_19.geometry} material={materials.drink} position={[-3, 0, 0]}/>
+        {/* <mesh geometry={nodes.Object_2.geometry} material={materials['04_-_CoronaMtl']} position={[-3, 0, 0]}/> */}
+        <mesh geometry={nodes.Object_20.geometry} material={materials.drink} position={[-3, 0, 0]}/>
+        <mesh geometry={nodes.Object_21.geometry} material={materials['drink.001']} position={[-3, 0, 0]}/>
+        <mesh geometry={nodes.Object_22.geometry} material={materials['drink.002']} position={[-3, 0, 0]}/>
+        <mesh geometry={nodes.Object_23.geometry} material={materials['drink.003']} position={[-3, 0, 0]}/>
         <mesh geometry={nodes.Object_24.geometry} material={materials.fear_the_dark} position={[0, 7.05, 7.24]} rotation={[-Math.PI, 0, 0]} />
         <mesh geometry={nodes.Object_28.geometry} material={materials.floor_wood} />
         <mesh geometry={nodes.Object_29.geometry} material={materials.lamba} />
         <mesh geometry={nodes.Object_3.geometry} material={materials['Material.006']} />
         <mesh geometry={nodes.Object_30.geometry} material={materials.lamba_effaf} />
-        <mesh geometry={nodes.Object_33.geometry} material={materials.mausepad} />
-        <mesh geometry={nodes.Object_34.geometry} material={materials.monitor_bar} />
-        <mesh geometry={nodes.Object_35.geometry} material={materials.mouse} />
+        <mesh geometry={nodes.Object_33.geometry} material={materials.mausepad} position={[0.5, 0, 0]}/>
+        <mesh geometry={nodes.Object_34.geometry} material={materials.monitor_bar} position={[0.5, 0.2, 0]}/>
+        <mesh geometry={nodes.Object_35.geometry} material={materials.mouse} position={[0.5, 0, 0]}/>
         <mesh geometry={nodes.Object_36.geometry} material={materials.Material} position={[0, 7.07, 8.90]} rotation={[-Math.PI, 0, 0]} />
-        <mesh geometry={nodes.Object_37.geometry} material={materials.paper} />
-        <mesh geometry={nodes.Object_38.geometry} material={materials['paper.001']} />
-        <mesh geometry={nodes.Object_39.geometry} material={materials['paper.002']} />
+        <mesh geometry={nodes.Object_37.geometry} material={materials.paper} position={[-1, 0, 0]}/>
+        <mesh geometry={nodes.Object_38.geometry} material={materials['paper.001']} position={[-1, 0, 0]}/>
+        <mesh geometry={nodes.Object_39.geometry} material={materials['paper.002']} position={[-1, 0, 0]}/>
         <mesh geometry={nodes.Object_4.geometry} material={materials['Material.017']} />
         <mesh geometry={nodes.Object_43.geometry} material={materials.pc_glass} />
         <mesh geometry={nodes.Object_44.geometry}>
@@ -90,7 +90,7 @@ export function Office(props) {
         <mesh geometry={nodes.Object_47.geometry} material={materials.trash} />
         <mesh geometry={nodes.Object_48.geometry} material={materials['trash.001']} />
         <mesh geometry={nodes.Object_49.geometry} material={materials.walls} />
-        <mesh geometry={nodes.Object_5.geometry} material={materials['Material.019']} />
+        <mesh geometry={nodes.Object_5.geometry} material={materials['Material.019']} position={[-3, 0, 0]}/>
         <mesh geometry={nodes.Object_52.geometry} material={materials['Material.003']} />
         <mesh geometry={nodes.Object_53.geometry} material={materials['Material.018']} />
         <mesh geometry={nodes.Object_54.geometry} material={materials['Material.021']} />
@@ -128,9 +128,9 @@ export function Office(props) {
         <mesh geometry={nodes.Object_88.geometry} material={materials['frame.001']} />
         <mesh geometry={nodes.Object_89.geometry} material={materials.headphone} />
         <mesh geometry={nodes.Object_9.geometry} material={materials['book.007']} />
-        <mesh geometry={nodes.Object_90.geometry} material={materials.headphone} />
-        <mesh geometry={nodes.Object_91.geometry} material={materials.headphone} />
-        <mesh geometry={nodes.Object_92.geometry} material={materials.headphone_snger} />
+        <mesh geometry={nodes.Object_90.geometry} material={materials.headphone} position={[1, 0, 0]}/>
+        <mesh geometry={nodes.Object_91.geometry} material={materials.headphone} position={[1, 0, 0]}/>
+        <mesh geometry={nodes.Object_92.geometry} material={materials.headphone_snger} position={[1, 0, 0]}/>
         <mesh geometry={nodes.Object_93.geometry} material={materials.lamba} />
         <mesh geometry={nodes.Object_94.geometry} material={materials.lamba} />
         <mesh geometry={nodes.Object_95.geometry} material={materials['lamba.001']} />

@@ -13,7 +13,7 @@ export function Avatar(props) {
   const { scene } = useGLTF('/models/model.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
-  const { animations: typingAnimation } = useFBX('/animations/typing.fbx')
+  const { animations: typingAnimation } = useFBX('/animations/t.fbx')
 
   typingAnimation[0].name = "Typing"
 
@@ -33,7 +33,7 @@ export function Avatar(props) {
     , [])
 
   return (
-    <group ref={group} {...props} dispose={null} scale={0.005}>
+    <group ref={group} {...props} position={[0.1, 0, -0.05]} rotation={[0, Math.PI /2, 0]} dispose={null} scale={0.0057}>
       <group name="Scene">
         <group name="Armature">
           <primitive object={nodes.Hips} />

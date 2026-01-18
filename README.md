@@ -21,3 +21,7 @@ https://devmount.medium.com/23-lesser-known-vs-code-shortcuts-as-gif-ffad06d3269
 
 
 https://se.pinterest.com/pin/424323596147997286/
+
+
+
+"3d modelling my cat: Fripouille" (https://skfb.ly/6TKqH) by guillaume bolis is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
