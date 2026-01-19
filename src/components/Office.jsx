@@ -1,7 +1,7 @@
-import * as THREE from "three";
-import { useEffect, useMemo } from "react";
+import * as THREE from "three"
+import { useEffect, useMemo } from "react"
 import { useGLTF } from '@react-three/drei'
-import { useVideoTex } from "../hooks/useVideoTex";
+import { useVideoTex } from "../hooks/useVideoTex"
 
 export function Office({ mouseObject, mouseMode, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')
@@ -9,39 +9,39 @@ export function Office({ mouseObject, mouseMode, ...props }) {
   const videoTexture1 = useVideoTex("/textures/code_screen.mp4")
   const videoTexture2 = useVideoTex("/textures/front_screen.mp4")
 
-  const deskAnchor = useMemo(() => new THREE.Group(), []);
+  const deskAnchor = useMemo(() => new THREE.Group(), [])
 
   useEffect(() => {
-    if (!mouseObject) return;
-    if (mouseMode !== "desk") return;
+    if (!mouseObject) return
+    if (mouseMode !== "desk") return
 
-    mouseObject.removeFromParent();
-    deskAnchor.add(mouseObject);
+    mouseObject.removeFromParent()
+    deskAnchor.add(mouseObject)
 
-    mouseObject.position.set(0, 0, 0);
-    mouseObject.rotation.set(0, 0, 0);
-    mouseObject.scale.setScalar(1);
-  }, [mouseMode, mouseObject, deskAnchor]);
+    mouseObject.position.set(0, 0, 0)
+    mouseObject.rotation.set(0, 0, 0)
+    mouseObject.scale.setScalar(1)
+  }, [mouseMode, mouseObject, deskAnchor])
 
   useEffect(() => {
     const startAll = () => {
-      videoTexture1.video?.play().catch(() => { });
-      videoTexture2.video?.play().catch(() => { });
-      window.removeEventListener("pointerdown", startAll);
-      window.removeEventListener("keydown", startAll);
-      window.removeEventListener("touchstart", startAll);
-    };
+      videoTexture1.video?.play().catch(() => { })
+      videoTexture2.video?.play().catch(() => { })
+      window.removeEventListener("pointerdown", startAll)
+      window.removeEventListener("keydown", startAll)
+      window.removeEventListener("touchstart", startAll)
+    }
 
-    window.addEventListener("pointerdown", startAll);
-    window.addEventListener("keydown", startAll);
-    window.addEventListener("touchstart", startAll);
+    window.addEventListener("pointerdown", startAll)
+    window.addEventListener("keydown", startAll)
+    window.addEventListener("touchstart", startAll)
 
     return () => {
-      window.removeEventListener("pointerdown", startAll);
-      window.removeEventListener("keydown", startAll);
-      window.removeEventListener("touchstart", startAll);
-    };
-  }, [videoTexture1.video, videoTexture2.video]);
+      window.removeEventListener("pointerdown", startAll)
+      window.removeEventListener("keydown", startAll)
+      window.removeEventListener("touchstart", startAll)
+    }
+  }, [videoTexture1.video, videoTexture2.video])
 
   return (
     <group {...props} dispose={null} rotation={[0, -1, 0]} scale={0.55}>
@@ -160,7 +160,9 @@ export function Office({ mouseObject, mouseMode, ...props }) {
         <mesh geometry={nodes.Object_32_2.geometry} material={materials['04_-_CoronaMtl']} />
         <mesh geometry={nodes.Object_32_3.geometry} material={materials.None} />
       </group>
-      <group position={[0.233, 0, 0.033]} rotation={[-Math.PI / 2, 0, 0]} scale={0.413}>
+       {/* mouseObject.position.set(0.77, -1.03, 1.35)
+    mouseObject.rotation.set(0, Math.PI, 0) */}
+      <group position={[0, -0.19, 0.17]} rotation={[-Math.PI / 2, 0, -0.05]} scale={0.5}>
         <primitive object={deskAnchor} />
       </group>
       <mesh geometry={nodes.monitor.geometry} material={materials.monitor_1} />

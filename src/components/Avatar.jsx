@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useMemo } from 'react'
-import * as THREE from "three";
+import * as THREE from "three"
 import { useGraph, useFrame } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 const handBone = "RightHand"
+const mouseRanges = [[0, 2.485], [9.58, 12]]
+
+function inRanges(t, ranges) {
+  return ranges.some(([a, b]) => t >= a && t <= b)
+}
 
 export function Avatar({ mouseObject, mouseMode, setMouseMode, ...props }) {
   const group = React.useRef()
@@ -12,6 +17,7 @@ export function Avatar({ mouseObject, mouseMode, setMouseMode, ...props }) {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { animations: typingAnimation } = useFBX('/animations/typing.fbx')
+  const lastMode = useRef(null)
 
   typingAnimation[0].name = "Typing"
 
@@ -25,37 +31,55 @@ export function Avatar({ mouseObject, mouseMode, setMouseMode, ...props }) {
   //   , [])
 
   useEffect(() => {
-    const a = actions?.Typing;
-    if (!a) return;
+    const a = actions?.Typing
+    if (!a) return
 
-    a.reset().play();
-    setMouseMode?.("hand");
+    a.reset().play()
 
     return () => {
-      a.stop();
-      // setMouseMode?.("desk");
-    };
-  }, [actions, setMouseMode]);
+      a.stop()
+    }
+  }, [actions])
+
+
+  useFrame(() => {
+    const a = actions?.Typing
+    if (!a || !setMouseMode) return
+
+    const t = a.time
+    const nextMode = inRanges(t, mouseRanges) ? "hand" : "desk"
+
+    if (lastMode.current !== nextMode) {
+      lastMode.current = nextMode
+      setMouseMode(nextMode)
+    }
+  })
 
   useEffect(() => {
-    if (!group.current || !mouseObject) return;
-    if (mouseMode !== "hand") return;
+    if (!group.current || !mouseObject) return
+    if (mouseMode !== "hand") return
 
-    const hand = group.current.getObjectByName(handBone);
+    const hand = group.current.getObjectByName(handBone)
 
     if (!hand) {
-      const names = [];
-      group.current.traverse((o) => names.push(o.name));
-      return;
+      const names = []
+      group.current.traverse((o) => names.push(o.name))
+      return
     }
 
-    mouseObject.removeFromParent();
-    hand.add(mouseObject);
+    mouseObject.removeFromParent()
+    hand.add(mouseObject)
 
-    mouseObject.position.set(0.77, -1.03, 1.35);
-    mouseObject.rotation.set(0, Math.PI, 0);
-    mouseObject.scale.setScalar(0.6);
-  }, [mouseMode, mouseObject]);
+    mouseObject.position.set(0.65, -0.85, 1.13)
+    mouseObject.rotation.set(0, Math.PI, 0)
+    mouseObject.scale.setScalar(0.5)
+  }, [mouseMode, mouseObject])
+
+  // useFrame(() => {
+  //   const t = actions?.Typing?.time ?? 0
+  //   // só pra debug (remove depois)
+  //   if (Math.floor(t * 10) % 10 === 0) console.log("Typing time:", t.toFixed(2))
+  // })
 
   return (
     <group ref={group} {...props} position={[0.16, 0.015, -0.05]} rotation={[0, Math.PI / 2, 0]} dispose={null} scale={0.0057}>

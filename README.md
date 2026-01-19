@@ -25,3 +25,6 @@ https://se.pinterest.com/pin/424323596147997286/
 
 
 "3d modelling my cat: Fripouille" (https://skfb.ly/6TKqH) by guillaume bolis is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+
+"An Animated Cat" (https://skfb.ly/6YPwH) by Evil_Katz is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
