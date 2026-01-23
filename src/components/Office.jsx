@@ -2,10 +2,12 @@ import * as THREE from "three"
 import { useEffect, useMemo } from "react"
 import { useGLTF } from '@react-three/drei'
 import { useVideoTex } from "../hooks/useVideoTex"
+import { motion } from "framer-motion-3d"
 
 export function Office({ mouseObject, mouseMode, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')
-
+  const { section } = props
+  
   const videoTexture1 = useVideoTex("/textures/code_screen.mp4")
   const videoTexture2 = useVideoTex("/textures/front_screen.mp4")
 
@@ -160,7 +162,7 @@ export function Office({ mouseObject, mouseMode, ...props }) {
         <mesh geometry={nodes.Object_32_2.geometry} material={materials['04_-_CoronaMtl']} />
         <mesh geometry={nodes.Object_32_3.geometry} material={materials.None} />
       </group>
-       {/* mouseObject.position.set(0.77, -1.03, 1.35)
+      {/* mouseObject.position.set(0.77, -1.03, 1.35)
     mouseObject.rotation.set(0, Math.PI, 0) */}
       <group position={[0, -0.19, 0.17]} rotation={[-Math.PI / 2, 0, -0.05]} scale={0.5}>
         <primitive object={deskAnchor} />
