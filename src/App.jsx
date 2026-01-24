@@ -24,18 +24,16 @@ function App() {
         }}
       >
         <Canvas shadows camera={{ position: [0, 1, 5], fov: 30 }}>
-          <color attach="background" args={["#ececec"]} />
+          <color attach="background" args={["#d5d5d5"]} />
           <ScrollControls pages={5} damping={0.1}>
             <ScrollManager section={section} onSectionChange={setSection} />
             <Scroll>
-              {/* <Suspense fallback={null}> */}
-              <Experience section={section} />
+              <Experience section={section} menuOpened={menuOpened} />
             </Scroll>
 
             <Scroll html>
               <Interface />
             </Scroll>
-            {/* </Suspense> */}
           </ScrollControls>
         </Canvas >
         <Menu
@@ -44,7 +42,6 @@ function App() {
           setMenuOpened={setMenuOpened}
         />
       </MotionConfig >
-      {/* <Leva hidden /> */}
     </>
   )
 }

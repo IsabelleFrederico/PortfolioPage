@@ -4,10 +4,10 @@ import { motion } from "motion/react"
 export const About = () => {
     return (
         <Section>
-            <h1 className="text-6xl font-extrabold leading-snug">
+            <h1 className="text-5xl font-extrabold leading-snug text-stone-800">
                 Hi, I'm
                 <br />
-                <span className="bg-white px-1 italic">Wawa Sensei</span>
+                <span className="bg-stone-50 px-0.5 py-0.5 rounded-md italic">Isabelle F Travasso</span>
             </h1>
             <motion.p
                 className="text-lg text-gray-600 mt-4"
@@ -24,12 +24,12 @@ export const About = () => {
                     delay: 1.5,
                 }}
             >
-                I make YouTube videos to help developers
+                Software developer focused on building 
                 <br />
-                learn how to build 3D apps
+                reliable and user-friendly applications.
             </motion.p>
             <motion.button
-                className={`cursor-pointer bg-indigo-600 text-white py-4 px-8 
+                className={`cursor-pointer bg-emerald-700 text-white py-4 px-8 
       rounded-lg font-bold text-lg mt-16`}
                 initial={{
                     opacity: 0,

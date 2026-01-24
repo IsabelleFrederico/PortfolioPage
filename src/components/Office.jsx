@@ -7,7 +7,7 @@ import { motion } from "framer-motion-3d"
 export function Office({ mouseObject, mouseMode, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')
   const { section } = props
-  
+
   const videoTexture1 = useVideoTex("/textures/code_screen.mp4")
   const videoTexture2 = useVideoTex("/textures/front_screen.mp4")
 

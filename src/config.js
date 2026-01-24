@@ -2,6 +2,6 @@ export const framerMotionConfig = {
   type: "spring",
   mass: 5,
   stiffness: 500,
-  damping: 50,
+  damping: 60,
   restDelta: 0.0001,
 }
