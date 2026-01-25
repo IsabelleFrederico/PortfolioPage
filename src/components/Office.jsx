@@ -6,7 +6,7 @@ import { motion } from "framer-motion-3d"
 
 export function Office({ mouseObject, mouseMode, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')
-  const { section } = props
+  const { preFalling } = props
 
   const videoTexture1 = useVideoTex("/textures/code_screen.mp4")
   const videoTexture2 = useVideoTex("/textures/front_screen.mp4")
@@ -134,7 +134,7 @@ export function Office({ mouseObject, mouseMode, ...props }) {
         <mesh geometry={nodes.Object_99.geometry} material={materials.lambaa} />
         <mesh geometry={nodes.sofa.geometry} material={materials.sofa} />
         <mesh geometry={nodes.Object_75380.geometry} material={materials['case']} position={[-0.05, 0.25, 0]} />
-        <mesh geometry={nodes.Object_75380_1.geometry} material={materials.sofa} position={[-0.05, 0.25, 0]} />
+        <mesh geometry={nodes.Object_75380_1.geometry} material={materials.sofa} position={[-0.05, 0.25, 0]} rotation={preFalling ? [0, 0, -0.8] : [0, 0, 0]}/>
       </group>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.413}>
         <mesh geometry={nodes.cpu2333.geometry} material={materials['monitor_bar.001']} />

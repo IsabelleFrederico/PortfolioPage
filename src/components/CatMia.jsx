@@ -21,7 +21,7 @@ export function CatMia(props) {
 
   return (
     <group {...props} ref={group} dispose={null}>
-      <group position={[0, 0.2, 1]} rotation={[5, 0, 0]} scale={0.03}>
+      <group scale={0.03}>
         <primitive object={nodes.Bone} />
         <skinnedMesh geometry={nodes.eye2.geometry} material={materials.SHD_eye} skeleton={nodes.eye2.skeleton} />
         <skinnedMesh geometry={nodes.eye2001.geometry} material={materials.whiskers} skeleton={nodes.eye2001.skeleton} />
