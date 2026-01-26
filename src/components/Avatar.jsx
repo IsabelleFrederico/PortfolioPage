@@ -18,7 +18,6 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const originalParent = useRef(null)
-  const { section } = props
 
   const { animations: typingAnimation } = useFBX('/animations/typing.fbx')
   const { animations: fallingAnimation } = useFBX('/animations/falling.fbx')
