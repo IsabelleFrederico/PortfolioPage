@@ -13,10 +13,9 @@ function inRanges(t, ranges) {
 }
 
 export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, ...props }) {
-  const group = React.useRef()
-  const { scene } = useGLTF('/models/model.glb')
-  const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { nodes, materials } = useGraph(clone)
+  const { section } = props
+  const group = useRef()
+  const { nodes, materials } = useGLTF('/models/model.glb')
   const originalParent = useRef(null)
 
   const { animations: typingAnimation } = useFBX('/animations/typing.fbx')
@@ -57,21 +56,28 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
   //   }
   //   , [])
 
-  const prev = useRef(null)
   useEffect(() => {
-    const next = actions?.[animation]
-    if (!next) return
+    actions[animation].reset().fadeIn(0.5).play();
+    return () => {
+      actions[animation].reset().fadeOut(0.5);
+    };
+  }, [animation]);
 
-    next.reset()
-    next.fadeIn(0.2)
-    next.play()
+  // const prev = useRef(null)
+  // useEffect(() => {
+  //   const next = actions?.[animation]
+  //   if (!next) return
 
-    if (prev.current && prev.current !== next) {
-      prev.current.fadeOut(0.2)
-    }
-    prev.current = next
+  //   next.reset()
+  //   next.fadeIn(0.2)
+  //   next.play()
 
-  }, [animation, actions])
+  //   if (prev.current && prev.current !== next) {
+  //     prev.current.fadeOut(0.2)
+  //   }
+  //   prev.current = next
+
+  // }, [animation, actions])
 
   useEffect(() => {
     if (animation !== "Typing") {
@@ -118,17 +124,11 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     }
   }, [mouseMode, mouseObject])
 
-  useEffect(() => {
-    if (!group.current) return
-    group.current.traverse((o) => {
-      if (o.isSkinnedMesh) o.frustumCulled = false
-    })
-  }, [])
 
   return (
-    <group ref={group} {...props} position={[0.16, 0.015, -0.05]} rotation={[0, Math.PI / 2, 0]} dispose={null} scale={0.0057}>
-      <group name="Scene">
-        <motion.group name="Armature">
+    <group ref={group} {...props} dispose={null} >
+      <group name="Scene" >
+        <group name="Armature">
           <primitive object={nodes.Hips} />
           <skinnedMesh name="avaturn_body" geometry={nodes.avaturn_body.geometry} material={materials.avaturn_body_material} skeleton={nodes.avaturn_body.skeleton} />
           <skinnedMesh name="avaturn_glasses_0" geometry={nodes.avaturn_glasses_0.geometry} material={materials.avaturn_glasses_0_material} skeleton={nodes.avaturn_glasses_0.skeleton} />
@@ -138,7 +138,7 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
           <skinnedMesh name="avaturn_look_0" geometry={nodes.avaturn_look_0.geometry} material={materials.avaturn_look_0_material} skeleton={nodes.avaturn_look_0.skeleton} />
           <skinnedMesh name="avaturn_look_1" geometry={nodes.avaturn_look_1.geometry} material={materials.avaturn_look_1_material} skeleton={nodes.avaturn_look_1.skeleton} />
           <skinnedMesh name="avaturn_shoes_0" geometry={nodes.avaturn_shoes_0.geometry} material={materials.avaturn_shoes_0_material} skeleton={nodes.avaturn_shoes_0.skeleton} />
-        </motion.group>
+        </group>
       </group>
     </group>
   )

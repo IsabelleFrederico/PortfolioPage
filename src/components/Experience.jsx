@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { useFrame } from "@react-three/fiber"
+import { useFrame, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useMemo, useState, useRef } from "react"
 import { Avatar } from "./Avatar"
 import { Office } from "./Office"
@@ -7,124 +7,111 @@ import { CatMia } from "./CatMia"
 import { Mouse } from "./Mouse"
 import { motion } from "framer-motion-3d"
 import { animate, useMotionValue } from "framer-motion"
-import { framerMotionConfig } from "../config";
-import { useScroll } from "@react-three/drei"
+import { framerMotionConfig } from "../config"
+import { useScroll, OrbitControls, Float, MeshDistortMaterial, MeshWobbleMaterial } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
 
 export const Experience = (props) => {
   const { menuOpened } = props
+  const { viewport } = useThree()
+  const data = useScroll()
   const mouseInstance = useMemo(() => new THREE.Group(), [])
   const [mouseMode, setMouseMode] = useState("desk")
-  const [preFalling, setPreFalling] = useState(false)
+  const { avatarVariants, catVariants, officeVariants, avatarScale, officeScale } = useScenePoses({ viewport, menuOpened })
+
   const [section, setSection] = useState(0)
-  const { targetOffice, targetAll, targetCat } = useScenePoses(section, menuOpened)
-  const data = useScroll()
 
-  const cameraPositionX = useMotionValue();
-  const cameraLookAtX = useMotionValue();
-
-  const world = useRef()
-
-  const worldX = useMotionValue(0)
-  const worldY = useMotionValue(0)
-  const worldZ = useMotionValue(0)
-  const worldRX = useMotionValue(0)
-  const worldRY = useMotionValue(0)
-  const worldRZ = useMotionValue(0)
-  const worldS = useMotionValue(1)
-
-  useEffect(() => {
-    animate(worldX, targetOffice.x, framerMotionConfig)
-    animate(worldY, targetOffice.y, framerMotionConfig)
-    animate(worldZ, targetOffice.z, framerMotionConfig)
-    animate(worldRX, targetOffice.rotateX, framerMotionConfig)
-    animate(worldRY, targetOffice.rotateY, framerMotionConfig)
-    animate(worldRZ, targetOffice.rotateZ, framerMotionConfig)
-    animate(worldS, targetOffice.scale, framerMotionConfig)
-  }, [targetOffice])
+  const cameraPositionX = useMotionValue(0)
+  const cameraLookAtX = useMotionValue(0)
 
   useEffect(() => {
     animate(cameraPositionX, menuOpened ? -4 : 0, {
       ...framerMotionConfig,
-    });
+    })
     animate(cameraLookAtX, menuOpened ? 4 : 0, {
       ...framerMotionConfig,
-    });
-  }, [menuOpened]);
+    })
+  }, [menuOpened])
+
+  const characterContainerAboutRef = useRef()
+
+  const [characterAnimation, setCharacterAnimation] = useState("Typing")
+  const [catAnimation, setCatAnimation] = useState("CatRunning")
+
+  useEffect(() => {
+    setCharacterAnimation("Falling")
+    setTimeout(() => {
+      setCharacterAnimation(
+        section === 0 ? "Typing" :
+          section === 1 ? "Stretching" :
+            section === 2 ? "Pointing" :
+              "StandUp")
+    }, 600)
+    setCatAnimation("CatRunning")
+    setTimeout(() => {
+      setCatAnimation(
+        section === 0 ? "CatBathing" :
+          section === 1 ? "CatStanding" :
+            "CatRunning"
+      )
+    }, 600)
+  }, [section])
+
 
   useFrame((state) => {
-    if (world.current) {
-      world.current.position.set(worldX.get(), worldY.get(), worldZ.get())
-      world.current.rotation.set(worldRX.get(), worldRY.get(), worldRZ.get())
-      world.current.scale.setScalar(worldS.get())
+    let curSection = Math.floor(data.scroll.current * data.pages)
+
+    if (curSection > 3) {
+      curSection = 3
     }
-    const curSection = Math.floor(data.scroll.current * data.pages)
 
     if (curSection !== section) {
       setSection(curSection)
     }
 
-    state.camera.position.x = cameraPositionX.get();
-    state.camera.lookAt(cameraLookAtX.get(), 0, 0);
-  });
-
-  const finalAvatarAnim =
-    section === 0 ? "Typing"
-      : section === 1 ? "Stretching"
-        : section === 2 ? "Pointing"
-          : "StandUp"
-
-  const finalCatAnim =
-    section === 0 ? "CatBathing"
-      : section === 1 ? "CatStanding"
-        : "Stretch"
-
-  const [avatarAnim, setAvatarAnim] = useState(finalAvatarAnim)
-  const [catAnim, setCatAnim] = useState(finalCatAnim)
-
-  useEffect(() => {
-    setPreFalling(true)
-
-    const step1 = window.setTimeout(() => {
-      setAvatarAnim("Falling")
-      setCatAnim("Runnig")
-
-      const step2 = window.setTimeout(() => {
-        setPreFalling(false)
-        setAvatarAnim(finalAvatarAnim)
-        setCatAnim(finalCatAnim)
-      }, 600)
-
-      return () => window.clearTimeout(step2)
-    }, 200)
-
-    return () => window.clearTimeout(step1)
-  }, [section])
-
-  const firstMotion = useRef(true)
-  useEffect(() => {
-    firstMotion.current = false
-  }, [])
+    state.camera.position.x = cameraPositionX.get()
+    state.camera.lookAt(cameraLookAtX.get(), 0, 0)
+  })
 
   return (
     <>
+      {/* <OrbitControls /> */}
       <ambientLight intensity={1.5} />
-      <Suspense fallback={null}>
-        <group ref={world}>
-          <Office section={section} mouseObject={mouseInstance} mouseMode={mouseMode} preFalling={preFalling} />
-        </group>
+      <directionalLight position={[5, 5, 5]} intensity={0.6} />
+      <directionalLight position={[-5, 3, -5]} intensity={0.3} />
+      <motion.group
+        scale={avatarScale}
+        animate={"" + section}
+        transition={{
+          duration: 0.6,
+        } }
+        variants={avatarVariants}
+      >
+        <Avatar animation={characterAnimation} section={section} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} />
+      </motion.group>
+      <motion.group
+        animate={"" + section}
+        transition={{
+          duration: 0.6,
+        }}
+        variants={catVariants}
+      >
+        <CatMia animation={catAnimation} section={section} />
+      </motion.group >
+      <motion.group
+        position={menuOpened ? [2.5, -0.5, 1] : [0.7, -0.5, 0]}
+        scale={officeScale}
+        transition={{ duration: 0.6 }}
+      >
+        <Office section={section} mouseObject={mouseInstance} mouseMode={mouseMode} />
         <Mouse object={mouseInstance} />
-        <motion.group
-          initial={false}
-          animate={targetAll}
-          transition={{ duration: 0.2 }}
-        >
-          <Avatar animation={avatarAnim} section={section} preFalling={preFalling} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} />
-          <motion.group initial={false} animate={targetCat} transition={{ duration: 0.2 }}>
-            <CatMia animation={catAnim} preFalling={preFalling} />
-          </motion.group>
-        </motion.group >
-      </Suspense >
+        <group
+          ref={characterContainerAboutRef}
+          name="CharacterSpot"
+          position={[0.07, 3, -0.57]}
+          rotation={[-Math.PI, 0.42, -Math.PI]}
+        ></group>
+      </motion.group>
     </>
   )
 }

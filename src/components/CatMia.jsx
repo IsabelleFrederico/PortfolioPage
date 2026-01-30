@@ -4,19 +4,28 @@ import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { motion } from "framer-motion-3d"
 
-export function CatMia({animation = "CatBathing", props}) {
-  const group = useRef()
-  const { scene } = useGLTF('/models/cat.gltf')
-  const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { nodes, materials } = useGraph(clone)
+function stripRootPosition(clip, rootName = "Bone") {
+  if (!clip?.tracks) return clip
+  clip.tracks = clip.tracks.filter((t) => {
+    const name = t.name || ""
+    return !(name.includes(rootName) && name.endsWith(".position"))
+  })
+  return clip
+}
 
+export function CatMia({ animation = "CatBathing", ...props }) {
+  const group = useRef()
+  const { nodes, materials } = useGLTF('/models/cat.gltf')
   const { animations: catBathAnimation } = useFBX('/animations/catBath.fbx')
   const { animations: catRunningAnimation } = useFBX('/animations/catRunning.fbx')
   const { animations: catStandingAnimation } = useFBX('/animations/catStanding1.fbx')
 
   catBathAnimation[0].name = "CatBathing"
+  stripRootPosition(catBathAnimation[0], "Bone")
   catStandingAnimation[0].name = "CatStanding"
+  stripRootPosition(catStandingAnimation[0], "Bone")
   catRunningAnimation[0].name = "CatRunning"
+  stripRootPosition(catRunningAnimation[0], "Bone")
 
   const allAnims = useMemo(
     () => [
@@ -62,13 +71,13 @@ export function CatMia({animation = "CatBathing", props}) {
   // }, [])
 
   return (
-    <group {...props} ref={group} dispose={null}>
-      <motion.group scale={0.03}>
+    <group {...props} ref={group} dispose={null} rotation={[0, -Math.PI / 4, 0]}>
+      <group name="CatModelOffset" scale={0.03}>
         <primitive object={nodes.Bone} />
         <skinnedMesh geometry={nodes.eye2.geometry} material={materials.SHD_eye} skeleton={nodes.eye2.skeleton} />
         <skinnedMesh geometry={nodes.eye2001.geometry} material={materials.whiskers} skeleton={nodes.eye2001.skeleton} />
         <skinnedMesh geometry={nodes.high_poly.geometry} material={materials.SHD_frip} skeleton={nodes.high_poly.skeleton} />
-      </motion.group>
+      </group>
     </group>
   )
 }

@@ -134,7 +134,7 @@ export function Office({ mouseObject, mouseMode, ...props }) {
         <mesh geometry={nodes.Object_99.geometry} material={materials.lambaa} />
         <mesh geometry={nodes.sofa.geometry} material={materials.sofa} />
         <mesh geometry={nodes.Object_75380.geometry} material={materials['case']} position={[-0.05, 0.25, 0]} />
-        <mesh geometry={nodes.Object_75380_1.geometry} material={materials.sofa} position={[-0.05, 0.25, 0]} rotation={preFalling ? [0, 0, -0.8] : [0, 0, 0]}/>
+        <mesh geometry={nodes.Object_75380_1.geometry} material={materials.sofa} position={[-0.05, 0.25, 0]} rotation={preFalling ? [0, 0, -0.8] : [0, 0, 0]} />
       </group>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.413}>
         <mesh geometry={nodes.cpu2333.geometry} material={materials['monitor_bar.001']} />
@@ -162,8 +162,6 @@ export function Office({ mouseObject, mouseMode, ...props }) {
         <mesh geometry={nodes.Object_32_2.geometry} material={materials['04_-_CoronaMtl']} />
         <mesh geometry={nodes.Object_32_3.geometry} material={materials.None} />
       </group>
-      {/* mouseObject.position.set(0.77, -1.03, 1.35)
-    mouseObject.rotation.set(0, Math.PI, 0) */}
       <group position={[0, -0.19, 0.17]} rotation={[-Math.PI / 2, 0, -0.05]} scale={0.5}>
         <primitive object={deskAnchor} />
       </group>
