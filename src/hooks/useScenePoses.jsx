@@ -25,7 +25,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                 },
                 {
                     x: 2.8,
-                    y: -0.49,
+                    y: -0.79,
                     z: 0.85,
                     rotateX: 0,
                     rotateY: Math.PI / 2,
@@ -44,23 +44,25 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateZ: 0,
                 },
                 {
-                    x: -0.3,
-                    y: -view - 0.05,
-                    z: 2.2,
+                    x: -0.2,
+                    y: -view - 0.5,
+                    z: 2.5,
                     rotateX: 0,
                     rotateY: 0.15,
                     rotateZ: 0,
+                    scale: 0.01
                 }
             ),
 
             2: byMenu(
                 {
-                    x: -2,
-                    y: -view * 2 + 0.5,
+                    x: -2.5,
+                    y: -view * 2 -1,
                     z: 0,
                     rotateX: 0,
                     rotateY: Math.PI / 2,
                     rotateZ: 0,
+                    scale: 0.007
                 },
                 {
                     x: -2.2,
@@ -107,13 +109,13 @@ export function useScenePoses({ viewport, menuOpened }) {
                     scale: 1,
                 },
                 {
-                    x: 0.35,
-                    y: -0.25,
-                    z: 1,
+                    x: 2.5,
+                    y: -0.7,
+                    z: 2,
                     rotateX: -Math.PI / 2,
                     rotateY: 1,
                     rotateZ: 0,
-                    scale: 1,
+                    scale: 1.3,
                 }
             ),
 
@@ -122,18 +124,18 @@ export function useScenePoses({ viewport, menuOpened }) {
                     x: -0.5,
                     y: -view - 0.1,
                     z: 2,
-                    rotateX: 0,
-                    rotateY: 0,
-                    rotateZ: -0.5,
+                    rotateX: -Math.PI / 2.9,
+                    rotateY: 0.15,
+                    rotateZ: -1.3,
                     scale: 1.25,
                 },
                 {
-                    x: -0.8,
-                    y: -view - 0.05,
-                    z: 1.9,
-                    rotateX: 0,
+                    x: -1.7,
+                    y: -view + 0.08,
+                    z: 3,
+                    rotateX: -Math.PI / 4,
                     rotateY: 0.15,
-                    rotateZ: -0.5,
+                    rotateZ: -1.3,
                     scale: 1.25,
                 }
             ),
@@ -181,28 +183,14 @@ export function useScenePoses({ viewport, menuOpened }) {
             ),
         }
 
-        const officeVariants = {
-            0: byMenu(
-                {
-                    x: 0.8,
-                    y: 0,
-                    z: 0,
-                    rotateX: 0,
-                    rotateY: -0.1,
-                    rotateZ: 0,
-                    scale: 0,
-                },
-                {
-                    x: 0,
-                    y: 0,
-                    z: 0,
-                    rotateX: 0,
-                    rotateY: Math.PI / 2,
-                    rotateZ: 0,
-                    scale: 0,
-                }
-            ),
-        }
+        const officeVariants = byMenu(
+            {
+                position: [0.7, -0.5, 0],
+            },
+            {
+                position: [2.5, -0.8, 1],
+            }
+        )
 
         return {
             avatarVariants,

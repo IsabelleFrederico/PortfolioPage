@@ -63,3 +63,42 @@ export const languages = [
         levelDescription: "Gut"
     }
 ]
+
+export const projects = [
+    {
+        title: "Portfolio",
+        // url: "https://r3f-wawatmos-final.vercel.app/",
+        image: "/images/portfolio.png",
+        description: "Potfolio project",
+    },
+    {
+        title: "Mario Jumping Rope",
+        url: "https://mariojumpingrope.netlify.app/",
+        image: "/images/marioJumpingRope.png",
+        description: "Jump rope game",
+    },
+    {
+        title: "Pokédex",
+        // url: "https://r3f-wawatmos-final.vercel.app/",
+        image: "/images/pokedexHome.png",
+        description: "Learning project",
+    },
+    {
+        title: "Ifuture",
+        url: "http://brown-juice.surge.sh",
+        image: "/images/ifuture.png",
+        description: "Ifood simulator",
+    },
+    {
+        title: "Cookenu",
+        // url: "https://r3f-wawatmos-final.vercel.app/",
+        image: "/images/cookenu.png",
+        description: "Node.js backend Project",
+    },
+    {
+        title: "Tic Tac Toe",
+        // url: "https://r3f-wawatmos-final.vercel.app/",
+        image: "./images/ticTacToe.png",
+        description: "Learning gamer project",
+    },
+]

@@ -4,12 +4,21 @@ import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { motion } from "framer-motion-3d"
 
-function stripRootPosition(clip, rootName = "Bone") {
+// function stripRootPosition(clip, rootName = "Bone") {
+//   if (!clip?.tracks) return clip
+//   clip.tracks = clip.tracks.filter((t) => {
+//     const name = t.name || ""
+//     return !(name.includes(rootName) && name.endsWith(".position"))
+//   })
+//   return clip
+// }
+
+function stripRootPosition(clip, rootBoneName = "Bone") {
   if (!clip?.tracks) return clip
-  clip.tracks = clip.tracks.filter((t) => {
-    const name = t.name || ""
-    return !(name.includes(rootName) && name.endsWith(".position"))
-  })
+
+  const regex = new RegExp(`(^|\\|)${rootBoneName}\\.position$`)
+
+  clip.tracks = clip.tracks.filter((t) => !regex.test(t.name || ""))
   return clip
 }
 
@@ -18,7 +27,7 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   const { nodes, materials } = useGLTF('/models/cat.gltf')
   const { animations: catBathAnimation } = useFBX('/animations/catBath.fbx')
   const { animations: catRunningAnimation } = useFBX('/animations/catRunning.fbx')
-  const { animations: catStandingAnimation } = useFBX('/animations/catStanding1.fbx')
+  const { animations: catStandingAnimation } = useFBX('/animations/catStanding.fbx')
 
   catBathAnimation[0].name = "CatBathing"
   stripRootPosition(catBathAnimation[0], "Bone")
@@ -27,18 +36,43 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   catRunningAnimation[0].name = "CatRunning"
   stripRootPosition(catRunningAnimation[0], "Bone")
 
-  const allAnims = useMemo(
-    () => [
-      ...(catBathAnimation || []),
-      ...(catStandingAnimation || []),
-      ...(catRunningAnimation || [])
-    ],
-    [
-      catBathAnimation,
-      catStandingAnimation,
-      catRunningAnimation
-    ]
-  )
+  // const allAnims = useMemo(
+  //   () => [
+  //     ...(catBathAnimation || []),
+  //     ...(catStandingAnimation || []),
+  //     ...(catRunningAnimation || [])
+  //   ],
+  //   [
+  //     catBathAnimation,
+  //     catStandingAnimation,
+  //     catRunningAnimation
+  //   ]
+  // )
+
+  const bathClip = useMemo(() => {
+    const c = catBathAnimation?.[0]
+    if (!c) return null
+    c.name = "CatBathing"
+    return stripRootPosition(c, "Bone")
+  }, [catBathAnimation])
+
+  const runningClip = useMemo(() => {
+    const c = catRunningAnimation?.[0]
+    if (!c) return null
+    c.name = "CatRunning"
+    return stripRootPosition(c, "Bone")
+  }, [catRunningAnimation])
+
+  const standingClip = useMemo(() => {
+    const c = catStandingAnimation?.[0]
+    if (!c) return null
+    c.name = "CatStanding"
+    return stripRootPosition(c, "Bone")
+  }, [catStandingAnimation])
+
+  const allAnims = useMemo(() => {
+    return [bathClip, standingClip, runningClip].filter(Boolean)
+  }, [bathClip, standingClip, runningClip])
 
   const { actions } = useAnimations(allAnims, group)
 
@@ -69,14 +103,17 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   // useEffect(() => {
   //   actions["catbathing"].reset().play()
   // }, [])
+  console.log(runningClip?.tracks?.slice(0, 10).map(t => t.name))
 
   return (
-    <group {...props} ref={group} dispose={null} rotation={[0, -Math.PI / 4, 0]}>
+    <group {...props} ref={group} dispose={null} rotation={[0, -Math.PI / 4, 0.5]}>
       <group name="CatModelOffset" scale={0.03}>
-        <primitive object={nodes.Bone} />
-        <skinnedMesh geometry={nodes.eye2.geometry} material={materials.SHD_eye} skeleton={nodes.eye2.skeleton} />
-        <skinnedMesh geometry={nodes.eye2001.geometry} material={materials.whiskers} skeleton={nodes.eye2001.skeleton} />
-        <skinnedMesh geometry={nodes.high_poly.geometry} material={materials.SHD_frip} skeleton={nodes.high_poly.skeleton} />
+        <group name="reference">
+          <primitive object={nodes.Bone} />
+        </group>
+        <skinnedMesh frustumCulled={false} geometry={nodes.eye2.geometry} material={materials.SHD_eye} skeleton={nodes.eye2.skeleton} />
+        <skinnedMesh frustumCulled={false} geometry={nodes.eye2001.geometry} material={materials.whiskers} skeleton={nodes.eye2001.skeleton} />
+        <skinnedMesh frustumCulled={false} geometry={nodes.high_poly.geometry} material={materials.SHD_frip} skeleton={nodes.high_poly.skeleton} />
       </group>
     </group>
   )

@@ -1,6 +1,6 @@
 import * as THREE from "three"
 import { useFrame, useThree } from "@react-three/fiber"
-import { Suspense, useEffect, useMemo, useState, useRef } from "react"
+import { useEffect, useMemo, useState, useRef } from "react"
 import { Avatar } from "./Avatar"
 import { Office } from "./Office"
 import { CatMia } from "./CatMia"
@@ -10,6 +10,7 @@ import { animate, useMotionValue } from "framer-motion"
 import { framerMotionConfig } from "../config"
 import { useScroll, OrbitControls, Float, MeshDistortMaterial, MeshWobbleMaterial } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
+import { Projects } from "./Projects"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -52,7 +53,8 @@ export const Experience = (props) => {
       setCatAnimation(
         section === 0 ? "CatBathing" :
           section === 1 ? "CatStanding" :
-            "CatRunning"
+            section === 2 ? "CatRunning" :
+              "CatRunning"
       )
     }, 600)
   }, [section])
@@ -84,7 +86,7 @@ export const Experience = (props) => {
         animate={"" + section}
         transition={{
           duration: 0.6,
-        } }
+        }}
         variants={avatarVariants}
       >
         <Avatar animation={characterAnimation} section={section} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} />
@@ -99,9 +101,10 @@ export const Experience = (props) => {
         <CatMia animation={catAnimation} section={section} />
       </motion.group >
       <motion.group
-        position={menuOpened ? [2.5, -0.5, 1] : [0.7, -0.5, 0]}
+        position={officeVariants.position}
         scale={officeScale}
         transition={{ duration: 0.6 }}
+        visible={section === 0}
       >
         <Office section={section} mouseObject={mouseInstance} mouseMode={mouseMode} />
         <Mouse object={mouseInstance} />
@@ -112,6 +115,7 @@ export const Experience = (props) => {
           rotation={[-Math.PI, 0.42, -Math.PI]}
         ></group>
       </motion.group>
+      <Projects section={section} />
     </>
   )
 }
