@@ -18,7 +18,6 @@ export const Experience = (props) => {
   const data = useScroll()
   const mouseInstance = useMemo(() => new THREE.Group(), [])
   const [mouseMode, setMouseMode] = useState("desk")
-  const { avatarVariants, catVariants, officeVariants, avatarScale, officeScale } = useScenePoses({ viewport, menuOpened })
 
   const [section, setSection] = useState(0)
 
@@ -38,6 +37,8 @@ export const Experience = (props) => {
 
   const [characterAnimation, setCharacterAnimation] = useState("Typing")
   const [catAnimation, setCatAnimation] = useState("CatRunning")
+
+  const { avatarVariants, catVariants, officeVariants, avatarScale, officeScale } = useScenePoses({ viewport, menuOpened, catAnimation })
 
   useEffect(() => {
     setCharacterAnimation("Falling")

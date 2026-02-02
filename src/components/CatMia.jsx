@@ -4,15 +4,6 @@ import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { motion } from "framer-motion-3d"
 
-// function stripRootPosition(clip, rootName = "Bone") {
-//   if (!clip?.tracks) return clip
-//   clip.tracks = clip.tracks.filter((t) => {
-//     const name = t.name || ""
-//     return !(name.includes(rootName) && name.endsWith(".position"))
-//   })
-//   return clip
-// }
-
 function stripRootPosition(clip, rootBoneName = "Bone") {
   if (!clip?.tracks) return clip
 
@@ -26,6 +17,7 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/models/cat.gltf')
   const { animations: catBathAnimation } = useFBX('/animations/catBath.fbx')
+  // const { animations: catRunningAnimation } = useGLTF('/animations/catRunning1.glb')
   const { animations: catRunningAnimation } = useFBX('/animations/catRunning.fbx')
   const { animations: catStandingAnimation } = useFBX('/animations/catStanding.fbx')
 
@@ -35,19 +27,6 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   stripRootPosition(catStandingAnimation[0], "Bone")
   catRunningAnimation[0].name = "CatRunning"
   stripRootPosition(catRunningAnimation[0], "Bone")
-
-  // const allAnims = useMemo(
-  //   () => [
-  //     ...(catBathAnimation || []),
-  //     ...(catStandingAnimation || []),
-  //     ...(catRunningAnimation || [])
-  //   ],
-  //   [
-  //     catBathAnimation,
-  //     catStandingAnimation,
-  //     catRunningAnimation
-  //   ]
-  // )
 
   const bathClip = useMemo(() => {
     const c = catBathAnimation?.[0]
@@ -98,12 +77,6 @@ export function CatMia({ animation = "CatBathing", ...props }) {
       if (o.isSkinnedMesh) o.frustumCulled = false
     })
   }, [])
-
-
-  // useEffect(() => {
-  //   actions["catbathing"].reset().play()
-  // }, [])
-  console.log(runningClip?.tracks?.slice(0, 10).map(t => t.name))
 
   return (
     <group {...props} ref={group} dispose={null} rotation={[0, -Math.PI / 4, 0.5]}>

@@ -1,7 +1,8 @@
 import { scale } from "motion"
 import { useMemo } from "react"
 
-export function useScenePoses({ viewport, menuOpened }) {
+export function useScenePoses({ viewport, menuOpened, catAnimation }) {
+    const isRunning = catAnimation === "CatRunning"
     const view = viewport?.height ?? 1
 
     return useMemo(() => {
@@ -9,6 +10,7 @@ export function useScenePoses({ viewport, menuOpened }) {
 
         const avatarScale = 0.0057
         const officeScale = menuOpened ? 1.5 : 1
+        const runningScaleBoost = isRunning ? 1.2 : 1
 
         // =========================
         // AVATAR VARIANTS
@@ -57,7 +59,7 @@ export function useScenePoses({ viewport, menuOpened }) {
             2: byMenu(
                 {
                     x: -2.5,
-                    y: -view * 2 -1,
+                    y: -view * 2 - 1,
                     z: 0,
                     rotateX: 0,
                     rotateY: Math.PI / 2,
@@ -106,7 +108,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateX: -Math.PI / 2,
                     rotateY: 1,
                     rotateZ: 0,
-                    scale: 1,
+                    scale: 1 * runningScaleBoost,
                 },
                 {
                     x: 2.5,
@@ -115,7 +117,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateX: -Math.PI / 2,
                     rotateY: 1,
                     rotateZ: 0,
-                    scale: 1.3,
+                    scale: 1.3 * runningScaleBoost,
                 }
             ),
 
@@ -127,7 +129,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateX: -Math.PI / 2.9,
                     rotateY: 0.15,
                     rotateZ: -1.3,
-                    scale: 1.25,
+                    scale: 1.25 * runningScaleBoost,
                 },
                 {
                     x: -1.7,
@@ -136,7 +138,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateX: -Math.PI / 4,
                     rotateY: 0.15,
                     rotateZ: -1.3,
-                    scale: 1.25,
+                    scale: 1.25 * runningScaleBoost,
                 }
             ),
 
@@ -145,19 +147,19 @@ export function useScenePoses({ viewport, menuOpened }) {
                     x: -2,
                     y: -view * 2 + 0.5,
                     z: 0,
-                    rotateX: 0,
-                    rotateY: 0,
+                    rotateX: -Math.PI / 2,
+                    rotateY: 0.8,
                     rotateZ: 0,
-                    scale: 1,
+                    scale: 1 * runningScaleBoost,
                 },
                 {
                     x: -2.1,
                     y: -view * 2 + 0.7,
                     z: 0.2,
-                    rotateX: 0,
-                    rotateY: 0.1,
+                    rotateX: -Math.PI / 4,
+                    rotateY: 0,
                     rotateZ: 0,
-                    scale: 1,
+                    scale: 1 * runningScaleBoost,
                 }
             ),
 
@@ -169,7 +171,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
-                    scale: 1,
+                    scale: 1 * runningScaleBoost,
                 },
                 {
                     x: 0.15,
@@ -178,7 +180,7 @@ export function useScenePoses({ viewport, menuOpened }) {
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
-                    scale: 1,
+                    scale: 1 * runningScaleBoost,
                 }
             ),
         }
@@ -199,5 +201,5 @@ export function useScenePoses({ viewport, menuOpened }) {
             officeVariants,
             officeScale,
         }
-    }, [view, menuOpened, viewport])
+    }, [view, menuOpened, viewport, catAnimation])
 }
