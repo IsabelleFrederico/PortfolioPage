@@ -2,7 +2,6 @@ import * as THREE from "three"
 import { useEffect, useMemo } from "react"
 import { useGLTF } from '@react-three/drei'
 import { useVideoTex } from "../hooks/useVideoTex"
-import { motion } from "framer-motion-3d"
 
 export function Office({ mouseObject, mouseMode, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')

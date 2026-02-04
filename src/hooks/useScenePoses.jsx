@@ -1,9 +1,26 @@
-import { scale } from "motion"
-import { useMemo } from "react"
+import { useMemo, useState, useEffect } from "react"
 
 export function useScenePoses({ viewport, menuOpened, catAnimation }) {
     const isRunning = catAnimation === "CatRunning"
     const view = viewport?.height ?? 1
+    const [catXOffset, setCatXOffset] = useState(0)
+
+    useEffect(() => {
+        if (!isRunning) {
+            setCatXOffset(0)
+            return
+        }
+
+        let i = 0
+        setCatXOffset(0)
+
+        const id = setInterval(() => {
+            i += 0.04
+            setCatXOffset(i)
+        }, 50)
+
+        return () => clearInterval(id)
+    }, [isRunning])
 
     return useMemo(() => {
         const byMenu = (closedPose, openPose) => (menuOpened ? openPose : closedPose)
@@ -67,12 +84,13 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                     scale: 0.007
                 },
                 {
-                    x: -2.2,
-                    y: -view * 2 + 0.65,
+                    x: -0.9,
+                    y: -view * 2 - 0.7,
                     z: 0.2,
                     rotateX: 0,
                     rotateY: Math.PI / 2,
                     rotateZ: 0,
+                    scale: 0.008
                 }
             ),
 
@@ -80,7 +98,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                 {
                     x: 0.3,
                     y: -view * 3 + 1,
-                    z: 8.5,
+                    z: 0,
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
@@ -88,7 +106,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                 {
                     x: 0.1,
                     y: -view * 3 + 1.15,
-                    z: 8.2,
+                    z: 0,
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
@@ -144,8 +162,8 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             2: byMenu(
                 {
-                    x: -2,
-                    y: -view * 2 + 0.5,
+                    x: -2 + catXOffset,
+                    y: -view * 2 - 1.25,
                     z: 0,
                     rotateX: -Math.PI / 2,
                     rotateY: 0.8,
@@ -153,30 +171,30 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                     scale: 1 * runningScaleBoost,
                 },
                 {
-                    x: -2.1,
-                    y: -view * 2 + 0.7,
-                    z: 0.2,
-                    rotateX: -Math.PI / 4,
-                    rotateY: 0,
-                    rotateZ: 0,
+                    x: 0.2 + catXOffset,
+                    y: -view * 2 - 1.5,
+                    z: 0,
+                    rotateX: -Math.PI / 2,
+                    rotateY: 0.8,
+                    rotateZ: -0.2,
                     scale: 1 * runningScaleBoost,
                 }
             ),
 
             3: byMenu(
                 {
-                    x: 0.3,
+                    x: 0,
                     y: -view * 3 + 1,
-                    z: 8.5,
+                    z: 0,
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
                     scale: 1 * runningScaleBoost,
                 },
                 {
-                    x: 0.15,
+                    x: 0,
                     y: -view * 3 + 1.2,
-                    z: 8.2,
+                    z: 0,
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
@@ -184,6 +202,10 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                 }
             ),
         }
+
+        // =========================
+        // OFFICE VARIANTS
+        // =========================
 
         const officeVariants = byMenu(
             {
@@ -194,12 +216,39 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             }
         )
 
+        // =========================
+        // CARDS PROJECTS VARIANTS
+        // =========================
+        const projectsVariants = {
+            2: byMenu(
+                {
+                    x: 0,
+                    y: -0.2,
+                    z: 0,
+                    rotateX: -0.02,
+                    rotateY: 0,
+                    rotateZ: 0,
+                    scale: 0.9,
+                },
+                {
+                    x: 3,
+                    y: 3.4,
+                    z: 0,
+                    rotateX: 0,
+                    rotateY: -1,
+                    rotateZ: 0,
+                    scale: 1.4,
+                }
+            ),
+        }
+
         return {
             avatarVariants,
             catVariants,
             avatarScale,
             officeVariants,
             officeScale,
+            projectsVariants
         }
-    }, [view, menuOpened, viewport, catAnimation])
+    }, [view, menuOpened, viewport, catAnimation, isRunning, catXOffset])
 }

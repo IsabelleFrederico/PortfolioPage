@@ -8,7 +8,7 @@ import { Mouse } from "./Mouse"
 import { motion } from "framer-motion-3d"
 import { animate, useMotionValue } from "framer-motion"
 import { framerMotionConfig } from "../config"
-import { useScroll, OrbitControls, Float, MeshDistortMaterial, MeshWobbleMaterial } from "@react-three/drei"
+import { useScroll, OrbitControls } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
 import { Projects } from "./Projects"
 
@@ -38,7 +38,7 @@ export const Experience = (props) => {
   const [characterAnimation, setCharacterAnimation] = useState("Typing")
   const [catAnimation, setCatAnimation] = useState("CatRunning")
 
-  const { avatarVariants, catVariants, officeVariants, avatarScale, officeScale } = useScenePoses({ viewport, menuOpened, catAnimation })
+  const { avatarVariants, catVariants, officeVariants, avatarScale, officeScale, projectsVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
 
   useEffect(() => {
     setCharacterAnimation("Falling")
@@ -47,15 +47,20 @@ export const Experience = (props) => {
         section === 0 ? "Typing" :
           section === 1 ? "Stretching" :
             section === 2 ? "Pointing" :
-              "StandUp")
+              section === 3 ? "Cellphone" :
+                section === 4 ? "Cellphone" :
+                  "StandUp")
     }, 600)
+
     setCatAnimation("CatRunning")
+
     setTimeout(() => {
       setCatAnimation(
         section === 0 ? "CatBathing" :
           section === 1 ? "CatStanding" :
             section === 2 ? "CatRunning" :
-              "CatRunning"
+              section === 3 ? "CatSeated" :
+                "CatRunning"
       )
     }, 600)
   }, [section])
@@ -75,6 +80,8 @@ export const Experience = (props) => {
     state.camera.position.x = cameraPositionX.get()
     state.camera.lookAt(cameraLookAtX.get(), 0, 0)
   })
+
+  const freezeProjects = section === 2 && catAnimation === "CatRunning" && menuOpened
 
   return (
     <>
@@ -116,7 +123,12 @@ export const Experience = (props) => {
           rotation={[-Math.PI, 0.42, -Math.PI]}
         ></group>
       </motion.group>
-      <Projects section={section} />
+      <motion.group
+        animate={projectsVariants[section]}
+        transition={framerMotionConfig}
+      >
+        <Projects section={section} freeze={freezeProjects} />
+      </motion.group >
     </>
   )
 }

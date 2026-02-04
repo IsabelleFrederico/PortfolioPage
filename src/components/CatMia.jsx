@@ -1,61 +1,43 @@
-import React, { useEffect, useRef, useMemo } from 'react'
-import { useGraph, useFrame } from '@react-three/fiber'
+import { useEffect, useRef, useMemo } from 'react'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
-import { SkeletonUtils } from 'three-stdlib'
-import { motion } from "framer-motion-3d"
-
-function stripRootPosition(clip, rootBoneName = "Bone") {
-  if (!clip?.tracks) return clip
-
-  const regex = new RegExp(`(^|\\|)${rootBoneName}\\.position$`)
-
-  clip.tracks = clip.tracks.filter((t) => !regex.test(t.name || ""))
-  return clip
-}
+import { buildClip } from '../hooks/useAnimation'
 
 export function CatMia({ animation = "CatBathing", ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/models/cat.gltf')
   const { animations: catBathAnimation } = useFBX('/animations/catBath.fbx')
-  // const { animations: catRunningAnimation } = useGLTF('/animations/catRunning1.glb')
   const { animations: catRunningAnimation } = useFBX('/animations/catRunning.fbx')
   const { animations: catStandingAnimation } = useFBX('/animations/catStanding.fbx')
+  const { animations: catSeatedAnimation } = useFBX('/animations/catSeated.fbx')
 
-  catBathAnimation[0].name = "CatBathing"
-  stripRootPosition(catBathAnimation[0], "Bone")
-  catStandingAnimation[0].name = "CatStanding"
-  stripRootPosition(catStandingAnimation[0], "Bone")
-  catRunningAnimation[0].name = "CatRunning"
-  stripRootPosition(catRunningAnimation[0], "Bone")
+  const bathClip = useMemo(
+    () => buildClip(catBathAnimation, "CatBathing", "Bone"),
+    [catBathAnimation]
+  )
 
-  const bathClip = useMemo(() => {
-    const c = catBathAnimation?.[0]
-    if (!c) return null
-    c.name = "CatBathing"
-    return stripRootPosition(c, "Bone")
-  }, [catBathAnimation])
+  const runningClip = useMemo(
+    () => buildClip(catRunningAnimation, "CatRunning", "Bone"),
+    [catRunningAnimation]
+  )
 
-  const runningClip = useMemo(() => {
-    const c = catRunningAnimation?.[0]
-    if (!c) return null
-    c.name = "CatRunning"
-    return stripRootPosition(c, "Bone")
-  }, [catRunningAnimation])
+  const standingClip = useMemo(
+    () => buildClip(catStandingAnimation, "CatStanding", "Bone"),
+    [catStandingAnimation]
+  )
 
-  const standingClip = useMemo(() => {
-    const c = catStandingAnimation?.[0]
-    if (!c) return null
-    c.name = "CatStanding"
-    return stripRootPosition(c, "Bone")
-  }, [catStandingAnimation])
+  const seatedClip = useMemo(
+    () => buildClip(catSeatedAnimation, "CatSeated", "Bone"),
+    [catSeatedAnimation]
+  )
 
   const allAnims = useMemo(() => {
-    return [bathClip, standingClip, runningClip].filter(Boolean)
-  }, [bathClip, standingClip, runningClip])
+    return [bathClip, standingClip, runningClip, seatedClip].filter(Boolean)
+  }, [bathClip, standingClip, runningClip, seatedClip])
 
   const { actions } = useAnimations(allAnims, group)
 
   const prev = useRef(null)
+
   useEffect(() => {
     const next = actions?.[animation]
     if (!next) return

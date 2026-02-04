@@ -1,49 +1,60 @@
 import { Section } from "../Interface"
 import { motion } from "motion/react"
+import { FiMail } from "react-icons/fi"
+import { FaGithub, FaLinkedinIn } from "react-icons/fa"
 
 export const Contact = () => {
     return (
         <Section>
             <h2 className="text-5xl font-bold">Contact me</h2>
-            <div className="mt-8 p-8 rounded-md bg-stone-50 w-96 max-w-full">
-                <form>
-                    <label htmlFor="name" className="font-medium text-gray-900 block mb-1">
-                        Name
-                    </label>
-                    <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
-                    />
-                    <label
-                        htmlFor="email"
-                        className="font-medium text-gray-900 block mb-1 mt-8"
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
-                    />
-                    <label
-                        htmlFor="email"
-                        className="font-medium text-gray-900 block mb-1 mt-8"
-                    >
-                        Message
-                    </label>
-                    <textarea
-                        name="message"
-                        id="message"
-                        className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
-                    />
-                    <button className="cursor-pointer bg-emerald-700 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
-                        Submit
-                    </button>
-                </form>
-            </div>
+            <motion.p
+                className="text-lg text-gray-600 mt-4"
+            >
+                It would be a pleasure to
+                <br />
+                work with you!
+            </motion.p>
+            <motion.div
+                className="flex gap-6 mt-16"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+            >
+                <motion.a
+                    href="mailto:seuemail@email.com"
+                    whileHover={{ scale: 1.1 }}
+                    className="w-14 h-14 rounded-full 
+                               bg-[#f3eadf] text-neutral-900 
+                               flex items-center justify-center
+                               transition-colors hover:bg-[#e7dccf]"
+                >
+                    <FiMail size={20} />
+                </motion.a>
+
+                <motion.a
+                    href="https://github.com/seuusuario"
+                    target="_blank"
+                    whileHover={{ scale: 1.1 }}
+                    className="w-14 h-14 rounded-full 
+                               bg-[#f3eadf] text-neutral-900 
+                               flex items-center justify-center
+                               transition-colors hover:bg-[#e7dccf]"
+                >
+                    <FaGithub size={20} />
+                </motion.a>
+
+                <motion.a
+                    href="https://linkedin.com/in/seuusuario"
+                    target="_blank"
+                    whileHover={{ scale: 1.1 }}
+                    className="w-14 h-14 rounded-full 
+                               bg-[#f3eadf] text-neutral-900 
+                               flex items-center justify-center
+                               transition-colors hover:bg-[#e7dccf]"
+                >
+                    <FaLinkedinIn size={18} />
+                </motion.a>
+            </motion.div>
         </Section>
     )
 }

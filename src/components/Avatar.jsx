@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useMemo } from 'react'
-import * as THREE from "three"
-import { useGraph, useFrame } from '@react-three/fiber'
+import { useEffect, useRef, useMemo } from 'react'
+import { useFrame } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
-import { SkeletonUtils } from 'three-stdlib'
-import { motion } from "framer-motion-3d"
+import { buildClip } from '../hooks/useAnimation'
 
 const handBone = "RightHand"
 const mouseRanges = [[0, 2.485], [9.58, 12]]
@@ -13,39 +11,79 @@ function inRanges(t, ranges) {
 }
 
 export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, ...props }) {
-  const { section } = props
   const group = useRef()
   const { nodes, materials } = useGLTF('/models/model.glb')
   const originalParent = useRef(null)
 
   const { animations: typingAnimation } = useFBX('/animations/typing.fbx')
   const { animations: fallingAnimation } = useFBX('/animations/falling.fbx')
-  const { animations: standUpAnimation } = useFBX('/animations/standup.fbx')
+  const { animations: cellphoneAnimation } = useFBX('/animations/cellphone.fbx')
   const { animations: pointingAnimation } = useFBX('/animations/pointing.fbx')
   const { animations: stretchingAnimation } = useFBX('/animations/stretching.fbx')
 
   if (typingAnimation[0]) typingAnimation[0].name = "Typing"
   if (fallingAnimation[0]) fallingAnimation[0].name = "Falling"
-  if (standUpAnimation[0]) standUpAnimation[0].name = "StandUp"
+  if (cellphoneAnimation[0]) cellphoneAnimation[0].name = "Cellphone"
   if (pointingAnimation[0]) pointingAnimation[0].name = "Pointing"
   if (stretchingAnimation[0]) stretchingAnimation[0].name = "Stretching"
 
-  const allAnims = useMemo(
-    () => [
-      ...(typingAnimation || []),
-      ...(fallingAnimation || []),
-      ...(standUpAnimation || []),
-      ...(pointingAnimation || []),
-      ...(stretchingAnimation || []),
-    ],
-    [
-      typingAnimation,
-      fallingAnimation,
-      standUpAnimation,
-      pointingAnimation,
-      stretchingAnimation,
-    ]
+  // const allAnims = useMemo(
+  //   () => [
+  //     ...(typingAnimation || []),
+  //     ...(fallingAnimation || []),
+  //     ...(cellphoneAnimation || []),
+  //     ...(pointingAnimation || []),
+  //     ...(stretchingAnimation || []),
+  //   ],
+  //   [
+  //     typingAnimation,
+  //     fallingAnimation,
+  //     cellphoneAnimation,
+  //     pointingAnimation,
+  //     stretchingAnimation,
+  //   ]
+  // )
+
+  const typingClip = useMemo(
+    () => buildClip(typingAnimation, "Typing", "Bone"),
+    [typingAnimation]
   )
+
+  const fallingClip = useMemo(
+    () => buildClip(fallingAnimation, "Falling", "Bone"),
+    [fallingAnimation]
+  )
+
+  const pointingClip = useMemo(
+    () => buildClip(pointingAnimation, "Pointing", "Bone"),
+    [pointingAnimation]
+  )
+
+  const stretchingClip = useMemo(
+    () => buildClip(stretchingAnimation, "Stretching", "Bone"),
+    [stretchingAnimation]
+  )
+
+  const cellphoneClip = useMemo(
+    () => buildClip(cellphoneAnimation, "Cellphone", "Bone"),
+    [cellphoneAnimation]
+  )
+
+  const allAnims = useMemo(() => {
+    return [
+      typingClip,
+      fallingClip,
+      pointingClip,
+      stretchingClip,
+      cellphoneClip
+    ].filter(Boolean)
+  }, [
+    typingClip,
+    fallingClip,
+    pointingClip,
+    stretchingClip,
+    cellphoneClip
+  ])
 
   const { actions } = useAnimations(allAnims, group)
 
@@ -124,6 +162,12 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     }
   }, [mouseMode, mouseObject])
 
+useEffect(() => {
+  const clip = cellphoneAnimation?.[0];
+  if (!clip) return;
+
+  console.log("Cellphone clip tracks sample:", clip.tracks.slice(0, 6).map(t => t.name))
+}, [cellphoneAnimation])
 
   return (
     <group ref={group} {...props} dispose={null} >
@@ -133,8 +177,8 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
           <skinnedMesh name="avaturn_body" frustumCulled={false} geometry={nodes.avaturn_body.geometry} material={materials.avaturn_body_material} skeleton={nodes.avaturn_body.skeleton} />
           <skinnedMesh name="avaturn_glasses_0" frustumCulled={false} geometry={nodes.avaturn_glasses_0.geometry} material={materials.avaturn_glasses_0_material} skeleton={nodes.avaturn_glasses_0.skeleton} />
           <skinnedMesh name="avaturn_glasses_1" frustumCulled={false} geometry={nodes.avaturn_glasses_1.geometry} material={materials.avaturn_glasses_1_material} skeleton={nodes.avaturn_glasses_1.skeleton} />
-          <skinnedMesh name="avaturn_hair_0" frustumCulled={false} geometry={nodes.avaturn_hair_0.geometry} material={materials.avaturn_hair_0_material} skeleton={nodes.avaturn_hair_0.skeleton} cale={[1.06, 1.06, 1.06]} />
-          <skinnedMesh name="avaturn_hair_1" frustumCulled={false} geometry={nodes.avaturn_hair_1.geometry} material={materials.avaturn_hair_1_material} skeleton={nodes.avaturn_hair_1.skeleton} cale={[1.06, 1.06, 1.06]} />
+          <skinnedMesh name="avaturn_hair_0" frustumCulled={false} geometry={nodes.avaturn_hair_0.geometry} material={materials.avaturn_hair_0_material} skeleton={nodes.avaturn_hair_0.skeleton} scale={[1.06, 1.06, 1.06]} />
+          <skinnedMesh name="avaturn_hair_1" frustumCulled={false} geometry={nodes.avaturn_hair_1.geometry} material={materials.avaturn_hair_1_material} skeleton={nodes.avaturn_hair_1.skeleton} scale={[1.06, 1.06, 1.06]} />
           <skinnedMesh name="avaturn_look_0" frustumCulled={false} geometry={nodes.avaturn_look_0.geometry} material={materials.avaturn_look_0_material} skeleton={nodes.avaturn_look_0.skeleton} />
           <skinnedMesh name="avaturn_look_1" frustumCulled={false} geometry={nodes.avaturn_look_1.geometry} material={materials.avaturn_look_1_material} skeleton={nodes.avaturn_look_1.skeleton} />
           <skinnedMesh name="avaturn_shoes_0" frustumCulled={false} geometry={nodes.avaturn_shoes_0.geometry} material={materials.avaturn_shoes_0_material} skeleton={nodes.avaturn_shoes_0.skeleton} />

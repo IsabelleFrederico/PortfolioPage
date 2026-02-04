@@ -1,6 +1,6 @@
 import { Text, useCursor } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
-import { useState } from "react"
+import { useState, useMemo, useRef } from "react"
 import { motion } from "framer-motion-3d"
 import { projects } from "../utils/constants"
 import { RoundedImage } from "./ProjectCard"
@@ -19,18 +19,20 @@ const Project = (props) => {
                 color="#000"
                 toneMapped={false}
                 depthTest={false}
-                renderOrder={10}
+                depthWrite={false}
+                renderOrder={1000}
             >
                 {children}
             </Text>
 
             <Text
                 {...rest}
-                position={[0.01, 0, 0]}
+                position={[0.007, 0, 0.001]}
                 color="#000"
                 toneMapped={false}
                 depthTest={false}
-                renderOrder={11}
+                depthWrite={false}
+                renderOrder={1001}
             >
                 {children}
             </Text>
@@ -73,6 +75,7 @@ const Project = (props) => {
                     size={[2, 1.2]}
                     radius={0.14}
                     fit="cover"
+                    renderOrder={10}
                 />
             </motion.group>
             <group raycast={() => null}>
@@ -95,37 +98,42 @@ const Project = (props) => {
     )
 }
 
-export const Projects = ({ section }) => {
+export const Projects = ({ section, freeze }) => {
     const { viewport } = useThree()
 
-    const COLS = 3
-    const gapX = 2.2
-    const gapY = 1.65
-
     const projectsSection = 2
+    const cached = useRef(null)
+
+    const content = useMemo(() => {
+        const COLS = 3
+        const gapX = 2.2
+        const gapY = 1.65
+
+        return projects.map((project, index) => {
+            const col = index % COLS
+            const row = Math.floor(index / COLS)
+
+            const x = (col - (COLS - 1) / 2) * gapX
+            const y = -row * gapY
+            return (
+                <motion.group key={"project_" + index} position={[x, y, -3]}>
+                    <Project project={project} />
+                </motion.group>
+            )
+        })
+    }, [])
+
+    if (!freeze) {
+        cached.current = content
+    }
 
     return (
         <group
             position-y={-viewport.height * 2 + 1}
             visible={section === projectsSection}
         >
-            {projects.map((project, index) => {
-                const col = index % COLS
-                const row = Math.floor(index / COLS)
-
-                const x = (col - (COLS - 1) / 2) * gapX
-                const y = -row * gapY
-
-                return (
-                    <motion.group
-                        key={"project_" + index}
-                        position={[x, y, -3]}
-                    >
-                        <Project project={project} />
-                    </motion.group>
-                )
-            })}
-        </group >
+            {cached.current}
+        </group>
     )
 }
 
