@@ -11,6 +11,8 @@ import { framerMotionConfig } from "../config"
 import { useScroll, OrbitControls } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
 import { Projects } from "./Projects"
+import { Cellphone } from "./Cellphone"
+import { Background } from "./Background"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -18,6 +20,7 @@ export const Experience = (props) => {
   const data = useScroll()
   const mouseInstance = useMemo(() => new THREE.Group(), [])
   const [mouseMode, setMouseMode] = useState("desk")
+  const [cellphoneObject, setCellphoneObject] = useState(null)
 
   const [section, setSection] = useState(0)
 
@@ -48,8 +51,7 @@ export const Experience = (props) => {
           section === 1 ? "Stretching" :
             section === 2 ? "Pointing" :
               section === 3 ? "Cellphone" :
-                section === 4 ? "Cellphone" :
-                  "StandUp")
+                "StandUp")
     }, 600)
 
     setCatAnimation("CatRunning")
@@ -82,10 +84,12 @@ export const Experience = (props) => {
   })
 
   const freezeProjects = section === 2 && catAnimation === "CatRunning" && menuOpened
+  const showCellphone = characterAnimation === "Cellphone"
 
   return (
     <>
       {/* <OrbitControls /> */}
+      <Background />
       <ambientLight intensity={1.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.6} />
       <directionalLight position={[-5, 3, -5]} intensity={0.3} />
@@ -97,7 +101,10 @@ export const Experience = (props) => {
         }}
         variants={avatarVariants}
       >
-        <Avatar animation={characterAnimation} section={section} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} />
+        <Avatar animation={characterAnimation} section={section} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} cellphoneObject={cellphoneObject} />
+        {showCellphone && (
+          <Cellphone ref={setCellphoneObject} scale={0.01} />
+        )}
       </motion.group>
       <motion.group
         animate={"" + section}

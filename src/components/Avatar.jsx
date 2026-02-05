@@ -10,14 +10,15 @@ function inRanges(t, ranges) {
   return ranges.some(([a, b]) => t >= a && t <= b)
 }
 
-export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, ...props }) {
+export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, cellphoneObject, ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/models/model.glb')
   const originalParent = useRef(null)
+  const cellphoneOriginalParent = useRef(null)
 
   const { animations: typingAnimation } = useFBX('/animations/typing.fbx')
   const { animations: fallingAnimation } = useFBX('/animations/falling.fbx')
-  const { animations: cellphoneAnimation } = useFBX('/animations/cellphone.fbx')
+  const { animations: cellphoneAnimation } = useFBX('/animations/call.fbx')
   const { animations: pointingAnimation } = useFBX('/animations/pointing.fbx')
   const { animations: stretchingAnimation } = useFBX('/animations/stretching.fbx')
 
@@ -26,23 +27,6 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
   if (cellphoneAnimation[0]) cellphoneAnimation[0].name = "Cellphone"
   if (pointingAnimation[0]) pointingAnimation[0].name = "Pointing"
   if (stretchingAnimation[0]) stretchingAnimation[0].name = "Stretching"
-
-  // const allAnims = useMemo(
-  //   () => [
-  //     ...(typingAnimation || []),
-  //     ...(fallingAnimation || []),
-  //     ...(cellphoneAnimation || []),
-  //     ...(pointingAnimation || []),
-  //     ...(stretchingAnimation || []),
-  //   ],
-  //   [
-  //     typingAnimation,
-  //     fallingAnimation,
-  //     cellphoneAnimation,
-  //     pointingAnimation,
-  //     stretchingAnimation,
-  //   ]
-  // )
 
   const typingClip = useMemo(
     () => buildClip(typingAnimation, "Typing", "Bone"),
@@ -101,22 +85,6 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     }
   }, [animation])
 
-  // const prev = useRef(null)
-  // useEffect(() => {
-  //   const next = actions?.[animation]
-  //   if (!next) return
-
-  //   next.reset()
-  //   next.fadeIn(0.2)
-  //   next.play()
-
-  //   if (prev.current && prev.current !== next) {
-  //     prev.current.fadeOut(0.2)
-  //   }
-  //   prev.current = next
-
-  // }, [animation, actions])
-
   useEffect(() => {
     if (animation !== "Typing") {
       setMouseMode?.("desk")
@@ -162,12 +130,22 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     }
   }, [mouseMode, mouseObject])
 
-useEffect(() => {
-  const clip = cellphoneAnimation?.[0];
-  if (!clip) return;
+  useEffect(() => {
+    if (!cellphoneObject || !group.current) return
+    if (!cellphoneOriginalParent.current) {
+      cellphoneOriginalParent.current = cellphoneObject.parent || null
+    }
 
-  console.log("Cellphone clip tracks sample:", clip.tracks.slice(0, 6).map(t => t.name))
-}, [cellphoneAnimation])
+    const hand = group.current.getObjectByName(handBone)
+    if (!hand) return
+
+    hand.attach(cellphoneObject)
+
+    cellphoneObject.position.set(0.008, 0.065, 0.015)
+    cellphoneObject.rotation.set(-0.15, -0.15, -0.9)
+    cellphoneObject.scale.setScalar(1.05)
+    
+  }, [cellphoneObject])
 
   return (
     <group ref={group} {...props} dispose={null} >

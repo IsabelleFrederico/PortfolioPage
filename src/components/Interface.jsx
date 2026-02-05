@@ -31,10 +31,11 @@ export const Section = (props) => {
     )
 }
 
-export function Interface() {
+export function Interface(props) {
+    const { setSection } = props;
     return (
         <div className="flex flex-col items-center w-screen">
-            <About />
+            <About setSection={setSection}/>
             <Skills />
             <ProjectsSection />
             <Contact />

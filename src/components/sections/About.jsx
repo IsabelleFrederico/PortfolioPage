@@ -1,7 +1,8 @@
 import { Section } from "../Interface"
 import { motion } from "motion/react"
 
-export const About = () => {
+export const About = (props) => {
+    const { setSection } = props
     return (
         <Section>
             <h1 className="text-5xl font-extrabold leading-snug text-stone-800">
@@ -24,11 +25,12 @@ export const About = () => {
                     delay: 1.5,
                 }}
             >
-                Software developer focused on building 
+                Software developer focused on building
                 <br />
                 reliable and user-friendly applications.
             </motion.p>
             <motion.button
+                onClick={() => setSection(3)}
                 className={`cursor-pointer bg-emerald-700 text-white py-4 px-8 
       rounded-lg font-bold text-lg mt-16`}
                 initial={{

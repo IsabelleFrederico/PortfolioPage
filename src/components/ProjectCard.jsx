@@ -2,7 +2,7 @@ import * as THREE from "three"
 import { useTexture } from "@react-three/drei"
 import { useMemo } from "react"
 
-export const RoundedImage = ({
+export const ProjectCard = ({
   src,
   position = [0, 0.3, 0.001],
   size = [2, 1.2],

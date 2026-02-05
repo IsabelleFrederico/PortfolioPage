@@ -9,6 +9,7 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   const { animations: catRunningAnimation } = useFBX('/animations/catRunning.fbx')
   const { animations: catStandingAnimation } = useFBX('/animations/catStanding.fbx')
   const { animations: catSeatedAnimation } = useFBX('/animations/catSeated.fbx')
+  // const { animations: catSeatedAnimation } = useGLTF('/animations/catSeated.glb')
 
   const bathClip = useMemo(
     () => buildClip(catBathAnimation, "CatBathing", "Bone"),

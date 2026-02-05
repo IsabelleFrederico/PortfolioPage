@@ -97,11 +97,12 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             3: byMenu(
                 {
                     x: 0.3,
-                    y: -view * 3 + 1,
+                    y: -view * 3 - 0.7,
                     z: 0,
                     rotateX: 0,
-                    rotateY: -Math.PI / 4,
+                    rotateY: -Math.PI / 0.5,
                     rotateZ: 0,
+                    scale: 0.008   
                 },
                 {
                     x: 0.1,
@@ -110,6 +111,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                     rotateX: 0,
                     rotateY: -Math.PI / 4,
                     rotateZ: 0,
+                    // scale: 1
                 }
             ),
         }
@@ -183,13 +185,13 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             3: byMenu(
                 {
-                    x: 0,
-                    y: -view * 3 + 1,
+                    x: -1,
+                    y: -view * 3 - 0.5,
                     z: 0,
-                    rotateX: 0,
-                    rotateY: -Math.PI / 4,
-                    rotateZ: 0,
-                    scale: 1 * runningScaleBoost,
+                    rotateX: 2,
+                    rotateY: -2.6,
+                    rotateZ: 1,
+                    scale: 1.5 * runningScaleBoost,
                 },
                 {
                     x: 0,
