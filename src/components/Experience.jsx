@@ -13,6 +13,8 @@ import { useScenePoses } from "../hooks/useScenePoses"
 import { Projects } from "./Projects"
 import { Cellphone } from "./Cellphone"
 import { Background } from "./Background"
+import { AvatarScan } from "./AvatarScan"
+import { Stage } from "./Stage"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -101,6 +103,14 @@ export const Experience = (props) => {
         }}
         variants={avatarVariants}
       >
+        {section === 1 ? <Stage headY={1.35} feetY={0.05} duration={2.2}>
+          {({ plane }) => (
+            <AvatarScan
+              plane={plane}
+              AvatarComponent={Avatar} // o seu Avatar atual
+            />
+          )}
+        </Stage> : <></>}
         <Avatar animation={characterAnimation} section={section} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} cellphoneObject={cellphoneObject} />
         {showCellphone && (
           <Cellphone ref={setCellphoneObject} scale={0.01} />

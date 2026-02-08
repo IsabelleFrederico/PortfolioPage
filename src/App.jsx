@@ -26,7 +26,7 @@ function App() {
           ...framerMotionConfig,
         }}
       >
-        <Canvas shadows camera={{ position: [0, 1, 5], fov: 30 }}>
+        <Canvas gl={{ localClippingEnabled: true }} shadows camera={{ position: [0, 1, 5], fov: 30 }}>
           <color attach="background" args={["#d5d5d5"]} />
           <ScrollControls pages={4} damping={0.1}>
             <ScrollManager section={section} onSectionChange={setSection} />

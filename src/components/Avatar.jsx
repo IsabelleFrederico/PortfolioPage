@@ -10,9 +10,9 @@ function inRanges(t, ranges) {
   return ranges.some(([a, b]) => t >= a && t <= b)
 }
 
-export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, cellphoneObject, ...props }) {
+export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, cellphoneObject, mode = "normal", clippingPlanes = [], ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/models/model.glb')
+  const { scene, nodes, materials } = useGLTF('/models/model.glb')
   const originalParent = useRef(null)
   const cellphoneOriginalParent = useRef(null)
 
@@ -146,6 +146,21 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     cellphoneObject.scale.setScalar(1.05)
 
   }, [cellphoneObject])
+
+  useEffect(() => {
+    scene.traverse((obj) => {
+      if (!obj.isMesh) return
+      obj.material = obj.material.clone()
+      obj.material.clippingPlanes = clippingPlanes
+      obj.material.clipShadows = true
+
+      if (mode === "wireframe") {
+        obj.material.wireframe = true
+        obj.material.transparent = true
+        obj.material.opacity = 0.9
+      }
+    })
+  }, [scene, mode, clippingPlanes])
 
   return (
     <group ref={group} {...props} dispose={null} >

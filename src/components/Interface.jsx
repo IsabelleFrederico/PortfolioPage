@@ -10,10 +10,11 @@ export const Section = (props) => {
     return (
         <motion.section
             className={`
-    h-screen w-screen 
-    flex
-     ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
-  `}
+                h-screen w-screen 
+                flex
+                mb-1
+                ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
+            `}
             initial={{
                 opacity: 0,
                 y: 50,
