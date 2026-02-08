@@ -7,9 +7,11 @@ import { ScrollManager } from "./components/ScrollManager.jsx"
 import { MotionConfig } from "framer-motion"
 import { framerMotionConfig } from "./config"
 import { Menu } from "./components/Menu"
+import { LoadingScreen } from "./components/LoadingScreen.jsx"
 
 function App() {
   const [section, setSection] = useState(0)
+  const [started, setStarted] = useState(false)
   const [menuOpened, setMenuOpened] = useState(false)
 
   useEffect(() => {
@@ -18,21 +20,24 @@ function App() {
 
   return (
     <>
+      <LoadingScreen started={started} setStarted={setStarted} />
       <MotionConfig
         transition={{
           ...framerMotionConfig,
         }}
       >
         <Canvas shadows camera={{ position: [0, 1, 5], fov: 30 }}>
-          {/* <color attach="background" args={["#d5d5d5"]} /> */}
+          <color attach="background" args={["#d5d5d5"]} />
           <ScrollControls pages={4} damping={0.1}>
             <ScrollManager section={section} onSectionChange={setSection} />
             <Scroll>
-              <Experience section={section} menuOpened={menuOpened} />
+              {started && (
+                <Experience section={section} menuOpened={menuOpened} />
+              )}
             </Scroll>
 
             <Scroll html>
-              <Interface setSection={setSection}/>
+              {started && <Interface setSection={setSection} />}
             </Scroll>
           </ScrollControls>
         </Canvas >

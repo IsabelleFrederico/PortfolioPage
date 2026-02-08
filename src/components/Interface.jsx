@@ -5,13 +5,14 @@ import { ProjectsSection } from "./sections/ProjectsSection"
 import { Skills } from "./sections/Skills"
 
 export const Section = (props) => {
-    const { children } = props
+    const { children, mobileTop } = props
 
     return (
         <motion.section
             className={`
-  h-screen w-screen p-8 max-w-screen-2xl mx-auto
-  flex flex-col items-start justify-center
+    h-screen w-screen 
+    flex
+     ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
   `}
             initial={{
                 opacity: 0,
@@ -26,7 +27,9 @@ export const Section = (props) => {
                 },
             }}
         >
-            {children}
+            <div className="w-full p-8 flex flex-col justify-center">
+                {children}
+            </div>
         </motion.section>
     )
 }
@@ -35,15 +38,13 @@ export function Interface(props) {
     const { setSection } = props;
     return (
         <div className="flex flex-col items-center w-screen">
-            <About setSection={setSection}/>
+            <About setSection={setSection} />
             <Skills />
             <ProjectsSection />
             <Contact />
         </div>
     )
 }
-
-
 
 
 

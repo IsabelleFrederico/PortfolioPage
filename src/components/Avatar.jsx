@@ -144,7 +144,7 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     cellphoneObject.position.set(0.008, 0.065, 0.015)
     cellphoneObject.rotation.set(-0.15, -0.15, -0.9)
     cellphoneObject.scale.setScalar(1.05)
-    
+
   }, [cellphoneObject])
 
   return (
@@ -167,3 +167,8 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
 }
 
 useGLTF.preload('/models/model.glb')
+useFBX.preload('/animations/typing.fbx')
+useFBX.preload('/animations/falling.fbx')
+useFBX.preload('/animations/call.fbx')
+useFBX.preload('/animations/pointing.fbx')
+useFBX.preload('/animations/stretching.fbx')

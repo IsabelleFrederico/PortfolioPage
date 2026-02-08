@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa"
 export const Contact = () => {
     return (
         <Section>
-            <div className="mb-2">
+            <div className="mb-120 ml-15">
                 <h2 className="text-5xl font-bold mb-0">Contact me</h2>
                 <motion.p
                     className="text-lg text-gray-600 mt-4"

@@ -5,13 +5,13 @@ export const About = (props) => {
     const { setSection } = props
     return (
         <Section>
-            <h1 className="text-5xl font-extrabold leading-snug text-stone-800">
+            <h1 className="text-3xl md:text-5xl font-extrabold leading-snug text-stone-800 ">
                 Hi, I'm
                 <br />
-                <span className="bg-stone-50 px-0.5 py-0.5 rounded-md italic">Isabelle F Travasso</span>
+                <span className="bg-stone-50 md:px-0.5 md:py-0.5 rounded-md italic">Isabelle F Travasso</span>
             </h1>
             <motion.p
-                className="text-lg text-gray-600 mt-4"
+                className="md:text-lg text-gray-800 mt-4"
                 initial={{
                     opacity: 0,
                     y: 25,
@@ -31,8 +31,7 @@ export const About = (props) => {
             </motion.p>
             <motion.button
                 onClick={() => setSection(3)}
-                className={`cursor-pointer bg-emerald-700 text-white py-4 px-8 
-      rounded-lg font-bold text-lg mt-16`}
+                className={`bg-emerald-700 text-sm md:text-lg text-white text-base py-4 px-8 rounded-lg font-semibold mt-5 md:mt-16 w-fit cursor-pointer`}
                 initial={{
                     opacity: 0,
                     y: 25,

@@ -9,7 +9,6 @@ export function CatMia({ animation = "CatBathing", ...props }) {
   const { animations: catRunningAnimation } = useFBX('/animations/catRunning.fbx')
   const { animations: catStandingAnimation } = useFBX('/animations/catStanding.fbx')
   const { animations: catSeatedAnimation } = useFBX('/animations/catSeated.fbx')
-  // const { animations: catSeatedAnimation } = useGLTF('/animations/catSeated.glb')
 
   const bathClip = useMemo(
     () => buildClip(catBathAnimation, "CatBathing", "Bone"),
@@ -76,3 +75,7 @@ export function CatMia({ animation = "CatBathing", ...props }) {
 }
 
 useGLTF.preload('/models/cat.gltf')
+useFBX.preload('/animations/catBath.fbx')
+useFBX.preload('/animations/catRunning.fbx')
+useFBX.preload('/animations/catStanding.fbx')
+useFBX.preload('/animations/catSeated.fbx')
