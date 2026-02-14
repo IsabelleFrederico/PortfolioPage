@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
 import { About } from "./sections/About"
 import { Contact } from "./sections/Contact"
-import { ProjectsSection } from "./sections/ProjectsSection"
+import { Projects } from "./sections/Projects"
 import { Skills } from "./sections/Skills"
 
 export const Section = (props) => {
@@ -40,8 +40,8 @@ export function Interface(props) {
     return (
         <div className="flex flex-col items-center w-screen">
             <About setSection={setSection} />
-            <Skills />
-            <ProjectsSection />
+            <Skills /> 
+            <Projects />
             <Contact />
         </div>
     )

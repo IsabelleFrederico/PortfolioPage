@@ -1,3 +1,4 @@
+import * as THREE from "three"
 import { useEffect, useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
@@ -10,9 +11,9 @@ function inRanges(t, ranges) {
   return ranges.some(([a, b]) => t >= a && t <= b)
 }
 
-export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, cellphoneObject, mode = "normal", clippingPlanes = [], ...props }) {
+export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, cellphoneObject, mode = "normal", wireOpacity = 0.35, ...props }) {
   const group = useRef()
-  const { scene, nodes, materials } = useGLTF('/models/model.glb')
+  const { nodes, materials } = useGLTF('/models/model.glb')
   const originalParent = useRef(null)
   const cellphoneOriginalParent = useRef(null)
 
@@ -20,13 +21,21 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
   const { animations: fallingAnimation } = useFBX('/animations/falling.fbx')
   const { animations: cellphoneAnimation } = useFBX('/animations/call.fbx')
   const { animations: pointingAnimation } = useFBX('/animations/pointing.fbx')
-  const { animations: stretchingAnimation } = useFBX('/animations/stretching.fbx')
+  const { animations: airScreenAnimationRaw } = useFBX('/animations/airScreen.fbx')
 
   if (typingAnimation[0]) typingAnimation[0].name = "Typing"
   if (fallingAnimation[0]) fallingAnimation[0].name = "Falling"
   if (cellphoneAnimation[0]) cellphoneAnimation[0].name = "Cellphone"
   if (pointingAnimation[0]) pointingAnimation[0].name = "Pointing"
-  if (stretchingAnimation[0]) stretchingAnimation[0].name = "Stretching"
+  
+  const airScreenAnimation = useMemo(() => {
+    if (!airScreenAnimationRaw?.length) return []
+    const valid = airScreenAnimationRaw.filter(c => (c?.duration ?? 0) > 0.0001)
+    const clip = valid[0] || null
+    if (!clip) return []
+    clip.name = "AirScreen"
+    return [clip]
+  }, [airScreenAnimationRaw])
 
   const typingClip = useMemo(
     () => buildClip(typingAnimation, "Typing", "Bone"),
@@ -43,9 +52,9 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     [pointingAnimation]
   )
 
-  const stretchingClip = useMemo(
-    () => buildClip(stretchingAnimation, "Stretching", "Bone"),
-    [stretchingAnimation]
+  const airScreenClip = useMemo(
+    () => buildClip(airScreenAnimation, "AirScreen", "Bone"),
+    [airScreenAnimation]
   )
 
   const cellphoneClip = useMemo(
@@ -58,32 +67,39 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
       typingClip,
       fallingClip,
       pointingClip,
-      stretchingClip,
+      airScreenClip,
       cellphoneClip
     ].filter(Boolean)
   }, [
     typingClip,
     fallingClip,
     pointingClip,
-    stretchingClip,
+    airScreenClip,
     cellphoneClip
   ])
 
   const { actions } = useAnimations(allAnims, group)
 
-  // useFrame(
-  //   (state) => {
-  //     group.current?.getObjectByName("Head").lookAt(state.camera.position)
-  //     group.current?.getObjectByName("Neck").lookAt(state.camera.position)
+  // useFrame((state) => {
+  //   if (headFollow) {
+  //     group.current.getObjectByName("Head").lookAt(state.camera.position);
   //   }
-  //   , [])
+  //   if (cursorFollow) {
+  //     const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
+  //     group.current.getObjectByName("Spine2").lookAt(target);
+  //   }
+  // });
 
   useEffect(() => {
-    actions[animation].reset().fadeIn(0.5).play()
+    const action = actions?.[animation]
+    if (!action) return
+
+    action.reset().fadeIn(0.2).play()
+
     return () => {
-      actions[animation].reset().fadeOut(0.5)
+      action.fadeOut(0.2)
     }
-  }, [animation])
+  }, [animation, actions])
 
   useEffect(() => {
     if (animation !== "Typing") {
@@ -130,6 +146,12 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     }
   }, [mouseMode, mouseObject])
 
+  // useEffect(() => {
+  //   Object.values(materials).forEach((material) => {
+  //     material.wireframe = wireframe;
+  //   });
+  // }, [wireframe])
+
   useEffect(() => {
     if (!cellphoneObject || !group.current) return
     if (!cellphoneOriginalParent.current) {
@@ -146,21 +168,6 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
     cellphoneObject.scale.setScalar(1.05)
 
   }, [cellphoneObject])
-
-  useEffect(() => {
-    scene.traverse((obj) => {
-      if (!obj.isMesh) return
-      obj.material = obj.material.clone()
-      obj.material.clippingPlanes = clippingPlanes
-      obj.material.clipShadows = true
-
-      if (mode === "wireframe") {
-        obj.material.wireframe = true
-        obj.material.transparent = true
-        obj.material.opacity = 0.9
-      }
-    })
-  }, [scene, mode, clippingPlanes])
 
   return (
     <group ref={group} {...props} dispose={null} >
@@ -186,4 +193,4 @@ useFBX.preload('/animations/typing.fbx')
 useFBX.preload('/animations/falling.fbx')
 useFBX.preload('/animations/call.fbx')
 useFBX.preload('/animations/pointing.fbx')
-useFBX.preload('/animations/stretching.fbx')
+useFBX.preload('/animations/airScreen.fbx')

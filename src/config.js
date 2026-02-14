@@ -5,3 +5,4 @@ export const framerMotionConfig = {
   damping: 250,
   restDelta: 0.0001,
 }
+

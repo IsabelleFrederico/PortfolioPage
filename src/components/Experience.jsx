@@ -8,17 +8,18 @@ import { Mouse } from "./Mouse"
 import { motion } from "framer-motion-3d"
 import { animate, useMotionValue } from "framer-motion"
 import { framerMotionConfig } from "../config"
-import { useScroll, OrbitControls } from "@react-three/drei"
+import { OrbitControls, useScroll } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
-import { Projects } from "./Projects"
 import { Cellphone } from "./Cellphone"
 import { Background } from "./Background"
-import { AvatarScan } from "./AvatarScan"
 import { Stage } from "./Stage"
+import { OfficeContact } from "./OfficeContact"
+import { OfficeBackground } from "./OffineBackground"
 
 export const Experience = (props) => {
   const { menuOpened } = props
   const { viewport } = useThree()
+
   const data = useScroll()
   const mouseInstance = useMemo(() => new THREE.Group(), [])
   const [mouseMode, setMouseMode] = useState("desk")
@@ -43,14 +44,14 @@ export const Experience = (props) => {
   const [characterAnimation, setCharacterAnimation] = useState("Typing")
   const [catAnimation, setCatAnimation] = useState("CatRunning")
 
-  const { avatarVariants, catVariants, officeVariants, avatarScale, officeScale, projectsVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
+  const { avatarVariants, stageVariants, catVariants, officeVariants, avatarScale, officeScale, contactOfficeVariants, contactBackgroundVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
 
   useEffect(() => {
     setCharacterAnimation("Falling")
     setTimeout(() => {
       setCharacterAnimation(
         section === 0 ? "Typing" :
-          section === 1 ? "Stretching" :
+          section === 1 ? "AirScreen" :
             section === 2 ? "Pointing" :
               section === 3 ? "Cellphone" :
                 "StandUp")
@@ -85,12 +86,10 @@ export const Experience = (props) => {
     state.camera.lookAt(cameraLookAtX.get(), 0, 0)
   })
 
-  const freezeProjects = section === 2 && catAnimation === "CatRunning" && menuOpened
   const showCellphone = characterAnimation === "Cellphone"
 
   return (
     <>
-      {/* <OrbitControls /> */}
       <Background />
       <ambientLight intensity={1.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.6} />
@@ -103,14 +102,6 @@ export const Experience = (props) => {
         }}
         variants={avatarVariants}
       >
-        {section === 1 ? <Stage headY={1.35} feetY={0.05} duration={2.2}>
-          {({ plane }) => (
-            <AvatarScan
-              plane={plane}
-              AvatarComponent={Avatar} // o seu Avatar atual
-            />
-          )}
-        </Stage> : <></>}
         <Avatar animation={characterAnimation} section={section} mouseObject={mouseInstance} mouseMode={mouseMode} setMouseMode={setMouseMode} cellphoneObject={cellphoneObject} />
         {showCellphone && (
           <Cellphone ref={setCellphoneObject} scale={0.01} />
@@ -125,6 +116,14 @@ export const Experience = (props) => {
       >
         <CatMia animation={catAnimation} section={section} />
       </motion.group >
+      <motion.group
+        animate={"" + section}
+        transition={{ duration: 0.6 }}
+        visible={section === 1}
+        variants={stageVariants}
+      >
+        <Stage active={section === 1} />
+      </motion.group>
       <motion.group
         position={officeVariants.position}
         scale={officeScale}
@@ -141,11 +140,22 @@ export const Experience = (props) => {
         ></group>
       </motion.group>
       <motion.group
-        animate={projectsVariants[section]}
-        transition={framerMotionConfig}
+        animate={"" + section}
+        variants={contactOfficeVariants}
+        transition={{ duration: 0.6 }}
+        visible={section === 3}
       >
-        <Projects section={section} freeze={freezeProjects} />
-      </motion.group >
+        {/* <OrbitControls /> */}
+        <OfficeContact />
+      </motion.group>
+      <motion.group
+        animate={"" + section}
+        variants={contactBackgroundVariants}
+        transition={{ duration: 0.6 }}
+        visible={section === 3}
+      >
+        <OfficeBackground />
+      </motion.group>
     </>
   )
 }

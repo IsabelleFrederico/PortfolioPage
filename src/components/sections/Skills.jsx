@@ -8,7 +8,7 @@ export const Skills = () => {
     const [isMobile, setIsMobile] = useState(false)
 
     useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 768)
+        const check = () => setIsMobile(window.innerWidth < 1024)
         check()
         window.addEventListener("resize", check)
         return () => window.removeEventListener("resize", check)
@@ -58,7 +58,7 @@ export const Skills = () => {
                     >
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start md:mt-2">
                             <div className="space-y-6">
-                                <h2 className="text-5xl font-bold text-white">Skills</h2>
+                                <h2 className="text-3xl md:text-5xl font-bold text-white">Skills</h2>
                                 <div className="mt-8 space-y-4">
                                     {skills.map((skill, index) => (
                                         <div className="w-full max-w-50 md:max-w-xs" key={index}>
@@ -73,7 +73,7 @@ export const Skills = () => {
                                                     },
                                                 }}
                                             >
-                                                <h3 className="text-xl font-bold text-white" >
+                                                <h3 className="text-l md:text-xl font-bold text-white" >
                                                     {skill.title}
                                                 </h3>
                                                 <span className="text-xs font-semibold text-white/80">
@@ -108,7 +108,7 @@ export const Skills = () => {
 
                             </div>
                             <div className="space-y-6 ">
-                                <h2 className="text-5xl font-bold text-white">Languages</h2>
+                                <h2 className="text-3xl md:text-5xl font-bold text-white">Languages</h2>
                                 <div className=" mt-8 space-y-4">
                                     {languages.map((lng, index) => (
                                         <div className="w-64 max-w-50 md:max-w-xs" key={index}>
@@ -123,7 +123,7 @@ export const Skills = () => {
                                                     },
                                                 }}
                                             >
-                                                <h3 className="text-xl font-bold text-white" >
+                                                <h3 className="text-l md:text-xl font-bold text-white" >
                                                     {lng.title}
                                                 </h3>
                                                 <span className="text-xs font-semibold text-white/80">
