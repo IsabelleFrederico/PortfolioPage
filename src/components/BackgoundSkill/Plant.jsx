@@ -8,10 +8,18 @@ export function Plant() {
     const baseColor = useMemo(() => new THREE.Color(color), [])
 
     const shades = useMemo(() => {
+        const shade = (h = 0, s = 0, l = 0) => baseColor.clone().offsetHSL(h, s, l)
+
         return {
-            plant: baseColor.clone().offsetHSL(0, 0, -0.10),
-            rim: baseColor.clone().offsetHSL(0, 0, -0.14),
-            soil: baseColor.clone().offsetHSL(0, 0, -0.22),
+            leaf: shade(0, 0.01, -0.1),
+            leafLeft: shade(0, 0.1, -0.13),          
+            leafBack: shade(0.02, 0.05, -0.7), 
+            stem: shade(0.01, -0.02, -0.10),    
+
+            pot: shade(0.05, -0.1, -0.125),          
+            rim: shade(0, -0.05, -0.24),          
+
+            soil: shade(0.03, -0.20, -0.35),   
         }
     }, [baseColor])
 
@@ -117,17 +125,17 @@ export function Plant() {
     }, [])
 
     return (
-      <group scale={0.2} position={[-1.5, -4, -3]}>
+        <group scale={0.25} position={[-2, -4.9, -5.9]}>
             {/* VASE */}
             <group scale={0.8} position={[0, -0.5, 0]}>
                 <mesh castShadow receiveShadow position={[0, -0.45, 0]}>
                     <cylinderGeometry args={[0.85, 0.65, 1, 64]} />
                     <meshStandardMaterial
-                        color={shades.plant}
+                        color={shades.pot}
                         roughness={0.45}
-                        metalness={0.08}
-                        clearcoat={1}
-                        clearcoatRoughness={0.25}
+                        metalness={0.28}
+                        clearcoat={2}
+                        clearcoatRoughness={0.3}
                     />
                 </mesh>
 
@@ -154,15 +162,15 @@ export function Plant() {
 
             {/* STEMS */}
             <mesh castShadow receiveShadow geometry={stems.left}>
-                <meshStandardMaterial color={shades.plant} />
+                <meshStandardMaterial color={shades.stem} />
             </mesh>
 
             <mesh castShadow receiveShadow geometry={stems.center}>
-                <meshStandardMaterial color={shades.plant} />
+                <meshStandardMaterial color={shades.stem} />
             </mesh>
 
             <mesh castShadow receiveShadow geometry={stems.right}>
-                <meshStandardMaterial color={shades.plant} />
+                <meshStandardMaterial color={shades.stem} />
             </mesh>
 
             {/* LEAVES */}
@@ -175,7 +183,7 @@ export function Plant() {
                 scale={0.70}
             >
                 <meshStandardMaterial
-                    color={shades.plant}
+                    color={shades.leafLeft}
                     side={THREE.DoubleSide}
                 />
             </mesh>
@@ -189,7 +197,7 @@ export function Plant() {
                 scale={0.82}
             >
                 <meshStandardMaterial
-                    color={shades.plant}
+                    color={shades.leaf}
                     side={THREE.DoubleSide}
                 />
             </mesh>
@@ -203,7 +211,7 @@ export function Plant() {
                 scale={0.76}
             >
                 <meshStandardMaterial
-                    color={shades.plant}
+                    color={shades.leafBack}
                     side={THREE.DoubleSide}
                 />
             </mesh>

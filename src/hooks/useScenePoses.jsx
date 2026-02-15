@@ -80,22 +80,22 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             1: byMenu(
                 {
-                    x: isMobile ? 0.24 : isWindowM ? 0.25 : -0.05,
-                    y: isMobile ? -viewH + 0 : -viewH - 0.83,
-                    z: isMobile ? -0.1 : 0.2,
+                    x: isMobile ? 0.24 : -0.05,
+                    y: isMobile ? -viewH - 0.81 : -viewH - 2.6,
+                    z: isMobile ? -1.2 : -5,
                     rotateX: 0,
                     rotateY: 0,
                     rotateZ: 0,
-                    scale: isMobile ? avatarScale / 1.25 : avatarScale + 0.003
+                    scale: isMobile ? avatarScale + 0.001 : avatarScale + 0.0075
                 },
                 {
-                    x: isMobile ? 1 : 1,
-                    y: isMobile ? -viewH - 0.9 : -viewH - 0.7,
-                    z: isMobile ? 1.7 : 1.8,
+                    x: isMobile ? 5 : 7,
+                    y: isMobile ? -viewH - 1.65 : -viewH - 2.5,
+                    z: isMobile ? -1 : -2,
                     rotateX: 0,
                     rotateY: 0.15,
                     rotateZ: 0,
-                    scale: isMobile ? avatarScale + 0.003 : isWindowM ? avatarScale + 0.003 : avatarScale + 0.005
+                    scale: isMobile ? avatarScale + 0.003 : avatarScale + 0.009
                 }
             ),
 
@@ -165,22 +165,22 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             1: byMenu(
                 {
-                    x: isMobile ? 0.25 : isWindowM ? 0.5 : -0.8,
-                    y: isMobile ? -viewH -1 : -viewH - 0.65,
-                    z: -viewH + 2,
+                    x: isMobile ? 0.5 : isWindowM ? 0.5 : -1.5,
+                    y: isMobile ? -viewH - 0.45 : -viewH - 2,
+                    z: isMobile ? -viewH + 2.5 : -viewH - 1,
                     rotateX: -Math.PI / 2.9,
                     rotateY: 0.15,
                     rotateZ: -1.3,
-                    scale: isMobile ? runningScaleBoost - 0.3 : runningScaleBoost + 0.4,
+                    scale: isMobile ? runningScaleBoost + 0.05 : runningScaleBoost + 1,
                 },
                 {
-                    x: -1.7,
-                    y: -viewH + 0.08,
-                    z: 3,
+                    x: isMobile ? 3 : 0.6,
+                    y: isMobile ? -viewH - 1.07 : -viewH - 0.5,
+                    z: isMobile ? -0.3 : 1.4,
                     rotateX: -Math.PI / 4,
                     rotateY: 0.15,
                     rotateZ: -1.3,
-                    scale: isMobile ? runningScaleBoost : isWindowM ? runningScaleBoost : 1.05 * runningScaleBoost,
+                    scale: isMobile ? runningScaleBoost + 0.3: 1.1 * runningScaleBoost,
                 }
             ),
 
@@ -247,17 +247,22 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
         const stageVariants = {
             1: byMenu(
                 {
-                    x: isMobile ? 0.2 : isWindowM ? 0.2 : -0.1,
-                    y: isMobile ? -viewH : -viewH - 0.9,
-                    z: isMobile ? 0 : 0.2,
-                                        rotateY: Math.PI + 1.5,
-                    scale: isMobile ? 0.25 : 0.05,
+                    x: isMobile ? 0.2 : isWindowM ? 0.2 : 0,
+                    y: isMobile ? -viewH + 1.5 : -viewH + 2.5,
+                    z: isMobile ? 2 : 0.2,
+                    rotateX: isMobile ? -0.01 : 0,
+                    rotateY: isMobile ? 0 : 0,
+                    rotateZ: isMobile ? 0 : 0,
+                    scale: isMobile ? 0.4 : 1,
                 },
                 {
                     x: isMobile ? 1 : 1,
-                    y: isMobile ? -viewH - 0.9 : -viewH - 0.75,
+                    y: isMobile ? -viewH + 1.5 : -viewH + 3,
                     z: isMobile ? 1.8 : 1.8,
-                    scale: isMobile ? 0.4 : isWindowM ? 0.55 : 0.0005,
+                    rotateX: isMobile ? Math.PI - 3.1 : 0,
+                    rotateY: -1,
+                    rotateZ: isMobile ? 0.01 : 0,
+                    scale: isMobile ? 0.55 : 1,
                 }
             )
         }
@@ -269,16 +274,16 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
         const skillsVariants = {
             1: byMenu(
                 {
-                    x: isMobile ? 0.2 : isWindowM ? 0.2 : -0.1,
-                    y: isMobile ? -viewH + 0.65 : -viewH + 0.5,
-                    z: isMobile ? 0 : 0.4,
-                    scale: isMobile ? 0.25 : 0.5,
+                    x: isMobile ? 0.18 : -0.1,
+                    y: isMobile ? -viewH + 0.25 : -viewH - 0.5,
+                    z: isMobile ? -0.9 : -4.5,
+                    scale: isMobile ? 0.35 : 0.8,
                 },
                 {
-                    x: isMobile ? 1 : 1,
-                    y: isMobile ? -viewH + 0.45 : isWindowM ? -viewH + 0.65 : -viewH + 0.85,
-                    z: isMobile ? 1.8 : 1.8,
-                    scale: isMobile ? 0.55 : 0.65,
+                    x: isMobile ? 4.5 : 6.5,
+                    y: isMobile ? -viewH - 0.25 : -viewH - 0.25,
+                    z: isMobile ? -0.7 : -1.6,
+                    scale: isMobile ? 0.55 : 0.9,
                 }
             )
         }

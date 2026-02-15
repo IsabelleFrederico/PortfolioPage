@@ -20,6 +20,8 @@ import { Floor } from "./BackgoundSkill/floor"
 import { Stage } from "./BackgoundSkill/Stage"
 import { Elements } from "./BackgoundSkill/Elements"
 import { Plant } from "./BackgoundSkill/Plant"
+import { LogoButton } from "./LogoButton"
+import { Html } from "@react-three/drei"
 
 
 export const Experience = (props) => {
@@ -97,6 +99,16 @@ export const Experience = (props) => {
   return (
     <>
       <Background />
+      {/* <Html
+        fullscreen
+        transform={false}
+        prepend
+        style={{ pointerEvents: "none" }}
+      >
+        <div style={{ pointerEvents: "auto" }}>
+          <LogoButton section={section} setSection={setSection} />
+        </div>
+      </Html> */}
       <ambientLight intensity={1.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.6} />
       <directionalLight position={[-5, 3, -5]} intensity={0.3} />
@@ -134,16 +146,16 @@ export const Experience = (props) => {
               active
             />
           </motion.group>
-          {/* <motion.group
+          <motion.group
             animate={"" + section}
             transition={{ duration: 0.6 }}
             variants={stageVariants}
           >
-          </motion.group> */}
-          <Floor />
-          <Stage />
-          <Elements />
-          <Plant />
+            <Floor />
+            <Stage />
+            <Elements />
+            <Plant />
+          </motion.group>
         </>
 
       )}

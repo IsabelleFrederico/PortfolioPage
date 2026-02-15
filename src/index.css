@@ -5,8 +5,11 @@
   height: 100vh;
 }
 
+html,
 body {
+  width: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -20,15 +23,18 @@ body {
 
 .bg-emerald-3d {
   background:
-    radial-gradient(circle at 50% 35%, rgba(158,193,195,0.25) 0%, rgba(23,106,89,0.0) 45%),
+    radial-gradient(circle at 50% 35%, rgba(158, 193, 195, 0.25) 0%, rgba(23, 106, 89, 0.0) 45%),
     radial-gradient(circle at 50% 50%, #1b7f70 0%, #15685a 55%, #0f3f37 100%);
 }
+
 .vignette-emerald {
   position: relative;
 }
-.vignette-emerald::after{
-  content:"";
-  position:absolute; inset:-20%;
-  pointer-events:none;
-  background: radial-gradient(circle at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.35) 100%);
+
+.vignette-emerald::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.35) 100%);
 }

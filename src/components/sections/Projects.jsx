@@ -33,7 +33,7 @@ export const Projects = ({ active = true }) => {
     return (
         <Section>
             <div className="w-full">
-                <h2 className="text-3xl md:text-5xl font-bold pt-30">Projects</h2>
+                <h2 className="text-3xl md:text-4xl font-bold pt-35 ml-15 md:ml-25">Projects</h2>
                 <div
                     ref={scrollerRef}
                     className=
@@ -67,35 +67,24 @@ export const Projects = ({ active = true }) => {
                                 cursor-pointer
                             "
                             >
-                                <a
-                                    key={p.id}
-                                    href={p.href ?? "#"}
-                                    className="
-                                        w-full max-w-[420px]
-                                        transition-transform
-                                        hover:scale-[1.02]
-                                        cursor-pointer
-                                    "
-                                >
-                                    <div className="overflow-hidden rounded-3xl shadow-md">
-                                        <img
-                                            src={p.image}
-                                            alt={p.title}
-                                            className="
+                                <div className="overflow-hidden rounded-3xl shadow-md">
+                                    <img
+                                        src={p.image}
+                                        alt={p.title}
+                                        className="
                                                 w-full
                                                 aspect-[16/9]
                                                 object-cover
                                                 transition-transform duration-200       
                                                 hover:scale-[1.03]
                                             "
-                                            loading="lazy"
-                                        />
-                                    </div>
+                                        loading="lazy"
+                                    />
+                                </div>
 
-                                    <h3 className="mt-5 text-lg font-bold text-center">
-                                        {p.title}
-                                    </h3>
-                                </a>
+                                <h3 className="mt-5 text-lg font-bold text-center">
+                                    {p.title}
+                                </h3>
                             </a>
                         ))}
                     </div>

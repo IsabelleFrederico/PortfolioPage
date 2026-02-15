@@ -3,6 +3,7 @@ import { About } from "./sections/About"
 import { Contact } from "./sections/Contact"
 import { Projects } from "./sections/Projects"
 import { Skills } from "./sections/Skills"
+import { EndFooter } from "./sections/EndFooter"
 
 export const Section = (props) => {
     const { children, mobileTop } = props
@@ -12,7 +13,7 @@ export const Section = (props) => {
             className={`
                 h-screen w-screen 
                 flex
-                mb-1
+                overflow-hidden
                 ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
             `}
             initial={{
@@ -36,13 +37,14 @@ export const Section = (props) => {
 }
 
 export function Interface(props) {
-    const { setSection  } = props;
+    const { setSection } = props;
     return (
-        <div className="flex flex-col items-center w-screen">
+        <div className="flex flex-col items-center w-full">
             <About setSection={setSection} />
             <Skills />
             <Projects />
             <Contact />
+            <EndFooter />
         </div>
     )
 }
