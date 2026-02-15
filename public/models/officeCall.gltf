@@ -5783,17 +5783,17 @@
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.003_diffuse",
-			"uri":"../textures/paper.003_diffuse.jpg"
+			"uri":"../textures/paper_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.004_diffuse",
-			"uri":"../textures/paper.004_diffuse.jpg"
+			"uri":"../textures/paper.001_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.005_diffuse",
-			"uri":"../textures/paper.005_diffuse.jpg"
+			"uri":"../textures/paper.002_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/png",

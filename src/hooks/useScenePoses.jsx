@@ -123,12 +123,12 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             3: byMenu(
                 {
                     x: isMobile ? 0.3 : 0.5,
-                    y: -viewH * 3.642,
+                    y: isMobile ? -viewH * 3.642 : -viewH * 3.642,
                     z: -2,
                     rotateX: 0,
                     rotateY: 0,
                     rotateZ: 0,
-                    scale: isMobile ? 0 : 0.01
+                    scale: isMobile ? viewH / 500 : 0.01
                 },
                 {
                     x: 3.8,
@@ -166,8 +166,8 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             1: byMenu(
                 {
                     x: isMobile ? 0.25 : isWindowM ? 0.5 : -0.8,
-                    y: isMobile ? -viewH + 0.25 : -viewH - 0.65,
-                    z: -0.3,
+                    y: isMobile ? -viewH -1 : -viewH - 0.65,
+                    z: -viewH + 2,
                     rotateX: -Math.PI / 2.9,
                     rotateY: 0.15,
                     rotateZ: -1.3,
@@ -207,13 +207,13 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             3: byMenu(
                 {
-                    x: isMobile ? -0.7 : -1.5,
-                    y: isMobile ? -viewH * 3.1 : -viewH * 3.58,
+                    x: isMobile ? -0.85 : -1.5,
+                    y: isMobile ? -viewH * 3.89 : -viewH * 3.58,
                     z: -4,
                     rotateX: 2.2,
                     rotateY: -2.6,
                     rotateZ: 1,
-                    scale: 1.9 * runningScaleBoost,
+                    scale: isMobile ? viewH * runningScaleBoost - 1.3 : 1.9 * runningScaleBoost,
                 },
                 {
                     x: isMobile ? -0.7 : 3,
@@ -250,13 +250,35 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                     x: isMobile ? 0.2 : isWindowM ? 0.2 : -0.1,
                     y: isMobile ? -viewH : -viewH - 0.9,
                     z: isMobile ? 0 : 0.2,
-                    scale: isMobile ? 0.25 : 0.5,
+                                        rotateY: Math.PI + 1.5,
+                    scale: isMobile ? 0.25 : 0.05,
                 },
                 {
                     x: isMobile ? 1 : 1,
                     y: isMobile ? -viewH - 0.9 : -viewH - 0.75,
                     z: isMobile ? 1.8 : 1.8,
-                    scale: isMobile ? 0.4 : isWindowM ? 0.55 : 0.65,
+                    scale: isMobile ? 0.4 : isWindowM ? 0.55 : 0.0005,
+                }
+            )
+        }
+
+        // =========================
+        // SkillsOrbit
+        // =========================
+
+        const skillsVariants = {
+            1: byMenu(
+                {
+                    x: isMobile ? 0.2 : isWindowM ? 0.2 : -0.1,
+                    y: isMobile ? -viewH + 0.65 : -viewH + 0.5,
+                    z: isMobile ? 0 : 0.4,
+                    scale: isMobile ? 0.25 : 0.5,
+                },
+                {
+                    x: isMobile ? 1 : 1,
+                    y: isMobile ? -viewH + 0.45 : isWindowM ? -viewH + 0.65 : -viewH + 0.85,
+                    z: isMobile ? 1.8 : 1.8,
+                    scale: isMobile ? 0.55 : 0.65,
                 }
             )
         }
@@ -269,26 +291,50 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             3: byMenu(
                 {
                     x: isMobile ? 0.2 : isWindowM ? 0.2 : 1,
-                    y: isMobile ? -viewH * 3.68 : -viewH * 3.68,
-                    z: isMobile ? 0 : -2.9,
+                    y: isMobile ? -viewH * 3.955 : -viewH * 3.68,
+                    z: isMobile ? -4.9 : -2.9,
                     rotateY: Math.PI,
-                    scale: isMobile ? viewH / 3 : viewH -0.91,
+                    scale: isMobile ? viewH / 3 : viewH - 0.91,
                 },
                 {
                     x: isMobile ? 0.2 : isWindowM ? 0.2 : 1,
                     y: isMobile ? -viewH * 3.68 : -viewH * 3.68,
                     z: isMobile ? 0 : -2.9,
                     rotateY: Math.PI - 1,
-                    scale: isMobile ? viewH / 2 : viewH -0.91,
+                    scale: isMobile ? viewH / 2 : viewH - 0.91,
                 }
             )
         }
 
         const contactBackgroundVariants = {
-            3: byMenu(
+            1: byMenu(
+                {
+                    x: isMobile ? 0.2 : isWindowM ? 0.2 : 1,
+                    y: isMobile ? -viewH * 4 : -viewH * 2.5,
+                    z: isMobile ? 0 : -0.2,
+                    rotateX: 0,
+                    rotateY: Math.PI,
+                    rotateZ: 0,
+                    scaleX: 4,
+                    scaleY: 3,
+                    scaleZ: 3,
+                },
                 {
                     x: isMobile ? 0.2 : isWindowM ? 0.2 : 1,
                     y: isMobile ? -viewH * 3.7 : -viewH * 3.7,
+                    z: isMobile ? 0 : -0.2,
+                    rotateX: 0,
+                    rotateY: Math.PI - 1,
+                    rotateZ: 0,
+                    scaleX: 4,
+                    scaleY: 3,
+                    scaleZ: 3,
+                }
+            ),
+            3: byMenu(
+                {
+                    x: isMobile ? 0.2 : isWindowM ? 0.2 : 1,
+                    y: isMobile ? -viewH * 4 : -viewH * 3.7,
                     z: isMobile ? 0 : -0.2,
                     rotateX: 0,
                     rotateY: Math.PI,
@@ -319,7 +365,8 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             officeScale,
             contactOfficeVariants,
             contactBackgroundVariants,
-            stageVariants
+            stageVariants,
+            skillsVariants
         }
     }, [viewH, viewW, menuOpened, viewport, catAnimation, isRunning, catXOffset, isMobile, officeScaleRatio])
 }

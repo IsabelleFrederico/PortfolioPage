@@ -12,9 +12,15 @@ import { OrbitControls, useScroll } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
 import { Cellphone } from "./Cellphone"
 import { Background } from "./Background"
-import { Stage } from "./Stage"
+// import { Stage } from "./Stage"
 import { OfficeContact } from "./OfficeContact"
 import { OfficeBackground } from "./OffineBackground"
+import { SkillsOrbit } from "./SkillsOrbit"
+import { Floor } from "./BackgoundSkill/floor"
+import { Stage } from "./BackgoundSkill/Stage"
+import { Elements } from "./BackgoundSkill/Elements"
+import { Plant } from "./BackgoundSkill/Plant"
+
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -44,7 +50,7 @@ export const Experience = (props) => {
   const [characterAnimation, setCharacterAnimation] = useState("Typing")
   const [catAnimation, setCatAnimation] = useState("CatRunning")
 
-  const { avatarVariants, stageVariants, catVariants, officeVariants, avatarScale, officeScale, contactOfficeVariants, contactBackgroundVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
+  const { avatarVariants, skillsVariants, stageVariants, catVariants, officeVariants, avatarScale, officeScale, contactOfficeVariants, contactBackgroundVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
 
   useEffect(() => {
     setCharacterAnimation("Falling")
@@ -116,14 +122,31 @@ export const Experience = (props) => {
       >
         <CatMia animation={catAnimation} section={section} />
       </motion.group >
-      <motion.group
-        animate={"" + section}
-        transition={{ duration: 0.6 }}
-        visible={section === 1}
-        variants={stageVariants}
-      >
-        <Stage active={section === 1} />
-      </motion.group>
+      {section === 1 && (
+        <>
+          <motion.group
+            animate={"" + section}
+            transition={{ duration: 0.6 }}
+            variants={skillsVariants}
+          >
+            <SkillsOrbit
+              radius={1.2}
+              active
+            />
+          </motion.group>
+          {/* <motion.group
+            animate={"" + section}
+            transition={{ duration: 0.6 }}
+            variants={stageVariants}
+          >
+          </motion.group> */}
+          <Floor />
+          <Stage />
+          <Elements />
+          <Plant />
+        </>
+
+      )}
       <motion.group
         position={officeVariants.position}
         scale={officeScale}
@@ -145,7 +168,6 @@ export const Experience = (props) => {
         transition={{ duration: 0.6 }}
         visible={section === 3}
       >
-        {/* <OrbitControls /> */}
         <OfficeContact />
       </motion.group>
       <motion.group

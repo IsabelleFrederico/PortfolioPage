@@ -36,11 +36,11 @@ export const Section = (props) => {
 }
 
 export function Interface(props) {
-    const { setSection } = props;
+    const { setSection  } = props;
     return (
         <div className="flex flex-col items-center w-screen">
             <About setSection={setSection} />
-            <Skills /> 
+            <Skills />
             <Projects />
             <Contact />
         </div>

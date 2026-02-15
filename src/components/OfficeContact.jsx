@@ -35,9 +35,6 @@ export function OfficeContact(props) {
         <mesh geometry={nodes.Object_18.geometry} material={materials.material_41} />
         <mesh geometry={nodes.Object_3.geometry} material={materials['Material.006']} />
         <mesh geometry={nodes.Object_30.geometry} material={materials.lamba_effaf} />
-        <mesh geometry={nodes.Object_40.geometry} material={materials['paper.003']} />
-        <mesh geometry={nodes.Object_41.geometry} material={materials['paper.004']} />
-        <mesh geometry={nodes.Object_42.geometry} material={materials['paper.005']} />
         <mesh geometry={nodes.Object_52.geometry} material={materials['Material.003']} />
         <mesh geometry={nodes.Object_6.geometry} material={materials.None} />
         <mesh geometry={nodes.Object_64.geometry} material={materials['book.003']} />

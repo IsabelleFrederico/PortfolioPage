@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa"
 export const Contact = () => {
     return (
         <Section>
-            <div className="mb-120 mt-20 ml-15">
+            <div className="mb-120 mt-40 md:mt-20 ml-4 md:ml-15">
                 <h2 className="text-3xl md:text-5xl font-bold mb-0">Contact me</h2>
                 <motion.p
                     className="md:text-lg text-gray-800 mt-4"
@@ -24,7 +24,7 @@ export const Contact = () => {
                     <motion.a
                         href="mailto:seuemail@email.com"
                         whileHover={{ scale: 1.1 }}
-                        className="w-14 h-14 rounded-full 
+                        className="w-12 md:w-14 h-12 md:h-14 rounded-full 
                                bg-[#f3eadf] text-neutral-900 
                                flex items-center justify-center
                                transition-colors hover:bg-[#e7dccf]"
@@ -36,7 +36,7 @@ export const Contact = () => {
                         href="https://github.com/seuusuario"
                         target="_blank"
                         whileHover={{ scale: 1.1 }}
-                        className="w-14 h-14 rounded-full 
+                        className="w-12 md:w-14 h-12 md:h-14 rounded-full 
                                bg-[#f3eadf] text-neutral-900 
                                flex items-center justify-center
                                transition-colors hover:bg-[#e7dccf]"
@@ -48,7 +48,7 @@ export const Contact = () => {
                         href="https://linkedin.com/in/seuusuario"
                         target="_blank"
                         whileHover={{ scale: 1.1 }}
-                        className="w-14 h-14 rounded-full 
+                        className="w-12 md:w-14 h-12 md:h-14 rounded-full 
                                bg-[#f3eadf] text-neutral-900 
                                flex items-center justify-center
                                transition-colors hover:bg-[#e7dccf]"
