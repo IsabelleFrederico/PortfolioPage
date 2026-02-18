@@ -1,48 +1,49 @@
 import { useScroll } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
-import { gsap } from "gsap"
 import { useEffect, useRef } from "react"
 
-export const ScrollManager = (props) => {
-    const { section, onSectionChange } = props
+export function ScrollManager({ section, onSectionChange, started }) {
+    const scroll = useScroll()
+    const lastSection = useRef(section)
+    const isProgrammatic = useRef(false)
 
-    const data = useScroll()
-    const lastScroll = useRef(0)
-    const isAnimating = useRef(false)
-
-    data.fill.classList.add("top-0")
-    data.fill.classList.add("absolute")
 
     useEffect(() => {
-        gsap.to(data.el, {
-            duration: 1,
-            scrollTop: section * data.el.clientHeight,
-            onStart: () => {
-                isAnimating.current = true
-            },
-            onComplete: () => {
-                isAnimating.current = false
-            },
-        })
-    }, [section])
+        if (!started) return
+        if (!scroll?.el) return
 
-    useFrame(() => {
-        if (isAnimating.current) {
-            lastScroll.current = data.scroll.current
+        const currentSection = Math.min(Math.floor(scroll.offset * 4), 3)
+
+        if (currentSection === section) {
+            lastSection.current = section
             return
         }
 
-        const curSection = Math.floor(data.scroll.current * data.pages)
-        if (data.scroll.current > lastScroll.current && curSection === 0) {
-            onSectionChange(1)
+        isProgrammatic.current = true
+        lastSection.current = section
+
+        scroll.el.scrollTo({
+            top: section * scroll.el.clientHeight,
+            behavior: "smooth",
+        })
+
+        const t = setTimeout(() => {
+            isProgrammatic.current = false
+        }, 700)
+
+        return () => clearTimeout(t)
+    }, [section, scroll, started])
+
+    useFrame(() => {
+        if (!started) return
+        if (isProgrammatic.current) return
+
+        const currentSection = Math.min(Math.floor(scroll.offset * 4), 3)
+
+        if (currentSection !== lastSection.current) {
+            lastSection.current = currentSection
+            onSectionChange(currentSection)
         }
-        if (
-            data.scroll.current < lastScroll.current &&
-            data.scroll.current < 1 / (data.pages - 1)
-        ) {
-            onSectionChange(0)
-        }
-        lastScroll.current = data.scroll.current
     })
 
     return null

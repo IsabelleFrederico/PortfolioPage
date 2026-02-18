@@ -44,7 +44,7 @@ export function Interface(props) {
             <Skills />
             <Projects />
             <Contact />
-            <EndFooter />
+            <EndFooter setSection={setSection}/>
         </div>
     )
 }

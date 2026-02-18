@@ -131,13 +131,13 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                     scale: isMobile ? viewH / 500 : 0.01
                 },
                 {
-                    x: 3.8,
-                    y: -viewH * 3.5,
+                    x: 2,
+                    y: -viewH * 3.65,
                     z: 0,
                     rotateX: 0,
                     rotateY: 0,
                     rotateZ: 0,
-                    scale: 0.014
+                    scale: 0.013
                 }
             ),
         }

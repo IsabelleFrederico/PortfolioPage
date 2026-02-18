@@ -8,11 +8,10 @@ import { Mouse } from "./Mouse"
 import { motion } from "framer-motion-3d"
 import { animate, useMotionValue } from "framer-motion"
 import { framerMotionConfig } from "../config"
-import { OrbitControls, useScroll } from "@react-three/drei"
+// import { useScroll } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
 import { Cellphone } from "./Cellphone"
 import { Background } from "./Background"
-// import { Stage } from "./Stage"
 import { OfficeContact } from "./OfficeContact"
 import { OfficeBackground } from "./OffineBackground"
 import { SkillsOrbit } from "./SkillsOrbit"
@@ -20,20 +19,14 @@ import { Floor } from "./BackgoundSkill/floor"
 import { Stage } from "./BackgoundSkill/Stage"
 import { Elements } from "./BackgoundSkill/Elements"
 import { Plant } from "./BackgoundSkill/Plant"
-import { LogoButton } from "./LogoButton"
-import { Html } from "@react-three/drei"
-
 
 export const Experience = (props) => {
-  const { menuOpened } = props
+  const { menuOpened, section } = props
   const { viewport } = useThree()
 
-  const data = useScroll()
   const mouseInstance = useMemo(() => new THREE.Group(), [])
   const [mouseMode, setMouseMode] = useState("desk")
   const [cellphoneObject, setCellphoneObject] = useState(null)
-
-  const [section, setSection] = useState(0)
 
   const cameraPositionX = useMotionValue(0)
   const cameraLookAtX = useMotionValue(0)
@@ -80,16 +73,6 @@ export const Experience = (props) => {
 
 
   useFrame((state) => {
-    let curSection = Math.floor(data.scroll.current * data.pages)
-
-    if (curSection > 3) {
-      curSection = 3
-    }
-
-    if (curSection !== section) {
-      setSection(curSection)
-    }
-
     state.camera.position.x = cameraPositionX.get()
     state.camera.lookAt(cameraLookAtX.get(), 0, 0)
   })
@@ -99,16 +82,6 @@ export const Experience = (props) => {
   return (
     <>
       <Background />
-      {/* <Html
-        fullscreen
-        transform={false}
-        prepend
-        style={{ pointerEvents: "none" }}
-      >
-        <div style={{ pointerEvents: "auto" }}>
-          <LogoButton section={section} setSection={setSection} />
-        </div>
-      </Html> */}
       <ambientLight intensity={1.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.6} />
       <directionalLight position={[-5, 3, -5]} intensity={0.3} />

@@ -3,6 +3,7 @@ import { motion } from "motion/react"
 
 export const About = (props) => {
     const { setSection } = props
+
     return (
         <Section>
             <div className="pb-70 md:pb-0">
@@ -31,7 +32,7 @@ export const About = (props) => {
                     reliable and user-friendly applications.
                 </motion.p>
                 <motion.button
-                    onClick={() => setSection(3)}
+                    onClick={() => setSection(4)}
                     className={`bg-emerald-700 text-sm md:text-lg text-white text-base py-4 px-8 rounded-lg font-semibold mt-5 md:mt-16 w-fit cursor-pointer`}
                     initial={{
                         opacity: 0,
@@ -49,6 +50,6 @@ export const About = (props) => {
                     Contact me
                 </motion.button>
             </div>
-        </Section>
+        </Section >
     )
 }

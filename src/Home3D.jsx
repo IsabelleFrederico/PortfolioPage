@@ -9,15 +9,54 @@ import { framerMotionConfig } from "./config"
 import { Menu } from "./components/Menu"
 import { LoadingScreen } from "./components/LoadingScreen.jsx"
 import { LogoButton } from "./components/LogoButton"
+import { useSection } from "./components/state/SectionContext.jsx"
 
 function Home3D() {
-    const [section, setSection] = useState(0)
-    const [started, setStarted] = useState(false)
+    const { section, setSection, started, setStarted } = useSection()
     const [menuOpened, setMenuOpened] = useState(false)
+    const [scrollTarget, setScrollTarget] = useState(null)
 
     useEffect(() => {
         setMenuOpened(false)
     }, [section])
+
+    useEffect(() => {
+        const applySectionFromUrl = () => {
+            if (window.location.pathname !== "/") return
+
+            const params = new URLSearchParams(window.location.search)
+            const s = params.get("section")
+
+            if (s !== null) setSection(Number(s))
+
+            setStarted(true)
+        }
+
+        applySectionFromUrl()
+        window.addEventListener("popstate", applySectionFromUrl)
+        return () => window.removeEventListener("popstate", applySectionFromUrl)
+    }, [setSection, setStarted])
+
+    useEffect(() => {
+        const applyFromUrl = () => {
+            if (window.location.pathname !== "/") return
+
+            const params = new URLSearchParams(window.location.search)
+
+            const s = params.get("section")
+            if (s !== null) setSection(Number(s))
+
+            const st = params.get("scroll")
+            setScrollTarget(st !== null ? Number(st) : null)
+
+            setStarted(true)
+        }
+
+        applyFromUrl()
+        window.addEventListener("popstate", applyFromUrl)
+        return () => window.removeEventListener("popstate", applyFromUrl)
+    }, [setSection, setStarted])
+
 
     return (
         <>
@@ -28,7 +67,7 @@ function Home3D() {
                 menuOpened={menuOpened}
                 setMenuOpened={setMenuOpened}
             />
-            
+
             <MotionConfig
                 transition={{
                     ...framerMotionConfig,
@@ -37,7 +76,7 @@ function Home3D() {
                 <Canvas gl={{ localClippingEnabled: true }} shadows camera={{ position: [0, 1, 5], fov: 30 }}>
                     <color attach="background" args={["#d5d5d5"]} />
                     <ScrollControls pages={4.3} damping={0.1}>
-                        <ScrollManager section={section} onSectionChange={setSection} />
+                        <ScrollManager section={section} onSectionChange={setSection} started={started} scrollTarget={scrollTarget}/>
                         <Scroll>
                             {started && (
                                 <Experience section={section} menuOpened={menuOpened} />

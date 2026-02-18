@@ -1,6 +1,8 @@
 import { Section } from "../Interface"
 import { useEffect, useRef } from "react"
 import { projects } from "../../utils/constants"
+// import { Link } from "react-router-dom"
+import { goToProjectsDetails } from "../Routes/coordinator"
 
 export const Projects = ({ active = true }) => {
     const scrollerRef = useRef(null)
@@ -55,11 +57,9 @@ export const Projects = ({ active = true }) => {
                     "
                     >
                         {projects.slice(0, 6).map((p) => (
-                            <a
+                            <button
                                 key={p.id}
-                                href={p.href ?? "#"}
-                                target={p.href ? "_blank" : undefined}
-                                rel={p.href ? "noreferrer" : undefined}
+                                onClick={() => goToProjectsDetails(p.id)}
                                 className="
                                 transition-transform
                                 hover:scale-[1.02]
@@ -85,7 +85,7 @@ export const Projects = ({ active = true }) => {
                                 <h3 className="mt-5 text-lg font-bold text-center">
                                     {p.title}
                                 </h3>
-                            </a>
+                            </button>
                         ))}
                     </div>
                 </div>

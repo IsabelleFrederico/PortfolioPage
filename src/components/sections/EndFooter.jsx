@@ -1,9 +1,9 @@
 import { motion } from "motion/react"
 import { FiArrowUp } from "react-icons/fi"
-// import { Link } from "react-router-dom"
+import { Section } from "../Interface"
 
-export function EndFooter() {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
+export function EndFooter(props) {
+  const { setSection } = props
 
   return (
     <motion.footer
@@ -19,9 +19,9 @@ export function EndFooter() {
       <div className="mx-auto w-full max-w-[1100px] px-6">
         <div className="flex flex-col items-center gap-5 text-neutral-800">
           <button
-            onClick={scrollToTop}
+            onClick={() => setSection(0)}
             aria-label="Back to top"
-            className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-900/5 transition active:scale-95"
+            className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-900/5 transition active:scale-95 cursor-pointer"
           >
             <FiArrowUp className="text-xl" />
           </button>

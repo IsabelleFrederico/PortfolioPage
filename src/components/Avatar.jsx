@@ -80,16 +80,6 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
 
   const { actions } = useAnimations(allAnims, group)
 
-  // useFrame((state) => {
-  //   if (headFollow) {
-  //     group.current.getObjectByName("Head").lookAt(state.camera.position);
-  //   }
-  //   if (cursorFollow) {
-  //     const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
-  //     group.current.getObjectByName("Spine2").lookAt(target);
-  //   }
-  // });
-
   useEffect(() => {
     const action = actions?.[animation]
     if (!action) return
@@ -145,12 +135,6 @@ export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseM
       mouseObject.scale.setScalar(1)
     }
   }, [mouseMode, mouseObject])
-
-  // useEffect(() => {
-  //   Object.values(materials).forEach((material) => {
-  //     material.wireframe = wireframe;
-  //   });
-  // }, [wireframe])
 
   useEffect(() => {
     if (!cellphoneObject || !group.current) return

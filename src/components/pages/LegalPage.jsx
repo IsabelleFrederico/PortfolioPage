@@ -1,28 +1,28 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { goToHome } from "../Routes/coordinator"
 
-export function LegalPage() {
+export default function LegalPage() {
+
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <div className="mx-auto w-full max-w-5xl px-6 py-10">
-        {/* Top bar */}
+
         <div className="flex items-start justify-between">
           <div className="text-xl">
-            <Link to="/" className="text-slate-500 hover:text-slate-800">
+            <button onClick={goToHome} className="cursor-pointer text-slate-500 hover:text-slate-800">
               ← Back
-            </Link>
+            </button>
           </div>
 
-          {/* Logo top-right */}
           <img
             src="/images/logo.png"
             alt="Logo"
-            className="h-5 w-auto select-none"
+            className="h-4 md:h-5 w-auto select-none"
             draggable={false}
           />
         </div>
 
-        <h1 className="mt-10 text-5xl font-extrabold tracking-tight">
+        <h1 className="mt-10 text-4xl md:text-5xl font-extrabold tracking-tight">
           Legal Notice
         </h1>
 
@@ -36,7 +36,7 @@ export function LegalPage() {
             Schorndorf, Baden-Württemberg, Germany
           </p>
           <p className="text-slate-700">
-            Email:{"isa.frederico@gmail.com"}
+            Email:{" "}
             <a
               className="underline underline-offset-4 hover:text-slate-900"
               href="mailto:isa.frederico@gmail.com"
