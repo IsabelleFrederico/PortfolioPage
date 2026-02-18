@@ -1,17 +1,45 @@
 ## References / Inspiration
-- David Heckhoff — https://david-hckh.com/
-- Wawa Sensei (tutorial) — https://www.youtube.com/watch?v=pGMKIyALcK0&list=PLpepLKamtPjguLKYT7c66998iTaWvqSRe
-- Avaturn Hub — https://hub.avaturn.me/
 
-## 3D Assets & Licenses
+* David Heckhoff — https://david-hckh.com/
+* Wawa Sensei (tutorial) — https://www.youtube.com/watch?v=pGMKIyALcK0\&list=PLpepLKamtPjguLKYT7c66998iTaWvqSRe
+* Avaturn Hub — https://hub.avaturn.me/
 
-### Modern Gaming Setup – Ultimate Desk PC Accessories
-- **Author:** Poly Paradise – 3D models  
-- **Source:** https://sketchfab.com/3d-models/modern-gaming-setup-ultimate-desk-pc-accessories-1f7156d967ee4d259106e350d184c795  
-- **License:** CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)  
+## 3D Assets \& Licenses
 
-**Attribution (required by license):**  
-> This work is based on *“Modern Gaming Setup Ultimate Desk PC Accessories”*  
-> (https://sketchfab.com/3d-models/modern-gaming-setup-ultimate-desk-pc-accessories-1f7156d967ee4d259106e350d184c795)  
-> by *Poly Paradise – 3D models* (https://sketchfab.com/polyparadise_3dmodels)  
-> licensed under *CC-BY-4.0*.
+Model Information:
+
+* title:	Basement Home Office #BADeskChallenge
+* source:	https://sketchfab.com/3d-models/basement-home-office-badeskchallenge-324ceb119c754bed973ab7a603750742
+* author:	Fatih174 (https://sketchfab.com/Fatih174)
+
+Model License:
+
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+
+
+
+
+https://devmount.medium.com/23-lesser-known-vs-code-shortcuts-as-gif-ffad06d3269e
+
+
+
+https://se.pinterest.com/pin/424323596147997286/
+
+
+
+"3d modelling my cat: Fripouille" (https://skfb.ly/6TKqH) by guillaume bolis is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+
+
+"An Animated Cat" (https://skfb.ly/6YPwH) by Evil\_Katz is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+
+
+https://sketchfab.com/3d-models/robot-playground-59fc99d8dcb146f3a6c16dbbcc4680da
+
+
+
+https://unsplash.com/photos/podium-in-abstract-purple-composition-3d-render-3d-illustration-background-mockup-3d-purple-with-podium-and-minimal-purple-wall-scene-3d-mockup-abstract-geometric-shape-purple-pastel-color-stage-for-awards-on-website-in-modern-k4ipIOoilBA
+
