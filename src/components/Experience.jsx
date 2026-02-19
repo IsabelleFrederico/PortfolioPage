@@ -8,7 +8,6 @@ import { Mouse } from "./Mouse"
 import { motion } from "framer-motion-3d"
 import { animate, useMotionValue } from "framer-motion"
 import { framerMotionConfig } from "../config"
-// import { useScroll } from "@react-three/drei"
 import { useScenePoses } from "../hooks/useScenePoses"
 import { Cellphone } from "./Cellphone"
 import { Background } from "./Background"
@@ -20,8 +19,7 @@ import { Stage } from "./BackgoundSkill/Stage"
 import { Elements } from "./BackgoundSkill/Elements"
 import { Plant } from "./BackgoundSkill/Plant"
 
-export const Experience = (props) => {
-  const { menuOpened, section } = props
+export const Experience = ({ menuOpened, section }) => {
   const { viewport } = useThree()
 
   const mouseInstance = useMemo(() => new THREE.Group(), [])
@@ -70,7 +68,6 @@ export const Experience = (props) => {
       )
     }, 600)
   }, [section])
-
 
   useFrame((state) => {
     state.camera.position.x = cameraPositionX.get()

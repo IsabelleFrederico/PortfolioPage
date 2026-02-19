@@ -1,12 +1,11 @@
 import { Section } from "../Interface"
 import { motion } from "motion/react"
 
-export const About = (props) => {
-    const { setSection } = props
+export const About = ({ setSection }) => {
 
     return (
         <Section>
-            <div className="pb-70 md:pb-0">
+            <div className="ml-5 pb-70 md:pb-0">
                 <h1 className="text-3xl md:text-5xl font-extrabold leading-snug text-stone-800 ">
                     Hi, I'm
                     <br />
@@ -32,7 +31,7 @@ export const About = (props) => {
                     reliable and user-friendly applications.
                 </motion.p>
                 <motion.button
-                    onClick={() => setSection(4)}
+                    onClick={() => setSection(3)}
                     className={`bg-emerald-700 text-sm md:text-lg text-white text-base py-4 px-8 rounded-lg font-semibold mt-5 md:mt-16 w-fit cursor-pointer`}
                     initial={{
                         opacity: 0,

@@ -5,7 +5,7 @@ export function Skills() {
 
     return (
         <Section>
-            <div className="w-full h-full overflow-hidden mt-5 ml-6 md:mt-10">
+            <div className="w-full h-full overflow-hidden mt-5 ml-6 md:mt-15">
                 <div className="h-full overflow-y-auto no-scrollbar px-4 md:px-15">
 
                     <div className="grid grid-cols-1 md:pr-0 md:grid-cols-3 gap-10">
@@ -25,7 +25,7 @@ export function Skills() {
                                             rounded-2xl
                                             bg-black/35
                                             border border-emerald-300/20
-                                            px-4 py-3
+                                            px-4 py-2
                                             backdrop-blur-md
                                         "
                                     >
@@ -65,7 +65,7 @@ export function Skills() {
                                             rounded-2xl
                                             bg-black/35
                                             border border-emerald-300/20
-                                            px-4 py-3
+                                            px-4 py-2
                                             backdrop-blur-md
                                         "
                                     >

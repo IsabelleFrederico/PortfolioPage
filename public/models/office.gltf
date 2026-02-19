@@ -3834,52 +3834,52 @@
 		{
 			"mimeType":"image/jpeg",
 			"name":"sofa",
-			"uri":"../textures/sofa.jpg"
+			"uri":"../textures/office/sofa.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"canvas_diffuse",
-			"uri":"../textures/canvas_diffuse.jpg"
+			"uri":"../textures/office/canvas_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"frame1",
-			"uri":"../textures/frame1.png"
+			"uri":"../textures/office/frame1.png"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"floor_wood",
-			"uri":"../textures/floor_wood.jpg"
+			"uri":"../textures/office/floor_wood.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"woven-texture-279194",
-			"uri":"../textures/woven-texture-279194.jpg"
+			"uri":"../textures/office/woven-texture-279194.jpg"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"frame2",
-			"uri":"../textures/frame2.png"
+			"uri":"../textures/office/frame2.png"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper_diffuse",
-			"uri":"../textures/paper_diffuse.jpg"
+			"uri":"../textures/office/paper_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.001_diffuse",
-			"uri":"../textures/paper.001_diffuse.jpg"
+			"uri":"../textures/office/paper.001_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.002_diffuse",
-			"uri":"../textures/paper.002_diffuse.jpg"
+			"uri":"../textures/office/paper.002_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"wall",
-			"uri":"../textures/wall.png"
+			"uri":"../textures/office/wall.png"
 		}
 	],
 	"accessors":[

@@ -5768,37 +5768,37 @@
 		{
 			"mimeType":"image/jpeg",
 			"name":"sofa",
-			"uri":"../textures/sofa.jpg"
+			"uri":"../textures/office/sofa.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"floor_wood",
-			"uri":"../textures/floor_wood.jpg"
+			"uri":"../textures/office/floor_wood.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"woven-texture-279194",
-			"uri":"../textures/woven-texture-279194.jpg"
+			"uri":"../textures/office/woven-texture-279194.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.003_diffuse",
-			"uri":"../textures/paper_diffuse.jpg"
+			"uri":"../textures/office/paper_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.004_diffuse",
-			"uri":"../textures/paper.001_diffuse.jpg"
+			"uri":"../textures/office/paper.001_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"paper.005_diffuse",
-			"uri":"../textures/paper.002_diffuse.jpg"
+			"uri":"../textures/office/paper.002_diffuse.jpg"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"wall",
-			"uri":"../textures/wall.png"
+			"uri":"../textures/office/wall.png"
 		}
 	],
 	"accessors":[

@@ -1,19 +1,19 @@
-import React from "react"
-import { goToHome } from "../Routes/coordinator"
+import { goToSection } from "../Routes/coordinator"
+import { useNavigate } from "react-router-dom"
 
-export default function PrivacyPage() {
+export default function PrivacyPage({isProgrammaticNavRef}) {
+  const navigate = useNavigate()
+
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <div className="mx-auto w-full max-w-5xl px-6 py-10">
-        {/* Top bar */}
         <div className="flex items-start justify-between">
           <div className="text-xl">
-            <button onClick={goToHome} className="cursor-pointer text-slate-500 hover:text-slate-800">
+            <button onClick={() => goToSection(navigate, 3, isProgrammaticNavRef)} className="cursor-pointer text-slate-500 hover:text-slate-800">
               ← Back
             </button>
           </div>
 
-          {/* Logo top-right */}
           <img
             src="/images/logo.png"
             alt="Logo"
@@ -40,7 +40,6 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        {/* Section 2 */}
         <section className="mt-12 space-y-4">
           <h2 className="text-2xl font-bold">2. Hosting</h2>
 
@@ -68,7 +67,6 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        {/* Section 3 */}
         <section className="mt-12 space-y-4">
           <h2 className="text-2xl font-bold">3. Contact</h2>
 
@@ -86,7 +84,6 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        {/* Section 4 */}
         <section className="mt-12 space-y-4">
           <h2 className="text-2xl font-bold">4. No Cookies / No Tracking</h2>
 
@@ -100,7 +97,6 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        {/* Section 5 */}
         <section className="mt-12 space-y-4">
           <h2 className="text-2xl font-bold">5. Data Security</h2>
 
@@ -114,7 +110,6 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        {/* Section 6 */}
         <section className="mt-12 space-y-4 mb-20">
           <h2 className="text-2xl font-bold">6. Your Rights under GDPR</h2>
 

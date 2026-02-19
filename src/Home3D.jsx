@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber"
-import { Experience } from "./components/Experience"
+import { Experience } from "./components/Experience.jsx"
 import { useEffect, useState, useRef } from "react"
 import { ScrollControls, Scroll } from "@react-three/drei"
 import { Interface } from "./components/Interface"
@@ -10,51 +10,47 @@ import { Menu } from "./components/Menu"
 import { LoadingScreen } from "./components/LoadingScreen.jsx"
 import { LogoButton } from "./components/LogoButton"
 import { useSection } from "./components/state/SectionContext.jsx"
+import { useLocation } from "react-router-dom"
 
 function Home3D() {
     const { section, setSection, started, setStarted } = useSection()
     const [menuOpened, setMenuOpened] = useState(false)
-    const [scrollTarget, setScrollTarget] = useState(null)
-    const PAGES = 4.3
-    const navToSectionRef = useRef(false)
+    const location = useLocation()
 
-    const navigateToSection = ({ section: s, page }) => {
-        navToSectionRef.current = true
-        setSection(s)
-        setScrollTarget(page)
-    }
+    const lastAppliedKeyRef = useRef(null)
+    const isProgrammaticNavRef = useRef(false)
+
 
     useEffect(() => {
         setMenuOpened(false)
     }, [section])
 
     useEffect(() => {
-        const applyFromUrl = () => {
-            if (window.location.pathname !== "/") return
+        if (location.pathname !== "/") return
+        if (lastAppliedKeyRef.current === location.key) return
+        lastAppliedKeyRef.current = location.key
 
-            const params = new URLSearchParams(window.location.search)
+        const params = new URLSearchParams(location.search)
+        const s = params.get("section")
 
-            const s = params.get("section")
-            if (s !== null) setSection(Number(s))
-
-            const st = params.get("scroll")
-            setScrollTarget(st !== null ? Number(st) : null)
-
-            setStarted(true)
+        if (s !== null) {
+            const n = Number(s)
+            if (!Number.isNaN(n)) {
+                isProgrammaticNavRef.current = true
+                setSection(n)
+                setTimeout(() => { isProgrammaticNavRef.current = false }, 600)
+            }
         }
 
-        applyFromUrl()
-        window.addEventListener("popstate", applyFromUrl)
-        return () => window.removeEventListener("popstate", applyFromUrl)
-    }, [setSection, setStarted])
-
+        setStarted(true)
+    }, [location.key, location.pathname, location.search, setSection, setStarted])
 
     return (
         <>
             <LoadingScreen started={started} setStarted={setStarted} />
             <LogoButton section={section} setSection={setSection} />
             <Menu
-                onSectionChange={navigateToSection}
+                setSection={setSection}
                 menuOpened={menuOpened}
                 setMenuOpened={setMenuOpened}
             />
@@ -66,8 +62,8 @@ function Home3D() {
             >
                 <Canvas gl={{ localClippingEnabled: true }} shadows camera={{ position: [0, 1, 5], fov: 30 }}>
                     <color attach="background" args={["#d5d5d5"]} />
-                    <ScrollControls pages={PAGES} damping={0.1}>
-                        <ScrollManager navToSectionRef={navToSectionRef} pages={PAGES} section={section} onSectionChange={setSection} started={started} sections={4} scrollTarget={scrollTarget} />
+                    <ScrollControls pages={5} damping={0.2}>
+                        <ScrollManager section={section} setSection={setSection} started={started} isProgrammaticNavRef={isProgrammaticNavRef} />
                         <Scroll>
                             {started && (
                                 <Experience section={section} menuOpened={menuOpened} />

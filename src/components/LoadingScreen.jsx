@@ -1,8 +1,7 @@
 import { useProgress } from "@react-three/drei"
 import { useEffect, useMemo } from "react"
 
-export const LoadingScreen = (props) => {
-  const { started, setStarted } = props
+export const LoadingScreen = ({ started, setStarted }) => {
   const { progress } = useProgress()
 
   useEffect(() => {

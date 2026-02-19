@@ -4,16 +4,17 @@ import { motion } from "framer-motion"
 import { projects } from "../../utils/constants"
 import TechIcon from "../../utils/TechIcon"
 import { FiGithub, FiExternalLink } from "react-icons/fi"
-import { goToProjectsDetails, goToHome } from "../Routes/coordinator"
+import { goToSection, goToProjectsDetails } from "../Routes/coordinator"
 import Laptop from "../Laptop"
 import CellphoneSkill from "../CellphoneSkill"
 import BackgroundProject from "../BackgroundProject"
-import { useSection } from "../state/SectionContext"
+import { useNavigate } from "react-router-dom"
 
-export default function ProjectDetailPage() {
+export default function ProjectDetailPage({ isProgrammaticNavRef }) {
+    const navigate = useNavigate()
+
     const { id } = useParams()
     const projectId = Number(id)
-    const { setSection, setStarted } = useSection()
 
     const project = useMemo(() => {
         return projects.find((p) => p.id === projectId)
@@ -34,7 +35,7 @@ export default function ProjectDetailPage() {
                 <div className="mx-auto w-full max-w-6xl">
                     <div className="text-xl">
                         <button
-                            onClick={() => { goToHome(); setStarted(true); setSection(2.6) }}
+                            onClick={() => goToSection(navigate, 2, isProgrammaticNavRef)}
                             className="cursor-pointer text-slate-600 hover:text-slate-900"
                         >
                             ← Back
@@ -52,10 +53,9 @@ export default function ProjectDetailPage() {
         <main className="relative min-h-screen overflow-hidden bg-[#A6CFB9] text-zinc-900">
             <BackgroundProject />
             <div className="mx-auto w-full max-w-7xl px-6 py-10">
-                {/* Top bar (Back left / chips right) */}
                 <div className="flex items-start justify-between gap-4">
                     <button
-                        onClick={() => { goToHome(); setSection(2.6); setStarted(true) }}
+                        onClick={() => goToSection(navigate, 2, isProgrammaticNavRef)}
                         className="text-xl cursor-pointer text-slate-600 hover:text-slate-900"
                     >
                         ← Back
@@ -74,7 +74,6 @@ export default function ProjectDetailPage() {
                     </div>
                 </div>
 
-                {/* Main layout */}
                 <div className="mt-5 md:-ml-60 grid grid-cols-1 gap-10 md:grid-cols-10 md:items-start">
                     <div className="md:col-span-6">
                         <motion.h1
@@ -86,7 +85,6 @@ export default function ProjectDetailPage() {
                             {project.title}
                         </motion.h1>
 
-                        {/* Description card */}
                         <div className="md:pl-60 mt-5 w-full max-w-[860px] rounded-3xl bg-white/55 p-7 shadow-sm ring-1 ring-zinc-900/10 backdrop-blur">
                             <h2 className="text-sm font-extrabold tracking-wide text-zinc-500">
                                 DESCRIPTION
@@ -124,14 +122,12 @@ export default function ProjectDetailPage() {
                         </div>
                     </div>
 
-                    {/* Right */}
                     <motion.div
                         initial={{ opacity: 0, y: 14 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.05 }}
                         className="relative md:ml-15 md:mt-15 md:col-span-4"
                     >
-                        {/* Device (no card, like the screenshot) */}
                         <div className="mt-6 flex justify-center md:mt-0 md:justify-end">
                             <div className="w-full max-w-[520px]">
                                 {isPhone ? (
@@ -142,7 +138,6 @@ export default function ProjectDetailPage() {
                             </div>
                         </div>
 
-                        {/* TEAM card (bottom-right floating) */}
                         <div className="mt-2 md:mt-0 md:absolute md:-bottom-35 md:-right-15 md:min-w-[400px]">
                             <div className="w-full max-w-[340px] rounded-2xl bg-white/55 p-5 shadow-sm ring-1 ring-zinc-900/10 backdrop-blur">
                                 <h2 className="text-[10px] font-extrabold tracking-wide text-zinc-500">
@@ -157,7 +152,7 @@ export default function ProjectDetailPage() {
                                         </p>
                                         <p>
                                             <span className="font-semibold">Team size:</span>{" "}
-                                            {project.teamSize === 1 ? `${project.teamSize} members` : "1 member"}
+                                            {project.teamSize === 1 ? `${project.teamSize} member` : `${project.teamSize} members`}
                                         </p>
                                     </>
                                     <p className="pt-1 text-[8px] text-zinc-600">
@@ -169,7 +164,7 @@ export default function ProjectDetailPage() {
                     </motion.div>
                 </div>
             </div>
-            {/* Bottom project navigation */}
+
             <div className="mt-20 flex flex-col items-center justify-center gap-0 md:mt-5 md:mr-100">
 
                 <p className="pb-2 text-sm font-bold tracking-wide text-zinc-900">

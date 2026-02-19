@@ -1,8 +1,4 @@
-import React from "react"
 import { Route, Routes } from "react-router-dom"
-// import About from "../sections/About"
-// import Contact from "../sections/Contact"
-// import Skills from "../sections/Skills"
 import LegalPage from "../pages/LegalPage"
 import PrivacyPage from "../pages/PrivacyPage"
 import ProjectDetailPage from "../pages/ProjectDetailPage"

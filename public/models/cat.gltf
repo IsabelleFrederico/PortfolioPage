@@ -854,12 +854,12 @@
 		{
 			"mimeType":"image/png",
 			"name":"SHD_eye_baseColor",
-			"uri":"../textures/SHD_eye_baseColor.png"
+			"uri":"../textures/cat/SHD_eye_baseColor.png"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"SHD_frip_baseColor",
-			"uri":"../textures/SHD_frip_baseColor.png"
+			"uri":"../textures/cat/SHD_frip_baseColor.png"
 		}
 	],
 	"skins":[

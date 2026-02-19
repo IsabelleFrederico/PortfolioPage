@@ -3,12 +3,11 @@ import { useEffect, useMemo } from "react"
 import { useGLTF } from '@react-three/drei'
 import { useVideoTex } from "../hooks/useVideoTex"
 
-export function Office({ mouseObject, mouseMode, ...props }) {
+export function Office({ mouseObject, mouseMode, preFalling, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')
-  const { preFalling } = props
 
-  const videoTexture1 = useVideoTex("/textures/code_screen.mp4")
-  const videoTexture2 = useVideoTex("/textures/front_screen.mp4")
+  const videoTexture1 = useVideoTex("/textures/office/code_screen.mp4")
+  const videoTexture2 = useVideoTex("/textures/office/front_screen.mp4")
 
   const deskAnchor = useMemo(() => new THREE.Group(), [])
 

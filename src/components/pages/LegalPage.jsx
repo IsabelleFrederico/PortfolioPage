@@ -1,7 +1,8 @@
-import React from "react"
-import { goToHome } from "../Routes/coordinator"
+import { goToSection } from "../Routes/coordinator"
+import { useNavigate } from "react-router-dom"
 
-export default function LegalPage() {
+export default function LegalPage({isProgrammaticNavRef}) {
+  const navigate = useNavigate()
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -9,7 +10,7 @@ export default function LegalPage() {
 
         <div className="flex items-start justify-between">
           <div className="text-xl">
-            <button onClick={goToHome} className="cursor-pointer text-slate-500 hover:text-slate-800">
+            <button onClick={() => goToSection(navigate, 3, isProgrammaticNavRef)} className="cursor-pointer text-slate-500 hover:text-slate-800">
               ← Back
             </button>
           </div>

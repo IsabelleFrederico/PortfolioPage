@@ -208,7 +208,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
             3: byMenu(
                 {
                     x: isMobile ? -0.85 : -1.5,
-                    y: isMobile ? -viewH * 3.89 : -viewH * 3.58,
+                    y: isMobile ? -viewH * 3.89 : -viewH * 3.59,
                     z: -4,
                     rotateX: 2.2,
                     rotateY: -2.6,
