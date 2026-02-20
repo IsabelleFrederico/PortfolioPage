@@ -1,4 +1,4 @@
-import { Section } from "../Interface"
+import { Section } from "../../Interface"
 import { motion, AnimatePresence } from "motion/react"
 import { FiMail, FiCopy, FiCheck } from "react-icons/fi"
 import { FaGithub, FaLinkedinIn } from "react-icons/fa"

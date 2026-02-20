@@ -1,9 +1,8 @@
 import { Route, Routes } from "react-router-dom"
 import LegalPage from "../pages/LegalPage"
 import PrivacyPage from "../pages/PrivacyPage"
-import ProjectDetailPage from "../pages/ProjectDetailPage"
+import ProjectDetailPage from "../pages/projectDetails/ProjectDetailPage"
 import Home3D from "../../Home3D"
-
 
 function Router() {
     return (

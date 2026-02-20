@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { useEffect, useMemo } from "react"
 import { useGLTF } from '@react-three/drei'
-import { useVideoTex } from "../hooks/useVideoTex"
+import { useVideoTex } from "../../../hooks/useVideoTex"
 
 export function Office({ mouseObject, mouseMode, preFalling, ...props }) {
   const { nodes, materials } = useGLTF('/models/office.gltf')

@@ -1,7 +1,7 @@
-import { Section } from "../Interface"
+import { Section } from "../../Interface"
 import { useEffect, useRef } from "react"
-import { projects } from "../../utils/constants"
-import { goToProjectsDetails } from "../Routes/coordinator"
+import { projects } from "../../../utils/constants"
+import { goToProjectsDetails } from "../../routes/coordinator"
 
 export const Projects = ({ active = true }) => {
     const scrollerRef = useRef(null)
@@ -71,12 +71,12 @@ export const Projects = ({ active = true }) => {
                                         src={p.image}
                                         alt={p.title}
                                         className="
-                                                w-full
-                                                aspect-[16/9]
-                                                object-cover
-                                                transition-transform duration-200       
-                                                hover:scale-[1.03]
-                                            "
+                                            w-full
+                                            aspect-[16/9]
+                                            object-cover
+                                            transition-transform duration-200       
+                                            hover:scale-[1.03]
+                                        "
                                         loading="lazy"
                                     />
                                 </div>

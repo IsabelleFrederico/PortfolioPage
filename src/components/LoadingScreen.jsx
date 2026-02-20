@@ -69,7 +69,6 @@ export const LoadingScreen = ({ started, setStarted }) => {
       </div>
 
       <style>{`
-        /* blobs */
         .blob {
           position: absolute;
           width: 220px;
@@ -89,7 +88,6 @@ export const LoadingScreen = ({ started, setStarted }) => {
           50% { transform: translate3d(0,-18px,0) scale(1.03); }
         }
 
-        /* ring suave no fundo */
         .ring-soft {
           position: absolute;
           inset: 0;
@@ -103,7 +101,6 @@ export const LoadingScreen = ({ started, setStarted }) => {
           transform: translateY(10px);
         }
 
-        /* “shine” na barra */
         .progress-shine {
           position: relative;
           overflow: hidden;
@@ -122,7 +119,6 @@ export const LoadingScreen = ({ started, setStarted }) => {
           100% { left: 105%; }
         }
 
-        /* dots */
         .dots { display:inline-flex; gap:6px; align-items:center; }
         .dots i{
           width:6px; height:6px; border-radius:9999px;
@@ -137,7 +133,6 @@ export const LoadingScreen = ({ started, setStarted }) => {
           50% { transform: translateY(-4px); opacity: 1; }
         }
 
-        /* acessibilidade: reduz animação */
         @media (prefers-reduced-motion: reduce){
           .blob, .progress-shine::after, .dots i { animation: none !important; }
         }

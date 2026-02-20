@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { color } from "../../utils/constants"
+import { color } from "../../../utils/constants"
 
 export function Elements() {
     return (

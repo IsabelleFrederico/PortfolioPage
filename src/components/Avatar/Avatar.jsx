@@ -1,8 +1,7 @@
-import * as THREE from "three"
 import { useEffect, useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
-import { buildClip } from '../hooks/useAnimation'
+import { buildClip } from '../../hooks/useAnimation'
 
 const handBone = "RightHand"
 const mouseRanges = [[0, 2.485], [9.58, 12]]
@@ -13,7 +12,7 @@ function inRanges(t, ranges) {
 
 export function Avatar({ animation = "Typing", mouseObject, mouseMode, setMouseMode, cellphoneObject, mode = "normal", wireOpacity = 0.35, ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/models/model.glb')
+  const { nodes, materials } = useGLTF('/models/avatar.glb')
   const originalParent = useRef(null)
   const cellphoneOriginalParent = useRef(null)
 

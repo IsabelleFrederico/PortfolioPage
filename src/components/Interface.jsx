@@ -1,20 +1,20 @@
 import { motion } from "motion/react"
-import { About } from "./sections/About"
-import { Contact } from "./sections/Contact"
-import { Projects } from "./sections/Projects"
-import { Skills } from "./sections/Skills"
+import { About } from "./sections/about/About"
+import { Contact } from "./sections/contact/Contact"
+import { Projects } from "./sections/projects/Projects"
+import { Skills } from "./sections/skills/Skills"
 import { EndFooter } from "./sections/EndFooter"
 
 export const Section = ({ children, mobileTop, isLast }) => {
 
     return (<motion.section
         className={`
-                w-screen
-                ${isLast ? "h-[80px]" : "h-screen"}
-                flex
-                overflow-hidden
-                ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
-            `}
+            w-screen
+            ${isLast ? "h-[80px]" : "h-screen"}
+            flex
+            overflow-hidden
+            ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
+        `}
         initial={{
             opacity: 0,
             y: 50,

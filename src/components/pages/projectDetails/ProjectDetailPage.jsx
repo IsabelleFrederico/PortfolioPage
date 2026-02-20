@@ -1,13 +1,13 @@
 import { useMemo, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { motion } from "framer-motion"
-import { projects } from "../../utils/constants"
-import TechIcon from "../../utils/TechIcon"
+import { projects } from "../../../utils/constants"
+import TechIcon from "../../../utils/TechIcon"
 import { FiGithub, FiExternalLink } from "react-icons/fi"
-import { goToSection, goToProjectsDetails } from "../Routes/coordinator"
-import Laptop from "../Laptop"
-import CellphoneSkill from "../CellphoneSkill"
-import BackgroundProject from "../BackgroundProject"
+import { goToSection, goToProjectsDetails } from "../../routes/coordinator"
+import Laptop from "./Laptop"
+import CellphoneSkill from "./CellphoneSkill"
+import BackgroundProjectDetails from "../../Backgrounds/projectDetails/BackgroundProjectDetails"
 import { useNavigate } from "react-router-dom"
 
 export default function ProjectDetailPage({ isProgrammaticNavRef }) {
@@ -51,7 +51,7 @@ export default function ProjectDetailPage({ isProgrammaticNavRef }) {
 
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#A6CFB9] text-zinc-900">
-            <BackgroundProject />
+            <BackgroundProjectDetails />
             <div className="mx-auto w-full max-w-7xl px-6 py-10">
                 <div className="flex items-start justify-between gap-4">
                     <button

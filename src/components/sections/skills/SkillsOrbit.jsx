@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber"
 import { useRef } from "react"
-import { skills } from "../utils/constants"
+import { skills } from "../../../utils/constants"
 import { useTexture, Billboard } from "@react-three/drei"
 
 export function SkillsOrbit({

@@ -1,6 +1,6 @@
 import * as THREE from "three"
 import React, { useMemo } from "react"
-import { color } from "../../utils/constants"
+import { color } from "../../../utils/constants"
 
 export function Plant() {
     const detail = 64

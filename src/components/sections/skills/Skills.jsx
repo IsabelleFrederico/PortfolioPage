@@ -1,5 +1,5 @@
-import { Section } from "../Interface"
-import { languages, skills } from "../../utils/constants"
+import { Section } from "../../Interface"
+import { languages, skills } from "../../../utils/constants"
 
 export function Skills() {
 

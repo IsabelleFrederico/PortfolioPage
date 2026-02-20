@@ -1,6 +1,6 @@
 import { motion } from "motion/react"
 import { FiArrowUp } from "react-icons/fi"
-import { CatMia } from "../CatMia"
+import { CatMia } from "../Cat/CatMia"
 
 export function EndFooter({ setSection }) {
 

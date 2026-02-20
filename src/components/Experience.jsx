@@ -1,26 +1,31 @@
 import * as THREE from "three"
 import { useFrame, useThree } from "@react-three/fiber"
 import { useEffect, useMemo, useState, useRef } from "react"
-import { Avatar } from "./Avatar"
-import { Office } from "./Office"
-import { CatMia } from "./CatMia"
-import { Mouse } from "./Mouse"
+import { Avatar } from "./Avatar/Avatar"
+import { Office } from "./sections/about/Office"
+import { CatMia } from "./Cat/CatMia"
+import { Mouse } from "./Avatar/Mouse"
 import { motion } from "framer-motion-3d"
 import { animate, useMotionValue } from "framer-motion"
 import { framerMotionConfig } from "../config"
 import { useScenePoses } from "../hooks/useScenePoses"
-import { Cellphone } from "./Cellphone"
-import { Background } from "./Background"
-import { OfficeContact } from "./OfficeContact"
-import { OfficeBackground } from "./OffineBackground"
-import { SkillsOrbit } from "./SkillsOrbit"
-import { Floor } from "./BackgoundSkill/floor"
-import { Stage } from "./BackgoundSkill/Stage"
-import { Elements } from "./BackgoundSkill/Elements"
-import { Plant } from "./BackgoundSkill/Plant"
+import { Cellphone } from "./Avatar/Cellphone"
+import { Background } from "./Backgrounds/Background"
+import { OfficeContact } from "./sections/contact/OfficeContact"
+import { OfficeBackground } from "./Backgrounds/contact/OffineBackground"
+import { SkillsOrbit } from "./sections/skills/SkillsOrbit"
+import { Floor } from "./Backgrounds/skills/Floor"
+import { Stage } from "./Backgrounds/skills/Stage"
+import { Elements } from "./Backgrounds/skills/Elements"
+import { Plant } from "./Backgrounds/skills/Plant"
+import { Ball } from "./sections/projects/Ball"
+import { FloorProjects } from "./Backgrounds/projectsList/FloorProjects"
 
 export const Experience = ({ menuOpened, section }) => {
-  const { viewport } = useThree()
+  const { viewport, mouse, camera } = useThree()
+  const target = useRef(new THREE.Vector3())
+  const catRef = useRef()
+  const isMobile = window.innerWidth < 768
 
   const mouseInstance = useMemo(() => new THREE.Group(), [])
   const [mouseMode, setMouseMode] = useState("desk")
@@ -43,7 +48,7 @@ export const Experience = ({ menuOpened, section }) => {
   const [characterAnimation, setCharacterAnimation] = useState("Typing")
   const [catAnimation, setCatAnimation] = useState("CatRunning")
 
-  const { avatarVariants, skillsVariants, stageVariants, catVariants, officeVariants, avatarScale, officeScale, contactOfficeVariants, contactBackgroundVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
+  const { ballVariants, avatarVariants, skillsVariants, stageVariants, catVariants, officeVariants, avatarScale, viewH, officeScale, contactOfficeVariants, contactBackgroundVariants } = useScenePoses({ viewport, menuOpened, catAnimation })
 
   useEffect(() => {
     setCharacterAnimation("Falling")
@@ -67,6 +72,7 @@ export const Experience = ({ menuOpened, section }) => {
                 "CatRunning"
       )
     }, 600)
+
   }, [section])
 
   useFrame((state) => {
@@ -75,6 +81,20 @@ export const Experience = ({ menuOpened, section }) => {
   })
 
   const showCellphone = characterAnimation === "Cellphone"
+
+  useFrame(() => {
+    if (isMobile) return
+
+    target.current.x = mouse.x * 10
+
+    camera.position.x = THREE.MathUtils.lerp(
+      camera.position.x,
+      target.current.x,
+      0.05
+    )
+
+    camera.lookAt(0, 0, 0)
+  })
 
   return (
     <>
@@ -102,8 +122,22 @@ export const Experience = ({ menuOpened, section }) => {
         }}
         variants={catVariants}
       >
-        <CatMia animation={catAnimation} section={section} />
+        <CatMia ref={catRef} animation={catAnimation} section={section} />
       </motion.group >
+
+      {section === 2 && (
+        <motion.group
+          animate={"" + section}
+          transition={{
+            duration: 0.6,
+          }}
+          variants={ballVariants}
+        >
+          <Ball speed={menuOpened ? 4 : 1} />
+          <FloorProjects />
+        </motion.group>
+      )}
+
       {section === 1 && (
         <>
           <motion.group
