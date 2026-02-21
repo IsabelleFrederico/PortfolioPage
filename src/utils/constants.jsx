@@ -90,7 +90,7 @@ export const projects = [
     {
         id: 1,
         title: "Portfolio",
-        url: null,
+        url: "https://isabelletravasso.netlify.app/",
         urlGit: "https://github.com/IsabelleFrederico/PortfolioPage",
         video: "/videos/portfolio.mp4",
         image: "/images/portfolio.png",

@@ -2,7 +2,7 @@
 ### Software Developer | Frontend & 3D Web Specialist 
 📍 Schorndorf, Germany  
 
-[🌐 Live Demo](#) • [💻 GitHub](https://github.com/IsabelleFrederico) • [🔗 LinkedIn](https://linkedin.com/in/isabelletravasso)
+[🌐 Live Demo](https://isabelletravasso.netlify.app/) • [💻 GitHub](https://github.com/IsabelleFrederico) • [🔗 LinkedIn](https://linkedin.com/in/isabelletravasso)
 
 ---
 
@@ -69,8 +69,9 @@ The portfolio includes:
 
 ## 📸 Preview
 
->>>>>COLOCAR GIF <<<<<
-
+<p align="center">
+  <img src="./readme-assets/portfolio-demo.gif" width="900" />
+</p>
 ---
 
 ## 🚀 How to Run Locally
