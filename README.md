@@ -1,5 +1,5 @@
 # 👩🏻‍💻 Isabelle Frederico Travasso  
-### Software Developer  
+### Software Developer | Frontend & 3D Web Specialist 
 📍 Schorndorf, Germany  
 
 [🌐 Live Demo](#) • [💻 GitHub](https://github.com/IsabelleFrederico) • [🔗 LinkedIn](https://linkedin.com/in/isabelletravasso)
@@ -86,19 +86,13 @@ npm run dev
 
 ## 🎯 What This Project Demonstrates
 
-Advanced React architecture
-
-3D web development expertise
-
-Animation system design
-
-State management strategies
-
-Clean code organization
-
-Performance considerations
-
-UX/UI design thinking
+- Advanced React architecture
+- 3D web development expertise
+- Animation system design
+- State management strategies
+- Clean code organization
+- Performance considerations
+- UX/UI design thinking
 
 ---
 
@@ -208,7 +202,13 @@ Recreated and implemented fully in code using Three.js and React Three Fiber.
 
 ---
 
+### 🐆 Black Panther
 
+"black panther"
+(https://skfb.ly/oREyv)
+by kenchoo
+licensed under Creative Commons Attribution 4.0 (CC-BY-4.0)
+http://creativecommons.org/licenses/by/4.0/
 
 ---
 
@@ -248,12 +248,5 @@ licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 
 ---
 
-
-
-
-
-***********************************************************
-
-https://sketchfab.com/3d-models/black-panther-7fca11c89cca4362a525c891a8345112
-
-https://sketchfab.com/3d-models/somali-cat-animated-ver-12-e185c3fd92b64c32b4515a32b29252fc#download
+Unless otherwise stated, all models listed below were adapted, retextured, and integrated into this project.  
+Original authors are credited according to their respective licenses
