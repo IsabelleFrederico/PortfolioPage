@@ -70,7 +70,7 @@ The portfolio includes:
 ## 📸 Preview
 
 <p align="center">
-  <img src="./readme-assets/portfolio-demo.gif" width="900" />
+  <img src="./readme-assets/portfolio.gif" width="900" />
 </p>
 ---
 
