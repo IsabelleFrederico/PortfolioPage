@@ -1,7 +1,7 @@
 import { goToSection } from "../routes/coordinator"
 import { useNavigate } from "react-router-dom"
 
-export default function PrivacyPage({isProgrammaticNavRef}) {
+export default function PrivacyPage({ isProgrammaticNavRef }) {
   const navigate = useNavigate()
 
   return (
@@ -44,9 +44,9 @@ export default function PrivacyPage({isProgrammaticNavRef}) {
           <h2 className="text-2xl font-bold">2. Hosting</h2>
 
           <p className="leading-relaxed">
-            This website is hosted by a third-party provider (e.g. Vercel / Netlify).
-            When visiting the website, the hosting provider automatically collects
-            technical data (server log files), including:
+            This website is hosted by Netlify, Inc.
+            When visiting the website, Netlify automatically collects technical data
+            (server log files), including:
           </p>
 
           <ul className="list-disc pl-6 space-y-2">
@@ -65,6 +65,10 @@ export default function PrivacyPage({isProgrammaticNavRef}) {
           <p className="font-medium">
             Legal basis: Art. 6(1)(f) GDPR (legitimate interest).
           </p>
+          <p className="leading-relaxed">
+            Further information can be found in Netlify’s Privacy Policy:
+            https://www.netlify.com/privacy/
+          </p>
         </section>
 
         <section className="mt-12 space-y-4">
@@ -76,11 +80,15 @@ export default function PrivacyPage({isProgrammaticNavRef}) {
           </p>
 
           <p className="font-medium">
-            Legal basis: Art. 6(1)(b) GDPR or Art. 6(1)(f) GDPR.
+            Legal basis: Art. 6(1)(b) GDPR (pre-contractual communication) and/or Art. 6(1)(f) GDPR (legitimate interest in responding to inquiries).
           </p>
 
           <p className="leading-relaxed">
             Your data will not be shared with third parties.
+          </p>
+
+          <p className="leading-relaxed">
+            I delete inquiries once they are no longer necessary for processing, unless statutory retention obligations apply.
           </p>
         </section>
 
@@ -88,12 +96,12 @@ export default function PrivacyPage({isProgrammaticNavRef}) {
           <h2 className="text-2xl font-bold">4. No Cookies / No Tracking</h2>
 
           <p className="leading-relaxed">
-            This website does not use tracking technologies, marketing cookies,
-            or analytics tools.
+            This website does not use analytics tools, marketing cookies, or tracking pixels.
           </p>
 
           <p className="leading-relaxed">
-            No personal data is processed beyond technically necessary server log files.
+            No personal data is processed beyond technically necessary server log files
+            collected by the hosting provider (Netlify) for security and operational purposes.
           </p>
         </section>
 

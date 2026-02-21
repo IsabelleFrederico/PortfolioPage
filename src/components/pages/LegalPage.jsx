@@ -1,7 +1,7 @@
 import { goToSection } from "../routes/coordinator"
 import { useNavigate } from "react-router-dom"
 
-export default function LegalPage({isProgrammaticNavRef}) {
+export default function LegalPage({ isProgrammaticNavRef }) {
   const navigate = useNavigate()
 
   return (
@@ -28,7 +28,7 @@ export default function LegalPage({isProgrammaticNavRef}) {
         </h1>
 
         <p className="mt-8 text-lg text-slate-700">
-          Information according to § 5 TMG
+          Provider identification according to § 5 DDG
         </p>
 
         <div className="mt-6 space-y-2 text-lg">
@@ -63,6 +63,27 @@ export default function LegalPage({isProgrammaticNavRef}) {
         <p className="mt-4 text-lg leading-relaxed text-slate-700">
           The materials on this website are provided on an “as is” basis without
           warranties of any kind.
+        </p>
+        <h3 className="mt-10 text-2xl font-bold">3. Liability for Content</h3>
+        <p className="mt-4 text-lg leading-relaxed text-slate-700">
+          The contents of this website have been created with the greatest possible care.
+          However, I cannot guarantee the accuracy, completeness, or timeliness of the content.
+        </p>
+        <h3 className="mt-10 text-2xl font-bold">4. Liability for Links</h3>
+        <p className="mt-4 text-lg leading-relaxed text-slate-700">
+          This website contains links to external third-party websites.
+          I have no influence over the contents of those websites.
+          Therefore, I cannot accept any liability for external content.
+          The respective provider or operator of the linked pages is always responsible
+          for their content.
+        </p>
+        <h3 className="mt-10 text-2xl font-bold">5. Copyright</h3>
+        <p className="mt-4 text-lg leading-relaxed text-slate-700">
+          The content and works created by the site operator on this website are subject
+          to German copyright law.
+          Third-party content is identified as such.
+          If you become aware of a copyright infringement, please inform me.
+          Upon notification of violations, I will remove such content immediately.
         </p>
       </div>
     </main>

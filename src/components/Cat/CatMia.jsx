@@ -10,7 +10,7 @@ export const CatMia = forwardRef(function CatMia(
   const { nodes, materials } = useGLTF("/models/cat.gltf")
   const { animations: catBathAnimation } = useFBX("/animations/catBath.fbx")
   const { animations: catRunningAnimation } = useFBX("/animations/catRunning.fbx")
-  const { animations: catStandingAnimation } = useFBX("/animations/catStanding.fbx")
+  const { animations: catStandingAnimation } = useFBX("/animations/catStanding1.fbx")
   const { animations: catSeatedAnimation } = useFBX("/animations/catSeated.fbx")
 
   const bathClip = useMemo(() => buildClip(catBathAnimation, "CatBathing", "Bone"), [catBathAnimation])
