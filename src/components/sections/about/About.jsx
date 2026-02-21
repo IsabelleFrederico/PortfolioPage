@@ -5,7 +5,7 @@ export const About = ({ setSection }) => {
 
     return (
         <Section>
-            <div className="ml-5 pb-70 md:pb-0">
+            <div className="ml-5 pb-100 mt-0  md:pb-0">
                 <h1 className="text-3xl md:text-5xl font-extrabold leading-snug text-stone-800 ">
                     Hi, I'm
                     <br />

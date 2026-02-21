@@ -63,7 +63,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
         const avatarVariants = {
             0: byMenu(
                 {
-                    ...stick0Position(0.15, 0.01, -0.05),
+                    ...stick0Position(0.15, isMobile ? 2.5 : 0.01, -0.05),
                     rotateX: 0,
                     rotateY: Math.PI / 2,
                     rotateZ: 0,
@@ -101,7 +101,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             2: byMenu(
                 {
-                    x: isMobile ? -1 : isWindowM ? -2.3 : isWindowG ? -3.1 : -3.5,
+                    x: isMobile ? -0.6 : isWindowM ? -2.3 : isWindowG ? -3.1 : -3.5,
                     y: isMobile ? -viewH - 4.73 : -viewH - 4.81,
                     z: -2,
                     rotateX: 0,
@@ -148,7 +148,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
         const catVariants = {
             0: byMenu(
                 {
-                    ...stick0Position(-0.1, 0.1, 1),
+                    ...stick0Position(-0.1, isMobile ? 2.6 : 0.1, 1),
                     rotateX: -Math.PI / 2,
                     rotateY: 1,
                     rotateZ: 0,
@@ -165,7 +165,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
             1: byMenu(
                 {
-                    x: isMobile ? 0.5 : isWindowM ? 0.5 : -1.5,
+                    x: isMobile ? 0.25 : isWindowM ? 0.5 : -1.5,
                     y: isMobile ? -viewH - 0.45 : -viewH - 2,
                     z: isMobile ? -viewH + 2.5 : -viewH - 1,
                     rotateX: -Math.PI / 2.9,
@@ -260,7 +260,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
 
         const officeVariants = byMenu(
             {
-                position: [isMobile ? 0.1 * officeScaleRatio : 0.7, isMobile ? -viewport.height / 2.5 : -0.5, 0],
+                position: [isMobile ? 0.1 * officeScaleRatio : 0.7, isMobile ? -viewport.height / 8 : -0.5, 0],
             },
             {
                 position: [isMobile ? 2 * officeScaleRatio : 2.5, isMobile ? -0.8 : -0.8, 1],

@@ -42,40 +42,44 @@ function Home3D() {
             }
         }
 
-        setStarted(true)
+        // setStarted(true)
     }, [location.key, location.pathname, location.search, setSection, setStarted])
 
     return (
         <>
             <LoadingScreen started={started} setStarted={setStarted} />
-            <LogoButton section={section} setSection={setSection} />
-            <Menu
-                setSection={setSection}
-                menuOpened={menuOpened}
-                setMenuOpened={setMenuOpened}
-            />
+            {started && (
+                <>
+                    <LogoButton section={section} setSection={setSection} />
+                    <Menu
+                        setSection={setSection}
+                        menuOpened={menuOpened}
+                        setMenuOpened={setMenuOpened}
+                    />
 
-            <MotionConfig
-                transition={{
-                    ...framerMotionConfig,
-                }}
-            >
-                <Canvas gl={{ localClippingEnabled: true }} shadows camera={{ position: [0, 1, 5], fov: 30 }}>
-                    <color attach="background" args={["#d5d5d5"]} />
-                    <ScrollControls pages={5} damping={0.2}>
-                        <ScrollManager section={section} setSection={setSection} started={started} isProgrammaticNavRef={isProgrammaticNavRef} />
-                        <Scroll>
-                            {started && (
-                                <Experience section={section} menuOpened={menuOpened} />
-                            )}
-                        </Scroll>
+                    <MotionConfig
+                        transition={{
+                            ...framerMotionConfig,
+                        }}
+                    >
+                        <Canvas gl={{ localClippingEnabled: true }} shadows camera={{ position: [0, 1, 5], fov: 30 }}>
+                            <color attach="background" args={["#d5d5d5"]} />
+                            <ScrollControls pages={5} damping={0.2}>
+                                <ScrollManager section={section} setSection={setSection} started={started} isProgrammaticNavRef={isProgrammaticNavRef} />
+                                <Scroll>
+                                    {started && (
+                                        <Experience section={section} menuOpened={menuOpened} />
+                                    )}
+                                </Scroll>
 
-                        <Scroll html>
-                            {started && <Interface section={section} setSection={setSection} />}
-                        </Scroll>
-                    </ScrollControls>
-                </Canvas >
-            </MotionConfig >
+                                <Scroll html>
+                                    {started && <Interface section={section} setSection={setSection} />}
+                                </Scroll>
+                            </ScrollControls>
+                        </Canvas >
+                    </MotionConfig >
+                </>
+            )}
         </>
     )
 }

@@ -18,8 +18,7 @@ export const LoadingScreen = ({ started, setStarted }) => {
       className={[
         "fixed inset-0 z-50 transition-opacity duration-700",
         "flex items-center justify-center",
-        "pointer-events-none",
-        started ? "opacity-0" : "opacity-100",
+        started ? "pointer-events-none opacity-0" : "pointer-events-auto opacity-100",
       ].join(" ")}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-teal-200 via-teal-200 to-emerald-200" />
