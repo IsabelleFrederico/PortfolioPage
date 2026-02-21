@@ -1,45 +1,259 @@
-## References / Inspiration
+# 👩🏻‍💻 Isabelle Frederico Travasso  
+### Software Developer  
+📍 Schorndorf, Germany  
 
-* David Heckhoff — https://david-hckh.com/
-* Wawa Sensei (tutorial) — https://www.youtube.com/watch?v=pGMKIyALcK0\&list=PLpepLKamtPjguLKYT7c66998iTaWvqSRe
-* Avaturn Hub — https://hub.avaturn.me/
+[🌐 Live Demo](#) • [💻 GitHub](https://github.com/IsabelleFrederico) • [🔗 LinkedIn](https://linkedin.com/in/isabelletravasso)
 
-## 3D Assets \& Licenses
+---
 
-Model Information:
+## ✨ About This Project
 
-* title:	Basement Home Office #BADeskChallenge
-* source:	https://sketchfab.com/3d-models/basement-home-office-badeskchallenge-324ceb119c754bed973ab7a603750742
-* author:	Fatih174 (https://sketchfab.com/Fatih174)
+This is my interactive 3D portfolio built with modern web technologies.  
+The goal of this project was to create an immersive and performance-focused web experience that combines UI design, animation systems, and 3D development.
 
-Model License:
+The portfolio includes:
 
-* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-* requirements:	Author must be credited. Commercial use is allowed.
+- Scroll-based 3D navigation
+- Animated avatar integration
+- Custom-built 3D environment
+- Interactive project showcase
+- Responsive UI
+- Modern animation architecture
 
+---
 
+## 🛠 Tech Stack
 
+### Frontend
+- React.js
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Three Fiber (R3F)
+- Three.js
+- GSAP
 
+### 3D & Design
+- Blender (modeling & animation)
+- GLTF / GLB optimization
+- Avaturn (avatar generation)
+- Mixamo (animation)
+- Rokoko (retargeting)
 
-https://devmount.medium.com/23-lesser-known-vs-code-shortcuts-as-gif-ffad06d3269e
+---
 
+## 🧠 Architecture Highlights
 
+- Custom `SectionContext` for scroll-based navigation
+- URL synchronization with section state
+- Dynamic 3D camera poses (`useScenePoses`)
+- Modular component-based architecture
+- ScrollManager with multi-section control
+- Clean and scalable folder structure
 
-https://se.pinterest.com/pin/424323596147997286/
+---
 
+## 🎮 Features
 
+- Interactive 3D avatar
+- Skills orbit animation system
+- Animated background transitions
+- Dedicated project detail pages
+- Dynamic routing integration
+- Smooth motion-based transitions
+- Custom Stage & Floor visual effects
+- Performance-conscious rendering
 
-"3d modelling my cat: Fripouille" (https://skfb.ly/6TKqH) by guillaume bolis is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+---
 
+## 📸 Preview
 
+>>>>>COLOCAR GIF <<<<<
 
-"An Animated Cat" (https://skfb.ly/6YPwH) by Evil\_Katz is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+---
 
+## 🚀 How to Run Locally
 
+```bash
+git clone https://github.com/IsabelleFrederico/PortfolioPage
+cd PortfolioPage
+npm install
+npm run dev
+```
 
-https://sketchfab.com/3d-models/robot-playground-59fc99d8dcb146f3a6c16dbbcc4680da
+---
 
+## 🎯 What This Project Demonstrates
 
+Advanced React architecture
 
+3D web development expertise
+
+Animation system design
+
+State management strategies
+
+Clean code organization
+
+Performance considerations
+
+UX/UI design thinking
+
+---
+
+## 📌 Future Improvements
+
+Internationalization (i18n)
+
+Backend integration for contact form
+
+Further performance optimization for low-end devices
+
+Automated testing implementation
+
+---
+
+## 📚 References & Documentation
+
+### 🎨 Inspiration
+
+- ***David Heckhoff***  
+  https://david-hckh.com/
+
+- ***Wawa Sensei – React Three Fiber Tutorial***  
+  https://www.youtube.com/watch?v=pGMKIyALcK0&list=PLpepLKamtPjguLKYT7c66998iTaWvqSRe
+
+- ***Avaturn Hub***  
+  https://hub.avaturn.me/
+
+- ***Mixamo (Adobe)***  
+  https://www.mixamo.com/
+  
+### 🎨 Visual Inspiration
+
+- Purple podium concept inspired by Unsplash reference:
 https://unsplash.com/photos/podium-in-abstract-purple-composition-3d-render-3d-illustration-background-mockup-3d-purple-with-podium-and-minimal-purple-wall-scene-3d-mockup-abstract-geometric-shape-purple-pastel-color-stage-for-awards-on-website-in-modern-k4ipIOoilBA
 
+Recreated and implemented fully in code using Three.js and React Three Fiber.
+
+---
+
+## 🧩 3D Assets & Licenses
+
+---
+
+### 🖥 Basement Home Office #BADeskChallenge
+
+- ***Source:*** 
+  https://sketchfab.com/3d-models/basement-home-office-badeskchallenge-324ceb119c754bed973ab7a603750742  
+
+- ***Author:***  
+  Fatih174 — https://sketchfab.com/Fatih174  
+
+- ***License:***  
+  Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+---
+
+### 🐾 3D Modelling My Cat: Fripouille
+
+- https://skfb.ly/6TKqH  
+- Author: guillaume bolis  
+- License: Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+---
+
+### 🐱 An Animated Cat
+
+- https://skfb.ly/6YPwH  
+- Author: Evil_Katz  
+- License: Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+---
+
+### 🐱 Cat Rigged
+
+- https://skfb.ly/6VG9n  
+- Author: Vr-cvantorium  
+- License: Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+---
+
+### 🐱 Cat
+
+- https://skfb.ly/6WZvn  
+- Author: Vr-cvantorium  
+- License: Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+---
+
+
+
+---
+
+### 📱 Samsung A25
+
+- https://skfb.ly/pvGRT  
+- Author: MaxLeburo  
+- License: Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+---
+
+### ⚽ Underhand Roll Ball
+
+- ***Source:***  
+  https://sketchfab.com/3d-models/underhand-roll-ball-89296914c2b5433ea76d41c52f2e942f  
+
+- ***Author:***  
+  DECOMIDI - UEL — https://sketchfab.com/spinosa  
+
+- ***License:***  
+  Creative Commons Attribution 4.0 (CC-BY-4.0)  
+  http://creativecommons.org/licenses/by/4.0/  
+
+✔ Author credit required  
+✔ Commercial use allowed  
+
+***Official Credit Text (as required by the author):***
+
+This work is based on "Underhand Roll Ball"  
+(https://sketchfab.com/3d-models/underhand-roll-ball-89296914c2b5433ea76d41c52f2e942f)  
+by DECOMIDI - UEL (https://sketchfab.com/spinosa)  
+licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+---
+
+
+
+
+
+***********************************************************
+
+https://sketchfab.com/3d-models/black-panther-7fca11c89cca4362a525c891a8345112
+
+https://sketchfab.com/3d-models/somali-cat-animated-ver-12-e185c3fd92b64c32b4515a32b29252fc#download
