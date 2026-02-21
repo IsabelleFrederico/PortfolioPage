@@ -83,7 +83,7 @@ export const Experience = ({ menuOpened, section }) => {
   const showCellphone = characterAnimation === "Cellphone"
 
   useFrame(() => {
-    if (isMobile) return
+    if (isMobile || menuOpened) return
 
     target.current.x = mouse.x * 10
 

@@ -284,7 +284,7 @@ export function useScenePoses({ viewport, menuOpened, catAnimation }) {
                 },
                 {
                     x: isMobile ? 1 : 1,
-                    y: isMobile ? -viewH + 1.5 : -viewH - 10,
+                    y: isMobile ? -viewH + 1.5 : -viewH + 3,
                     z: isMobile ? 1.8 : 1.8,
                     rotateX: isMobile ? Math.PI - 3.1 : 0,
                     rotateY: -1,
