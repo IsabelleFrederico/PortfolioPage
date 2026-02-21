@@ -1,4 +1,4 @@
-import { goToSection } from "../routes/coordinator"
+import { goToSection } from "../Routes/coordinator"
 import { useNavigate } from "react-router-dom"
 
 export default function LegalPage({ isProgrammaticNavRef }) {
