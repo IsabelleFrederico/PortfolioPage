@@ -1,7 +1,7 @@
 import { Section } from "../../Interface"
 import { useEffect, useRef } from "react"
 import { projects } from "../../../utils/constants"
-import { goToProjectsDetails } from "../../Routes/coordinator"
+import { goToProjectsDetails } from "../../routes/coordinator"
 
 export const Projects = ({ active = true }) => {
     const scrollerRef = useRef(null)
