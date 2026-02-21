@@ -1,4 +1,4 @@
-import Router from "./components/routes/Router.jsx"
+import Router from "./components/routes/Router"
 import { SectionProvider } from "./components/state/SectionContext.jsx"
 
 function App() {
